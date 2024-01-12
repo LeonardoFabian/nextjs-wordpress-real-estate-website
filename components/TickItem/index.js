@@ -1,0 +1,1 @@
+export {TickItem} from './TickItem'

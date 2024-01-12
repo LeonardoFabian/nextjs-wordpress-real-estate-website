@@ -1,5 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Aboreto&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Aboreto&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Biryani:wght@200;300;400&family=Great+Vibes&family=Signika+Negative:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply bg-yellow-500 hover:bg-yellow-600 text-white inline-block my-2 px-4 py-2 uppercase rounded-sm font-semibold cursor-pointer
+    }
+}
