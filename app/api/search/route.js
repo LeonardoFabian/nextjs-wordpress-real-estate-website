@@ -17,7 +17,7 @@ export async function POST(request) {
                     compare: EQUAL_TO
                     value: "1"
                 },
-            `
+            `;
         }
 
         if(filters.petFriendly) {
@@ -27,7 +27,7 @@ export async function POST(request) {
                     compare: EQUAL_TO
                     value: "1"
                 },
-            `
+            `;
         }
 
         if(filters.minPrice) {
@@ -38,7 +38,7 @@ export async function POST(request) {
                     value: "${filters.minPrice}"
                     type: NUMERIC
                 },
-            `
+            `;
         }
 
         if(filters.maxPrice) {
@@ -49,7 +49,7 @@ export async function POST(request) {
                     value: "${filters.maxPrice}"
                     type: NUMERIC
                 },
-            `
+            `;
         }
 
         const response = await fetch(process.env.WP_GRAPHQL_URL, {
