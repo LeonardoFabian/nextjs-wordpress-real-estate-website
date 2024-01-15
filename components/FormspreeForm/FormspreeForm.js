@@ -1,3 +1,4 @@
+"use client";
 import { useForm, ValidationError } from "@formspree/react"
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -35,14 +35,14 @@ export const Filters = ({onSearch}) => {
 
     return (
         <div className="max-w-5xl mx-auto my-5 block md:flex items-center gap-6 bg-white shadow-lg border-2 p-5 rounded-md">
-            <div className="flex-1">
+            <div className="flex md:flex-col flex-1 items-center md:items-start gap-6 md:gap-2">
                 <div>
                     <label className="cursor-pointer">
                         <input type="checkbox" checked={hasParking} onChange={() => setHasParking(value => !value)} />
                         <span className="pl-2">Has parking</span>
                     </label>
                 </div>
-                <div className="mt-2">
+                <div className="md:mt-2">
                     <label className="cursor-pointer">
                         <input type="checkbox" checked={petFriendly} onChange={() => setPetFriendly(value => !value)} />
                         <span className="pl-2">Pet friendly</span>

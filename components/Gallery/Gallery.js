@@ -21,7 +21,7 @@ export const Gallery = ({columns, imageCrop, items }) => {
     return (
         <div className="max-w-5xl mx-auto py-10 flex flex-wrap">
             {items.map(item => (
-                <div key={item.id} style={{ width: `${columnWidth}%` }} className="p-5 flex-grow">
+                <div key={item.id} style={{ width: `${columnWidth}%` }} className="p-5 flex-grow relative">
                     <Image
                         src={item.attributes.url}
                         height={item.attributes.height}

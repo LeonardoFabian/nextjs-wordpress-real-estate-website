@@ -6,10 +6,18 @@ import numeral from "numeral"
 
 export const PropertyCard = ({title, destination, bedrooms, bathrooms, hasParking, petFriendly, price, image}) => {
     return (
-        <Link href={destination}>
+        <a href={destination}>
             <div className="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
                 <div className="bg-white shadow-xl rounded-lg overflow-hidden">
-                    <Image src={image} alt="" height="256" width="320" objectFit="cover" />
+                    <div className="flex w-full h-[200px] relative">
+                        <Image 
+                            src={image} 
+                            alt="" 
+                            fill 
+                            sizes="300"
+                            className="object-cover"
+                        />
+                    </div>
                     {/* <div className="bg-cover bg-center h-56 p-4" style={{ backgroundImage: `url(${image})` }}>
                         <div className="flex justify-end">
                             <svg className="h-6 w-6 text-white fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -67,6 +75,6 @@ export const PropertyCard = ({title, destination, bedrooms, bathrooms, hasParkin
                     </div> */}
                 </div>
             </div>
-        </Link>
+        </a>
     )
 }
