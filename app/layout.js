@@ -10,22 +10,22 @@ const signika = Signika_Negative({
     subsets: ["latin"],
     weight: ["400"],
     display: "swap",
-    variable: "--font-signika-negative"
-})
+    variable: "--font-signika-negative",
+});
 
 const biryani = Biryani({
     subsets: ["latin"],
     weight: ["400", "600", "700"],
     display: "swap",
-    variable: "--font-biryani"
-})
+    variable: "--font-biryani",
+});
 
 const greatvibes = Great_Vibes({
     subsets: ["latin"],
     weight: ["400"],
     display: "swap",
-    variable: "--font-great-vibes"
-})
+    variable: "--font-great-vibes",
+});
 
 
 export default async function RootLayout({children}) {
