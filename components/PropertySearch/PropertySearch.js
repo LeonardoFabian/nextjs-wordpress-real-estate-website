@@ -35,6 +35,9 @@ export const PropertySearch = () => {
 
         const response = await fetch(`/api/search`, {
             method: "POST",
+            headers: {
+                'Content-Type': "application/json",
+            },
             body: JSON.stringify({
                 page: parseInt(page || "1"),
                 ...filters,
