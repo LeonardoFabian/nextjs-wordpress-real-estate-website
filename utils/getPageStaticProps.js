@@ -34,10 +34,10 @@ export const getPageStaticProps = async (context) => {
                 metaDesc
               }
               propertyFeatures {
-                bathrooms,
-                bedrooms,
-                hasParking,
-                petFriendly,
+                bathrooms
+                bedrooms
+                hasParking
+                petFriendly
                 price
               }
               featuredImage {
