@@ -17,8 +17,12 @@ export const Page = (props) => {
                 <title>{props.seo.title}</title>
                 <meta name="description" content={props.seo.metaDesc} />
             </Head>
-            <MainMenu items={props.mainMenuItems} callToActionLabel={props.callToActionLabel} callToActionDestination={props.callToActionDestination} />
+            <MainMenu 
+                items={props.mainMenuItems} 
+                callToActionLabel={props.callToActionLabel} 
+                callToActionDestination={props.callToActionDestination}
+            />
             <BlockRenderer blocks={props.blocks} />
         </PageWrapper>        
-    )
-}
+    );
+};
