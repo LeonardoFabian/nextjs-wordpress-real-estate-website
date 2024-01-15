@@ -25,9 +25,9 @@ export const getMenu = async () => {
                             }
                             menuItem {
                                 destination {
-                                ...on Page {
-                                    uri
-                                }
+                                    ...on Page {
+                                        uri
+                                    }
                                 }
                                 label
                             }
@@ -41,9 +41,9 @@ export const getMenu = async () => {
     const response = await fetch(process.env.WP_GRAPHQL_URL, {
         method: "POST",
         headers: {
-            'Content-Type': "application/json"
+            'Content-Type': "application/json",
         },
-        body: JSON.stringify(params)
+        body: JSON.stringify(params),
     });
 
     const {data} = await response.json();
