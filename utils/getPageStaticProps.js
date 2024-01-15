@@ -14,7 +14,7 @@ export const getPageStaticProps = async (context) => {
             ... on Page {
               id
               title
-              blocks
+              blocks(postTemplate: false)
               featuredImage {
                 node {
                   sourceUrl
@@ -28,16 +28,16 @@ export const getPageStaticProps = async (context) => {
             ... on Property {
               id
               title
-              blocks
+              blocks(postTemplate: false)
               seo {
                 title
                 metaDesc
               }
               propertyFeatures {
-                bathrooms,
-                bedrooms,
-                hasParking,
-                petFriendly,
+                bathrooms
+                bedrooms
+                hasParking
+                petFriendly
                 price
               }
               featuredImage {
@@ -86,6 +86,8 @@ export const getPageStaticProps = async (context) => {
   
     const mainMenuItems = mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems);
     const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
+
+    console.log("BLOCK FROM CLEAN AND TRANSFORM BLOCKS.............", blocks);
   
     return {
       props: {
@@ -97,6 +99,6 @@ export const getPageStaticProps = async (context) => {
         callToActionLabel: data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
         callToActionDestination: data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
         blocks,
-      }
-    }
-  }
+      },
+    };
+  };
