@@ -50,11 +50,9 @@ export const Filters = ({onSearch}) => {
                 </div>
             </div>
             <div className="flex-1">
-                {/* <Label>Min price</Label> */}
                 <Input type="number" placeholder="$ Min" value={minPrice} onChange={e => setMinPrice(e.target.value)} />
             </div>
             <div className="flex-1">
-                {/* <Label>Max price</Label> */}
                 <Input type="number" placeholder="$ Max" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} />
             </div>
             <div>

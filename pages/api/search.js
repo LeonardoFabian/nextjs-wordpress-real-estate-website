@@ -19,7 +19,7 @@ const handler = async (req, res) => {
                     compare: EQUAL_TO
                     value: "1"
                 },
-            `
+            `;
         }
 
         if(filters.petFriendly) {
@@ -29,7 +29,7 @@ const handler = async (req, res) => {
                     compare: EQUAL_TO
                     value: "1"
                 },
-            `
+            `;
         }
 
         if(filters.minPrice) {
@@ -40,7 +40,7 @@ const handler = async (req, res) => {
                     value: "${filters.minPrice}"
                     type: NUMERIC
                 },
-            `
+            `;
         }
 
         if(filters.maxPrice) {
@@ -51,7 +51,7 @@ const handler = async (req, res) => {
                     value: "${filters.maxPrice}"
                     type: NUMERIC
                 },
-            `
+            `;
         }
 
         const {data} = await client.query({
@@ -83,8 +83,8 @@ const handler = async (req, res) => {
                             uri
                             featuredImage {
                                 node {
-                                uri
-                                sourceUrl
+                                    uri
+                                    sourceUrl
                                 }
                             }
                             propertyFeatures {
@@ -97,7 +97,7 @@ const handler = async (req, res) => {
                         }
                     }
                 }
-            `
+            `,
         });
 
         console.log("SERVER SIDE: ", data.properties.nodes);
@@ -110,6 +110,6 @@ const handler = async (req, res) => {
     } catch(e) {
         console.log("ERROR: ", e);
     }
-}
+};
 
 export default handler;
