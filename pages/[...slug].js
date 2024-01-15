@@ -13,12 +13,12 @@ export const getStaticPaths = async () => {
             query AllPagesQuery {
                 pages {
                     nodes {
-                    uri
+                        uri
                     }
                 }
                 properties {
                     nodes {
-                    uri
+                        uri
                     }
                 }
             }
