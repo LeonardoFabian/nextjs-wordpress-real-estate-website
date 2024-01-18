@@ -1,9 +1,7 @@
-// const { default: client } = require("client");
 import client from 'client';
-import { gql } from "@apollo/client"
+import { gql } from "@apollo/client";
 
 const handler = async (req, res) => {
-
     try {
         const filters = JSON.parse(req.body);
 
@@ -14,54 +12,55 @@ const handler = async (req, res) => {
 
         if(filters.hasParking) {
             hasParkingFilter = `
-                {
-                    key: "has_parking"
-                    compare: EQUAL_TO
-                    value: "1"
-                },
+            {
+                key: "has_parking"
+                compare: EQUAL_TO
+                value: "1"
+            },
             `;
         }
 
         if(filters.petFriendly) {
             petFriendlyFilter = `
-                {
-                    key: "pet_friendly"
-                    compare: EQUAL_TO
-                    value: "1"
-                },
+            {
+                key: "pet_friendly"
+                compare: EQUAL_TO
+                value: "1"
+            },
             `;
         }
 
         if(filters.minPrice) {
             minPriceFilter = `
-                {
-                    key: "price"
-                    compare: GREATER_THAN_OR_EQUAL_TO
-                    value: "${filters.minPrice}"
-                    type: NUMERIC
-                },
+            {
+                key: "price"
+                compare: GREATER_THAN_OR_EQUAL_TO
+                value: "${filters.minPrice}"
+                type: NUMERIC
+            },
             `;
         }
 
         if(filters.maxPrice) {
             maxPriceFilter = `
-                {
-                    key: "price"
-                    compare: LESS_THAN_OR_EQUAL_TO
-                    value: "${filters.maxPrice}"
-                    type: NUMERIC
-                },
+            {
+                key: "price"
+                compare: LESS_THAN_OR_EQUAL_TO
+                value: "${filters.maxPrice}"
+                type: NUMERIC
+            },
             `;
         }
 
         const {data} = await client.query({
             query: gql`
                 query AllPropertiesQuery {
-                    properties(
-                        where: {
+                    properties(where: {
                             offsetPagination: {
                                 size: 3, 
-                                offset: ${((filters.page || 1) - 1) * 3}
+                                offset: ${
+                                    ((filters.page || 1) - 1) * 3
+                                }
                             }
                             metaQuery: {
                                 relation: AND
@@ -70,8 +69,10 @@ const handler = async (req, res) => {
                                     ${hasParkingFilter}
                                     ${minPriceFilter}
                                     ${maxPriceFilter}
-                                ]}
-                        }) {
+                                ]
+                            }
+                        }
+                    ) {
                         pageInfo {
                             offsetPagination {
                                 total

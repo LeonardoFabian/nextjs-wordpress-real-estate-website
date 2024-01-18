@@ -6,10 +6,18 @@ import numeral from "numeral"
 
 export const PropertyCard = ({title, destination, bedrooms, bathrooms, hasParking, petFriendly, price, image}) => {
     return (
-        <Link href={destination}>
+        <Link href={destination} prefetch={false}>
             <div className="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
                 <div className="bg-white shadow-xl rounded-lg overflow-hidden">
-                    <Image src={image} alt="" height="256" width="320" objectFit="cover" />
+                    <Image 
+                        src={image} 
+                        alt="" 
+                        height="256" 
+                        width="320" 
+                        className="object-cover" 
+                        placeholder="blur"
+                        blurDataURL={image}
+                    />
                     <div className="p-4">
                         <p className="uppercase tracking-wide text-sm font-bold text-gray-700">Detached house • 5y old</p>
                         <p className="text-3xl text-gray-900">${numeral(price).format("0,0")}</p>

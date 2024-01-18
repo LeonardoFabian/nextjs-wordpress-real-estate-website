@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
             }
         `,
     });
-    
+
 
     return {
         paths: [...data.pages.nodes, ...data.properties.nodes]
