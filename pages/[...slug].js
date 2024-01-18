@@ -25,7 +25,7 @@ export const getStaticPaths = async () => {
         `,
     });
 
-
+    // paths
     return {
         paths: [...data.pages?.nodes, ...data.properties?.nodes]
         .filter((page) => page.uri !== "/")
