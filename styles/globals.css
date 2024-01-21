@@ -6,6 +6,11 @@
 
 @layer components {
     .btn {
-        @apply bg-yellow-500 hover:bg-yellow-600 text-white inline-block my-2 px-4 py-2 uppercase rounded-sm font-semibold cursor-pointer
+        @apply bg-yellow-500 hover:!bg-opacity-80 text-slate-700 hover:text-white block lg:inline-block my-2 px-4 py-2 uppercase rounded-sm font-semibold cursor-pointer
+    }
+
+    .btn:hover {
+        background-color: rgb(203, 161, 53) !important;
+        color: rgb(255,255,255) !important;
     }
 }

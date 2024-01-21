@@ -89,7 +89,7 @@ export const PropertySearch = () => {
         search();
     }
 
-    return (
+    return (       
         <div className="px-4 py-5 max-w-5xl mx-auto text-gray-800 absolute left-0 right-0 -mt-24">
             <Filters onSearch={handleSearch} />
             <Results properties={properties} />
@@ -98,6 +98,7 @@ export const PropertySearch = () => {
                 totalPages={Math.ceil(totalResults / pageSize )} 
             />
         </div>
+        
     );
 
 };

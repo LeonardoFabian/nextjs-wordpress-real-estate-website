@@ -1,13 +1,17 @@
 import { ButtonLink } from 'components/ButtonLink';
 import Link from 'next/link';
 import {FaHouseUser} from 'react-icons/fa';
+import Image from 'next/image';
+import { Logo } from 'components/Logo';
+import { Logotipo } from 'components/Logotipo';
 
 export const MainMenu = ({items, callToActionLabel, callToActionDestination}) => {
     console.log("MAIN MENU PROPS: ", items);
     return (
         <div className="bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20 flex">
-            <div className="py-4 pl-5 flex text-yellow-600">
-                <FaHouseUser size={30} />
+            <div className="py-4 pl-5 flex items-center gap-3" style={{ color: "#d4af37" }}>
+                <Logo width="50" height="50" />
+                <Logotipo />
             </div>
             <div className='hidden md:flex flex-1 justify-end'>
                 {(items || []).map(item => (

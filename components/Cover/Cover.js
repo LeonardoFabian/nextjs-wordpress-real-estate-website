@@ -15,7 +15,7 @@ export const Cover = ({children, background}) => {
                 />
                 : null
             }            
-            <div className="max-w-5xl z-10">
+            <div className="max-w-full z-10">
                 {children}
             </div>
         </div>
