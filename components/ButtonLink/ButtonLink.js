@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export const ButtonLink = ({destination, label, bgColor, textColor, marginTop, marginBottom, marginLeft, marginRight}) => {
+export const ButtonLink = ({destination, label, bgColor, textColor, marginTop, marginBottom, marginLeft, marginRight, onClick}) => {
 
     const colorStyle = textColor ? {color: textColor} : {};
     const backgroundColorStyle = bgColor ? {backgroundColor: bgColor} : {};
@@ -12,7 +12,7 @@ export const ButtonLink = ({destination, label, bgColor, textColor, marginTop, m
     return (
         <Link 
             href={destination} 
-            className='next-button-link btn inline-block text-center'
+            className='next-button-link btn'
             style={{ 
                 ...colorStyle,
                 ...backgroundColorStyle,
@@ -21,6 +21,7 @@ export const ButtonLink = ({destination, label, bgColor, textColor, marginTop, m
                 ...marginLeftStyle,
                 ...marginRightStyle
              }}
+             onClick={onClick}
         >
             {label}
         </Link>

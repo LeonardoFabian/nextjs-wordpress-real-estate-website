@@ -2,6 +2,7 @@ import { Input } from "components/Input"
 import { useEffect, useState } from "react"
 import queryString from 'query-string'
 import { Label } from "components/Label";
+import { CallToActionButton } from "components/CallToActionButton";
 
 export const Filters = ({onSearch}) => {
 
@@ -34,7 +35,7 @@ export const Filters = ({onSearch}) => {
     }, []);
 
     return (
-        <div className="max-w-5xl mx-auto my-5 block md:flex items-center gap-6 bg-white shadow-lg border-2 p-5 rounded-md absolute -mt-56 left-0 right-0">
+        <div className="max-w-5xl mx-auto my-5 block md:flex items-center gap-6 bg-white shadow-lg border-2 p-5 rounded-md relative md:absolute -mt-56 left-0 right-0">
             <div className="flex-1">
                 <div>
                     <label className="cursor-pointer">
@@ -56,7 +57,7 @@ export const Filters = ({onSearch}) => {
                 <Input type="number" placeholder="$ Max" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} />
             </div>
             <div>
-                <div className="btn py-2 px-4" onClick={handleSearch}>
+                <div className="btn" onClick={handleSearch}>
                     Search
                 </div>
             </div>
