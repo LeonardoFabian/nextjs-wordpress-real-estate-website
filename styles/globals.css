@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer components {
+    .container {
+        @apply max-w-xs md:max-w-2xl lg:max-w-full lg:px-8 mx-auto
+    }
     .btn {
         @apply bg-yellow-500 hover:!bg-opacity-80 text-slate-700 hover:text-white block lg:inline-block my-2 px-4 py-2 uppercase rounded-sm font-semibold cursor-pointer
     }
@@ -12,5 +15,9 @@
     .btn:hover {
         background-color: rgb(203, 161, 53) !important;
         color: rgb(255,255,255) !important;
+    }
+
+    .social-icon {
+        @apply h-[35px] w-[35px] flex items-center justify-center border-2 border-slate-400 hover:border-slate-50 rounded-md bg-slate-50 bg-opacity-5 hover:bg-opacity-20 hover:text-slate-50
     }
 }

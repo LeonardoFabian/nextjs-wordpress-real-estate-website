@@ -13,7 +13,7 @@ export const FormspreeForm = ({formId}) => {
 
     if(state.succeeded) {
         return (
-            <div className="max-w-5xl mx-auto my-5 bg-green-100 text-green-600 p-4 rounded-md flex items-center">
+            <div className="container bg-green-100 text-green-600 p-4 rounded-md flex items-center">
                 <FontAwesomeIcon icon={faCheckCircle} />
                 <span className="ml-4">Formulario enviado correctamente.</span>
             </div>
@@ -21,7 +21,7 @@ export const FormspreeForm = ({formId}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-5xl mx-auto my-5">
+        <form onSubmit={handleSubmit} className="container my-5">
             <div className="mb-4">
                 <Label htmlFor="email">
                     Email Address

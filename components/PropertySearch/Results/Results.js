@@ -1,8 +1,12 @@
 import { PropertyCard } from "./PropertyCard";
+import { Sidebar } from "components/Sidebar";
 
 export const Results = ({properties}) => {
     return (
-        <div className="max-w-5xl mx-auto block md:grid grid-cols-3 gap-5 mb-10">
+        <>
+        {/* <Sidebar /> */}
+        {/* <div className="max-w-full mx-auto block md:grid lg:grid-cols-3 xl:grid-cols-4 gap-x-4 mb-10"> */}
+      
             {properties.map(property => (
                 <PropertyCard 
                     key={property.databaseId} 
@@ -16,6 +20,8 @@ export const Results = ({properties}) => {
                     image={property.featuredImage?.node.sourceUrl}
                 />
             ))}
-        </div>
+       
+        {/* </div> */}
+        </>
     );
 };

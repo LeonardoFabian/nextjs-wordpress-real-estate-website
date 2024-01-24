@@ -9,9 +9,14 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
     console.log("MAIN MENU PROPS: ", items);
     return (
         <div className="bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20 flex">
-            <div className="py-4 pl-5 flex items-center gap-3" style={{ color: "#d4af37" }}>
-                <Logo width="50" height="50" />
-                <Logotipo />
+            <div className="py-2 pl-5" style={{ color: "#d4af37" }}>
+                <Link 
+                    href="/"
+                    className='flex items-center gap-3 h-[50px]'
+                >
+                    <Logo width="50" height="50" />
+                    <Logotipo />
+                </Link>
             </div>
             <div className='hidden md:flex flex-1 justify-end'>
                 {(items || []).map(item => (

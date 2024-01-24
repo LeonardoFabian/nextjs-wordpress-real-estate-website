@@ -5,7 +5,7 @@ export const Columns = ({isStackedOnMobile, children, textColor, backgroundColor
 
     return (
         <div className="my-10" style={{ ...backgroundColorStyle, ...textColorStyle }}>
-            <div className={`max-w-5xl mx-auto ${isStackedOnMobile ? 'block md:flex' : 'flex'}`}>{children}</div>
+            <div className={`container ${isStackedOnMobile ? 'block md:flex' : 'flex'}`}>{children}</div>
         </div>
     )
 }

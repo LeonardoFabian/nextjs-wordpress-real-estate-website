@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export const Cover = ({children, background}) => {
     return (
-        <div className="h-screen bg-slate-800 text-white relative min-h-[400px] flex justify-center items-center">
+        <div className="max-w-full h-screen bg-slate-800 text-white relative min-h-[400px] flex justify-center items-center">
             {
                 background 
                 ? <Image 
@@ -15,7 +15,7 @@ export const Cover = ({children, background}) => {
                 />
                 : null
             }            
-            <div className="max-w-full z-10">
+            <div className="container z-10">
                 {children}
             </div>
         </div>

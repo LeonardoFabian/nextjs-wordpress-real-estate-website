@@ -7,14 +7,14 @@ import numeral from "numeral"
 export const PropertyCard = ({title, destination, bedrooms, bathrooms, hasParking, petFriendly, price, image}) => {
     return (
         <Link href={destination} prefetch={false}>
-            <div className="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
+            <div className="max-w-full w-full sm:w-full lg:w-full xl:w-full py-6 px-3">
                 <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                     <Image 
                         src={image} 
                         alt="" 
                         height="256" 
                         width="320" 
-                        className="object-cover" 
+                        className="w-full object-cover" 
                         placeholder="blur"
                         blurDataURL={image}
                     />

@@ -84,58 +84,7 @@ export const getPageStaticProps = async (context) => {
           }
           acfOptionsFooterPrimaryMenu {
             footerPrimaryMenu {
-              title
-              menuItems {
-                destination {
-                  ... on Page {
-                    uri
-                  }
-                }
-                label
-              }
-            }
-          }
-          acfOptionsFooterQuickLinks {
-            footerQuickLinks {
-              title
-              menuItems {
-                label
-                url {
-                  title
-                  url
-                  target
-                }
-              }
-            }
-          }
-          acfOptionsLegalPagesMenu {
-            legalPages {
-              menuItems {
-                destination {
-                  ... on Page {
-                    uri
-                  }
-                }
-                label
-              }
-            }
-          }
-          acfOptionsSocialMenu {
-            socialMenu {
-              menuItems {
-                label
-                socialNetwork
-                url {
-                  target
-                  title
-                  url
-                }
-              }
-            }
-          }
-          acfOptionsPageMenu {
-            pageMenu {
-              menuItems {
+              footerMenuItems {
                 menuItem {
                   destination {
                     ... on Page {
@@ -144,7 +93,39 @@ export const getPageStaticProps = async (context) => {
                   }
                   label
                 }
-                items {
+              }
+              footerMenuTitle
+            }
+          }
+          acfOptionsFooterQuickLinks {
+            footerQuickLinks {
+              footerQuickLinks {
+                label
+                url {
+                  url
+                  target
+                }
+              }
+              quickLinksTitle
+            }
+          }
+          acfOptionsLegalPagesMenu {
+            legalPages {
+              legalPagesItems {
+                destination {
+                  ... on Page {
+                    uri
+                  }
+                }
+                label
+              }
+              legalMenuTitle
+            }
+          }
+          acfOptionsPageMenu {
+            pageMenu {
+              pageMenuItems {
+                menuItem {
                   destination {
                     ... on Page {
                       uri
@@ -153,6 +134,20 @@ export const getPageStaticProps = async (context) => {
                   label
                 }
               }
+              pageMenuTitle
+            }
+          }
+          acfOptionsSocialMenu {
+            socialMenu {              
+              socialMenuItems {
+                label
+                socialNetwork
+                url {
+                  url
+                  target
+                }
+              }
+              socialMenuTitle
             }
           }
         }
@@ -163,11 +158,11 @@ export const getPageStaticProps = async (context) => {
     });
   
     const mainMenuItems = mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems);
-    const footerMenuItems = mapFooterMenuItems(data.acfOptionsFooterPrimaryMenu.footerPrimaryMenu.menuItems);
-    const footerQuickLinks = mapFooterQuickLinks(data.acfOptionsFooterQuickLinks.footerQuickLinks.menuItems);
-    const socialLinks = mapSocialLinks(data.acfOptionsSocialMenu.socialMenu.menuItems);
-    const legalPages = mapLegalPages(data.acfOptionsLegalPagesMenu.legalPages.menuItems);
-    const pageMenuItems = mapPageMenuItems(data.acfOptionsPageMenu.pageMenu.menuItems);
+    const footerMenuItems = mapFooterMenuItems(data.acfOptionsFooterPrimaryMenu.footerPrimaryMenu.footerMenuItems);
+    const footerQuickLinks = mapFooterQuickLinks(data.acfOptionsFooterQuickLinks.footerQuickLinks.footerQuickLinks);
+    const legalPages = mapLegalPages(data.acfOptionsLegalPagesMenu.legalPages.legalPagesItems);
+    const pageMenuItems = mapPageMenuItems(data.acfOptionsPageMenu.pageMenu.pageMenuItems);
+    const socialLinks = mapSocialLinks(data.acfOptionsSocialMenu.socialMenu.socialMenuItems);
     // const footerMenuItems = '';
     const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
 
@@ -180,12 +175,15 @@ export const getPageStaticProps = async (context) => {
         propertyFeatures: data.nodeByUri.propertyFeatures || null,
         featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
         mainMenuItems: mainMenuItems,
-        footerMenuTitle: data.acfOptionsFooterPrimaryMenu.footerPrimaryMenu.title || null,
+        footerMenuTitle: data.acfOptionsFooterPrimaryMenu.footerPrimaryMenu.footerMenuTitle || null,
         footerMenuItems: footerMenuItems,
-        footerLinksTitle: data.acfOptionsFooterQuickLinks.footerQuickLinks.title || null,
+        footerLinksTitle: data.acfOptionsFooterQuickLinks.footerQuickLinks.quickLinksTitle || null,
         footerQuickLinks: footerQuickLinks,
+        socialMenuTitle: data.acfOptionsSocialMenu.socialMenu.socialMenuTitle || null,
         socialLinks: socialLinks,
+        legalMenuTitle: data.acfOptionsLegalPagesMenu.legalPages.legalMenuTitle || null,
         legalPages: legalPages,
+        pageMenuTitle: data.acfOptionsPageMenu.pageMenu.pageMenuTitle || null,
         pageMenuItems: pageMenuItems,
         callToActionLabel: data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
         callToActionDestination: data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,

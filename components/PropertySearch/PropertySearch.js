@@ -4,6 +4,7 @@ import { Pagination } from "./Pagination";
 import { useRouter } from "next/router";
 import queryString from 'query-string';
 import { Filters } from "./Filters";
+import { Sidebar } from "components/Sidebar";
 
 export const PropertySearch = () => {
 
@@ -90,13 +91,27 @@ export const PropertySearch = () => {
     }
 
     return (       
-        <div className="px-4 py-5 max-w-5xl mx-auto text-gray-800 absolute left-0 right-0 -mt-24">
+        <div className="px-4 py-5 max-w-full mx-auto text-gray-800 relative">
             <Filters onSearch={handleSearch} />
-            <Results properties={properties} />
-            <Pagination 
-                onPageClick={handlerPageClick} 
-                totalPages={Math.ceil(totalResults / pageSize )} 
-            />
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-4">
+                <div className="col-span-1">
+                    <Sidebar />
+                </div>
+                <div className="col-span-1 lg:col-span-3">
+                    <div className="grid gap-x-4 gap-y-4 lg:grid-cols-3">
+                        <Results properties={properties} />
+                        <div className="col-span-1 lg:col-span-3">
+                            <Pagination 
+                                onPageClick={handlerPageClick} 
+                                totalPages={Math.ceil(totalResults / pageSize )} 
+                            />
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
         </div>
         
     );

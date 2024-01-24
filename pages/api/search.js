@@ -57,9 +57,9 @@ const handler = async (req, res) => {
                 query AllPropertiesQuery {
                     properties(where: {
                             offsetPagination: {
-                                size: 3, 
+                                size: 4, 
                                 offset: ${
-                                    ((filters.page || 1) - 1) * 3
+                                    ((filters.page || 1) - 1) * 4
                                 }
                             }
                             metaQuery: {
