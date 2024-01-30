@@ -1,4 +1,4 @@
-import { faEnvelope, faMarker, faPhone } from "@fortawesome/free-solid-svg-icons"
+import { faEnvelope, faPhone, faLocationDot } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { ButtonLink } from "components/ButtonLink"
 import { Copyright } from "components/Copyright"
@@ -10,24 +10,28 @@ import { FooterLinks } from "./FooterLinks"
 import { FooterMenu } from "./FooterMenu"
 import { SocialLinks } from "components/SocialLinks"
 
-export const Footer = ({footerMenuTitle, footerMenuItems, footerLinksTitle, footerQuickLinks, socialMenuTitle, socialLinks, legalMenuTitle, legalPages}) => {
+export const Footer = ({socialNetworksTitle, socialNetworks, footerMenuTitle, footerMenuItems, footerLinksTitle, footerQuickLinks, socialMenuTitle, socialLinks, legalMenuTitle, legalPages, companySettings}) => {
 
     // console.log("FOOTER PROPS: ", props);
-   console.log("FOOTER MENU TITLE: ", footerMenuTitle);
-   console.log("FOOTER MENU ITEMS: ", footerMenuItems);
-   console.log("SOCIAL MENU TITLE: ", socialMenuTitle);
+//    console.log("FOOTER MENU TITLE: ", footerMenuTitle);
+//    console.log("FOOTER MENU ITEMS: ", footerMenuItems);
+//    console.log("SOCIAL MENU TITLE: ", socialMenuTitle);
+//    console.log("COMPANY SETTINGS: ", companySettings);
 
-    const email = "info@candelarioconsultores.com";
-    const phone = "8095354404";
+    const description = !!companySettings[0].description ? companySettings[0].description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id lorem mauris. Nulla semper interdum diam, ut tristique elit. Pellentesque ut mauris augue. Nulla non est convallis, pretium tellus et, pulvinar urna.";
+    const address = !!companySettings[0].address ? companySettings[0].address : "Avenida/Calle, Número/apto, Ciudad";
+    const email = !!companySettings[0].email ? companySettings[0].email : "info@candelarioconsultores.com";
+    const phone = !!companySettings[0].phone ? companySettings[0].phone : "9999999999";
 
     return (
         <>
-            <div className="max-w-full bg-slate-800 text-slate-500 text-xs xl:text-sm py-10">
+            <div className="max-w-full bg-slate-800 text-slate-500 text-xs xl:text-sm py-10 md:py-20">
                 <div className="container grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-4 xl:gap-6">
                     <div className="col-span-1 md:col-span-2 lg:col-span-2">
                         <Logotipo />
-                        <div className="my-5">
-                        Nuestra experiencia en el sector inmobiliario, nos permite satisfacer todas las necesidades de nuestros clientes, brindandoles una asesoría profesional personalizada y la satisfacción de los mismos.
+                        <div className="my-5 leading-5">
+                        {description}
+                        {/* Nuestra experiencia en el sector inmobiliario, nos permite satisfacer todas las necesidades de nuestros clientes, brindandoles una asesoría profesional personalizada y la satisfacción de los mismos. */}
                         </div>
                     </div>
                     <div className="col-span-1">
@@ -61,10 +65,10 @@ export const Footer = ({footerMenuTitle, footerMenuItems, footerLinksTitle, foot
                         <div className="my-5">
                             <div className="flex items-center gap-4 my-3">
                                 <div className="flex items-center justify-center">
-                                    <FontAwesomeIcon icon={faMarker} size="lg" />
+                                    <FontAwesomeIcon icon={faLocationDot} size="lg" />
                                 </div>
                                 <div className="flex-1">
-                                    Av. Jimenez Moya 5, Centro de los Heroes
+                                    {address}
                                 </div>
                             </div>
                             <div className="flex items-center gap-4 my-3">
@@ -96,7 +100,7 @@ export const Footer = ({footerMenuTitle, footerMenuItems, footerLinksTitle, foot
                         </div>
                         {/* <h6 className="text-sm font-semibold text-slate-300">Síguenos</h6>
                         <div className="my-5"> */}
-                            <SocialLinks title={socialMenuTitle} items={socialLinks} />
+                            <SocialLinks title={socialNetworksTitle} items={socialNetworks} />
                         {/* </div> */}
                     </div>
                     <div className="col-span-1 md:col-span-2 lg:col-span-2">
@@ -113,7 +117,7 @@ export const Footer = ({footerMenuTitle, footerMenuItems, footerLinksTitle, foot
                     </div>
                 </div>
             </div>
-            <Copyright />
+            <Copyright companyName={companySettings[0].name} />
         </>        
     )
 }

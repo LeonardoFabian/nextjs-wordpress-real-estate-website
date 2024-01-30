@@ -6,28 +6,40 @@ import { Logo } from 'components/Logo';
 import { Logotipo } from 'components/Logotipo';
 
 import { useState } from 'react';
-import { faXmark, faBars, faCaretDown  } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faBars, faCaretDown, faCaretUp  } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import Router from 'next/router';
 
 export const MainMenu = ({items, callToActionLabel, callToActionDestination}) => {
 
-    console.log("MAIN MENU ITEMS: ", items);
+    // console.log("MAIN MENU ITEMS: ", items);
 
     const [menuIcon, setMenuIcon] = useState(false);
+    const [showMobileSubMenu, setShowMobileSubMenu] = useState(false);
 
     const handleSmallerScreensNavigation = () => {
+        setShowMobileSubMenu(false);
         setMenuIcon(!menuIcon);
     }
 
+    const toggleMobileSubmenu = () => {
+        setShowMobileSubMenu(!showMobileSubMenu);
+    }
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        console.log(event);
+    }
+
     return (
-        <header className="bg-slate-800 text-white max-w-full h-[64px] ease-in duration-300 sticky top-0 z-20">
+        <header className="bg-slate-800 text-white max-w-full h-[64px] flex items-center ease-in duration-300 sticky top-0 z-20">
             <nav className='container flex justify-between items-center'>
-                <div style={{ color: "#d4af37" }}>
+                <div className='focus:outline-none' style={{ color: "#d4af37" }}>
                     <Link 
                         href="/"
-                        className='flex items-center gap-3 h-[50px]'
+                        className='flex items-center gap-0 lg:gap-3 h-[40px] lg:h-[48px]'
                     >
-                        <Logo width="50" height="50" classes="hidden md:flex" />
+                        <Logo width="50" height="50" classes="hidden md:flex h-[40px] lg:h-[48px]" />
                         <Logotipo />
                     </Link>
                 </div>
@@ -36,8 +48,8 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
 
                 <ul className='hidden md:flex flex-1 justify-end'>
                     {(items || []).map(item => (
-                        <li key={item.id} className='hover:bg-slate-700 cursor-pointer relative group'>                            
-                            <Link href={item.destination} className='p-5 block'>
+                        <li key={item.id} className='hover:bg-slate-700 cursor-pointer relative group text-xs lg:text-lg flex items-center'>                            
+                            <Link href={item.destination} className='p-3 lg:p-5 block flex-nowrap'>
                                 {item.label}
                             </Link>                        
                             {!!item.subMenuItems?.length && (
@@ -79,17 +91,42 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                             <li 
                                 key={item.id} 
                                 className='hover:bg-slate-700 cursor-pointer relative group'
-                                onClick={handleSmallerScreensNavigation}
+                                onClick={!item.subMenuItems.length > 0 ? handleSmallerScreensNavigation : handleClick}
                             >                            
-                                <Link href={item.destination} className='p-5 inline-flex'>
+                                <Link href={item.destination} className='p-5 inline-flex' >
                                     {item.label}
-                                    {!!item.subMenuItems.length > 0 && (<FontAwesomeIcon icon={faCaretDown} className='ml-2' />)}                 
+                                    {!!item.subMenuItems.length > 0 && (
+                                        <button 
+                                            style={{ 
+                                                position: "relative",
+                                                border: "none",
+                                                background: "transparent",
+                                                outline: "none",
+                                                cursor: "pointer",
+                                                marginLeft: "12px"
+                                            }}
+                                            onClick={toggleMobileSubmenu}
+                                            type='button'
+                                        >
+                                            {
+                                                !!showMobileSubMenu
+                                                ? ( <FontAwesomeIcon icon={faCaretUp} />)
+                                                :  <FontAwesomeIcon icon={faCaretDown} />
+                                            }                                           
+                                        </button>
+                                    )}                 
                                 </Link>       
                                 {!!item.subMenuItems?.length && (
-                                    <ul className='group-hover:block block bg-slate-900 bg-opacity-10 text-center relative'>
+                                    <ul 
+                                        className='group-hover:block block bg-slate-900 bg-opacity-20 text-center relative ease-in duration-300'
+                                        style={{ 
+                                            display: !!showMobileSubMenu ? 'block' : 'none'
+                                        }}
+                                        
+                                    >
                                         {item.subMenuItems.map(subMenuItem => (
                                             <li key={subMenuItem.id} className='hover:bg-slate-700 cursor-pointer relative group'>
-                                                <Link href={subMenuItem.destination} className='p-5 block whitespace-nowrap'>
+                                                <Link href={subMenuItem.destination} className='p-5 block whitespace-nowrap' onClick={handleSmallerScreensNavigation}>
                                                     {subMenuItem.label}
                                                 </Link>                                              
                                             </li>

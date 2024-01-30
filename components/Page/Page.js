@@ -13,7 +13,10 @@ export const Page = (props) => {
                 title: props.title,
                 featuredImage: props.featuredImage,
                 pageMenuTitle: props.pageMenuTitle,
-                pageMenuItems: props.pageMenuItems
+                pageMenuItems: props.pageMenuItems,
+                companySettings: props.companySettings,
+                faqs: props.faqs,
+                contactFields: props.contactFields,                
             }}
         >
             <Head>
@@ -35,6 +38,9 @@ export const Page = (props) => {
                 socialLinks={props.socialLinks}
                 legalMenuTitle={props.legalMenuTitle}
                 legalPages={props.legalPages}
+                companySettings={props.companySettings}
+                socialNetworksTitle={props.socialNetworksTitle}
+                socialNetworks={props.socialNetworks}
             />
         </PageWrapper>        
     );

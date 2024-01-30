@@ -7,6 +7,8 @@ import { mapFooterQuickLinks } from "./mapFooterQuickLinks";
 import { mapSocialLinks } from "./mapSocialLinks";
 import { mapLegalPages } from "./mapLegalPages";
 import { mapPageMenuItems } from "./mapPageMenuItems";
+import { mapCompanySettings } from "./mapCompanySettings";
+import { mapSocialNetworks } from "./mapSocialNetworks";
 
 export const getPageStaticProps = async (context) => {
     console.log("CONTEXT: ", context);
@@ -49,6 +51,17 @@ export const getPageStaticProps = async (context) => {
                 node {
                   sourceUrl
                 }
+              }
+            }
+          }
+          themeGeneralSettings {   
+            generalSettings {
+              companySettings {
+                address
+                description
+                email
+                name
+                phone
               }
             }
           }
@@ -150,6 +163,130 @@ export const getPageStaticProps = async (context) => {
               socialMenuTitle
             }
           }
+          acfOptionsContact {
+            contactMetadata {
+              contactFields {
+                addresses {
+                  address {
+                    label
+                    street
+                    number
+                    city
+                    state
+                    country
+                    zipCode
+                    asDefaultAddress
+                    publish
+                  }
+                  icon {
+                    id
+                    uri
+                    sourceUrl(size: LARGE)
+                    mimeType
+                    mediaDetails {
+                      sizes {
+                        sourceUrl
+                      }
+                    }
+                  }
+                }
+                emails {
+                  email {
+                    label
+                    emailAddress
+                    publish
+                  }
+                  icon {
+                    id
+                    uri
+                    sourceUrl(size: LARGE)
+                    mimeType
+                    mediaDetails {
+                      sizes {
+                        sourceUrl
+                      }
+                    }
+                  }
+                }
+                location {
+                  streetName
+                  streetNumber
+                  streetAddress
+                  city
+                  state
+                  country
+                  latitude
+                  longitude
+                  postCode
+                  zoom
+                }
+                openingHours {
+                  hours {
+                    schedules {
+                      schedule {
+                        dayOfWeek
+                        timeOpen
+                        timeClosed
+                        publish
+                      }
+                    }
+                  }
+                  icon {
+                    id
+                    uri
+                    sourceUrl(size: LARGE)
+                    mimeType
+                    mediaDetails {
+                      sizes {
+                        sourceUrl
+                      }
+                    }
+                  }
+                }
+                phones {
+                  phone {
+                    label
+                    phoneNumber
+                    publish
+                  }
+                  icon {
+                    id
+                    uri
+                    sourceUrl(size: LARGE)
+                    mimeType
+                    mediaDetails {
+                      sizes {
+                        sourceUrl
+                      }
+                    }
+                  }
+                }
+                socialNetworks {
+                  title
+                  socialNetwork {
+                    url {
+                      target
+                      url
+                    }
+                    label
+                    platform
+                    publish
+                  }
+                }
+              }
+            }
+          }
+          acfOptionsFaqs {
+            frequentlyAskedQuestions {
+              faqs {
+                faq {
+                  question
+                  answer
+                  publish
+                }
+              }
+            }
+          }
         }
       `,
       variables: {
@@ -163,6 +300,8 @@ export const getPageStaticProps = async (context) => {
     const legalPages = mapLegalPages(data.acfOptionsLegalPagesMenu.legalPages.legalPagesItems);
     const pageMenuItems = mapPageMenuItems(data.acfOptionsPageMenu.pageMenu.pageMenuItems);
     const socialLinks = mapSocialLinks(data.acfOptionsSocialMenu.socialMenu.socialMenuItems);
+    const companySettings = mapCompanySettings(data.themeGeneralSettings.generalSettings.companySettings || null);
+    const serializedSocialNetworks = mapSocialNetworks(data.acfOptionsContact.contactMetadata.contactFields.socialNetworks.socialNetwork);
     // const footerMenuItems = '';
     const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
 
@@ -172,6 +311,7 @@ export const getPageStaticProps = async (context) => {
       props: {
         seo: data.nodeByUri.seo,
         title: data.nodeByUri.title,
+        companySettings: companySettings,
         propertyFeatures: data.nodeByUri.propertyFeatures || null,
         featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
         mainMenuItems: mainMenuItems,
@@ -187,6 +327,10 @@ export const getPageStaticProps = async (context) => {
         pageMenuItems: pageMenuItems,
         callToActionLabel: data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
         callToActionDestination: data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
+        faqs: data.acfOptionsFaqs.frequentlyAskedQuestions.faqs.faq,
+        socialNetworksTitle: data.acfOptionsContact.contactMetadata.contactFields.socialNetworks.title,
+        socialNetworks: serializedSocialNetworks,
+        contactFields: data.acfOptionsContact.contactMetadata.contactFields,
         blocks,
       },
     };

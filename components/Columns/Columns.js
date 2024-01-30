@@ -4,8 +4,8 @@ export const Columns = ({isStackedOnMobile, children, textColor, backgroundColor
     const backgroundColorStyle = backgroundColor ? {backgroundColor: backgroundColor} : {};
 
     return (
-        <div className="my-10" style={{ ...backgroundColorStyle, ...textColorStyle }}>
-            <div className={`container ${isStackedOnMobile ? 'block md:flex' : 'flex'}`}>{children}</div>
+        <div className="py-10 md:py-20" style={{ ...backgroundColorStyle, ...textColorStyle }}>
+            <div className={`container ${isStackedOnMobile ? 'block md:flex gap-8' : 'flex'}`}>{children}</div>
         </div>
     )
 }

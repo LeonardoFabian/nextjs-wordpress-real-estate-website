@@ -5,6 +5,7 @@ export const mapFooterQuickLinks = (menuItems) => {
         id: uuid(),
         url: menuItem.url.url || null,
         label: menuItem.label || null,
-        target: menuItem.url.target || null
+        target: menuItem.url.target || null,
+        slug: menuItem.url.url.substring(0, menuItem.url.url.length - 1).split("/")
     }));
 };

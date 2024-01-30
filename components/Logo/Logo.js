@@ -8,7 +8,7 @@ export const Logo = ({width, height, classes}) => {
             alt="Logo"
             height={height || "100"}
             width={width || "100"}
-            className={`object-contain ${classes}`}
+            className={`object-contain ${classes} h-[35px] lg:h-[50px]`}
         />
     )
 }

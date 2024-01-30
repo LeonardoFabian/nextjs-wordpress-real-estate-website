@@ -2,6 +2,8 @@ import { CallToActionButton } from "components/CallToActionButton";
 import { Column } from "components/Column";
 import { Columns } from "components/Columns";
 import { Cover } from "components/Cover";
+import { FeatureSection } from "components/FeatureSection";
+import { Feature } from "components/FeatureSection/Feature";
 import { FormspreeForm } from "components/FormspreeForm";
 import { Gallery } from "components/Gallery";
 import { Group } from "components/Group";
@@ -19,7 +21,7 @@ export const BlockRenderer = ({blocks}) => {
     return blocks.map(block => {
         switch(block.name) {
             case 'core/group': {
-                console.log("CORE GROUP: ", block);
+                // console.log("CORE GROUP: ", block);
                 return (
                     <Group 
                         key={block.id}
@@ -47,7 +49,7 @@ export const BlockRenderer = ({blocks}) => {
                 )
             }
             case 'core/gallery': {
-                console.log("GALLERY: ", block);
+                // console.log("GALLERY: ", block);
                 return (
                     <Gallery key={block.id} 
                         columns={block.attributes.columns || 3} 
@@ -115,7 +117,7 @@ export const BlockRenderer = ({blocks}) => {
                 )
             }                       
             case 'core/paragraph' : {
-                console.log("PARAGRAPH: ", block);
+                // console.log("PARAGRAPH: ", block);
                 return (
                     <Paragraph key={block.id} 
                         content={block.attributes.content} 
@@ -134,7 +136,7 @@ export const BlockRenderer = ({blocks}) => {
                 )
             }
             case 'core/cover': {
-                console.log("COVER: ", block);
+                // console.log("COVER: ", block);
                 return (
                     <Cover key={block.id} background={block.attributes.url}>
                         <BlockRenderer blocks={block.innerBlocks} />
@@ -146,7 +148,7 @@ export const BlockRenderer = ({blocks}) => {
                 return <Heading key={block.id} textAlign={block.attributes.textAlign} content={block.attributes.content} level={block.attributes.level} />
             }
             case 'acf/cta-button': {
-                console.log("CTA BUTTON", block);
+                // console.log("CTA BUTTON", block);
                 return (
                     <CallToActionButton 
                         key={block.id} 
@@ -165,13 +167,13 @@ export const BlockRenderer = ({blocks}) => {
                 )
             }
             case 'acf/formspree-form': {
-                console.log("FORMSPREE FORM: ", block);
+                // console.log("FORMSPREE FORM: ", block);
                 return (
                     <FormspreeForm key={block.id} formId={block.attributes.data.form_id} />
                 )
             }
             case 'acf/property-features': {
-                console.log("PROPERTY FEATURES: ", block);
+                // console.log("PROPERTY FEATURES: ", block);
                 return (
                     <PropertyFeatures key={block.id} 
                         price={block.attributes.price}
@@ -183,11 +185,40 @@ export const BlockRenderer = ({blocks}) => {
                 )
             }
             case 'acf/tick-item': {
-                console.log("TICK ITEM: ", block);
+                // console.log("TICK ITEM: ", block);
                 return (
                     <TickItem key={block.id}>
                         <BlockRenderer blocks={block.innerBlocks} />
                     </TickItem>
+                )
+            }
+            case 'abpsd/feature-section': {
+                console.log("FEATURE SECTION: ", block);
+                return (
+                    <FeatureSection 
+                        key={block.id}
+                        title={block.attributes.title || null}
+                        content={block.attributes.content || null}
+                    >
+                        <BlockRenderer blocks={block.innerBlocks} />
+                    </FeatureSection>
+                )
+            }
+            case 'abpsd/feature': {
+                console.log("FEATURE: ", block);
+                return (
+                    <Feature 
+                        key={block.id}
+                        title={block.attributes.title || null}
+                        content={block.attributes.content || null}
+                        imageUrl={block.attributes.imageUrl}
+                        imageId={block.attributes.imageId}
+                        imageAlt={block.attributes.imageAlt || null}
+                        foregroundColor={block.attributes.foregroundColor.color || null}
+                        backgroundColor={block.attributes.backgroundColor.backgroundColor}
+                    >
+                        <BlockRenderer blocks={block.innerBlocks} />
+                    </Feature>
                 )
             }
             default: {

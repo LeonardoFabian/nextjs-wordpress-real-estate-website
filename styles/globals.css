@@ -6,10 +6,10 @@
 
 @layer components {
     .container {
-        @apply max-w-sm md:max-w-2xl lg:max-w-full lg:px-8 mx-auto px-4
+        @apply max-w-sm md:max-w-3xl lg:max-w-full lg:px-8 mx-auto px-4
     }
     .btn {
-        @apply bg-yellow-500 hover:!bg-opacity-80 text-slate-700 hover:text-white block md:inline-block w-full md:w-max my-2 px-8 md:px-4 py-4 md:py-2 uppercase rounded-sm text-xs md:text-base font-semibold cursor-pointer text-center
+        @apply bg-yellow-500 hover:!bg-opacity-80 text-slate-700 hover:text-white block md:flex md:items-center w-full md:w-max my-2 px-8 md:px-4 py-4 md:py-2 uppercase rounded-md text-xs md:text-base font-semibold cursor-pointer text-center
     }
 
     .btn:hover {

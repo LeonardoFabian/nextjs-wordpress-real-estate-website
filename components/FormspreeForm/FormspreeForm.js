@@ -30,6 +30,7 @@ export const FormspreeForm = ({formId}) => {
                     id="email"
                     type="email" 
                     name="email"
+                    placeholder="Introduce tu correo electrónico"
                 />
                 <ValidationError 
                     prefix="Email" 
