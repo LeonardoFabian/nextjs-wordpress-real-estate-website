@@ -5,7 +5,7 @@ export const mapSocialNetworks = (socialNetworks) => {
         id: uuid(),
         label: socialNetwork.label || null,
         platform: socialNetwork.platform || null, 
-        url: socialNetwork.url.url || null,
+        url: socialNetwork.url.url || "",
         target: socialNetwork.url.target || null,
         publish: socialNetwork.publish || false
     }));

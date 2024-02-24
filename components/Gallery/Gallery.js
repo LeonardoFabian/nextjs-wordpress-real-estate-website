@@ -19,7 +19,7 @@ export const Gallery = ({columns, imageCrop, items }) => {
     const columnWidth = 100 / columns;
 
     return (
-        <div className="max-w-5xl mx-auto py-10 flex flex-wrap">
+        <div className="w-full mx-auto py-10 flex flex-wrap">
             {items.map(item => (
                 <div key={item.id} style={{ width: `${columnWidth}%` }} className="p-5 flex-grow">
                     <Image

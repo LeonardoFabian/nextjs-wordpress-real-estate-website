@@ -55,7 +55,7 @@ export const FormspreeForm = ({formId}) => {
             </div>
             
             <div>
-                <button type="submit" className="btn" disabled={state.submitting}>
+                <button type="submit" className="btn btn-primary" disabled={state.submitting}>
                     Submit
                 </button>
             </div>

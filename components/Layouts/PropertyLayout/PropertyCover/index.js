@@ -1,0 +1,1 @@
+export {PropertyCover} from './PropertyCover'

@@ -1,0 +1,56 @@
+query NewQuery {
+  nodeByUri(uri: "tag/venta/") {
+    ... on Category {
+      databaseId
+      name
+      posts {
+        nodes {
+          uri
+          title
+          contentType {
+            node {
+              name
+            }
+          }
+        }
+      }
+      properties {
+        nodes {
+          uri
+          title
+          contentType {
+            node {
+              name
+            }
+          }
+        }
+      }
+    }
+    ... on Tag {
+      name
+      databaseId
+      posts {
+        nodes {
+          uri
+          title
+          contentType {
+            node {
+              name
+            }
+          }
+        }
+      }
+      properties {
+        nodes {
+          uri
+          title
+          contentType {
+            node {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

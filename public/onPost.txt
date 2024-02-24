@@ -1,0 +1,31 @@
+... on Post {
+              id
+              title(format: RENDERED)
+              slug
+              date
+              content(format: RENDERED)
+              featuredImage {
+                node {
+                  mediaDetails {
+                    file
+                    sizes {
+                      sourceUrl
+                      width
+                      height
+                    }
+                  }
+                }
+              }
+              categories {
+                nodes {
+                  name
+                  slug
+                }
+              }
+              status
+              blocks(postTemplate: false)
+              seo {
+                title
+                metaDesc
+              }
+            }     

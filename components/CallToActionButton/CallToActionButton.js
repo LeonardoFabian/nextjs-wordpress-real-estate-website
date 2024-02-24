@@ -1,6 +1,6 @@
 import { ButtonLink } from "components/ButtonLink"
 
-export const CallToActionButton = ({align = "left", destination, label, bgColor, textColor, margin}) => {
+export const CallToActionButton = ({children, align = "left", destination, label = "", bgColor, textColor, margin, className}) => {
     const alignMap = {
         left: "text-left",
         center: "text-center",
@@ -16,6 +16,9 @@ export const CallToActionButton = ({align = "left", destination, label, bgColor,
             marginBottom={margin?.bottom}
             marginLeft={margin?.left}
             marginRight={margin?.right}
-        />
+            className={className}
+        >
+            {children}
+        </ButtonLink>
     )
 }

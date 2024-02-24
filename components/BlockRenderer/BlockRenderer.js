@@ -1,3 +1,5 @@
+import { AgentSearch } from "components/AgentSearch";
+import { AgentsList } from "components/AgentsList";
 import { CallToActionButton } from "components/CallToActionButton";
 import { Column } from "components/Column";
 import { Columns } from "components/Columns";
@@ -9,15 +11,23 @@ import { Gallery } from "components/Gallery";
 import { Group } from "components/Group";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
+import { PostSearch } from "components/PostSearch";
+import { PostsList } from "components/PostsList";
 import { PropertyFeatures } from "components/PropertyFeatures";
+import { PropertyFilters } from "components/PropertyFilters";
+import { PropertiesList } from "components/PropertiesList";
 import { PropertySearch } from "components/PropertySearch";
 import { SiteLogo } from "components/SiteLogo";
 import { TickItem } from "components/TickItem/TickItem";
 import Image from "next/image";
 import { theme } from "theme";
+import { RecentPosts } from "components/RecentPosts";
 
-export const BlockRenderer = ({blocks}) => {
+export const BlockRenderer = ({blocks, props}) => {
+
     // console.log("BLOCKS: ", blocks);
+    console.log("BLOCK RENDERER PROPS: ", props);
+
     return blocks.map(block => {
         switch(block.name) {
             case 'core/group': {
@@ -68,6 +78,7 @@ export const BlockRenderer = ({blocks}) => {
                 )
             }
             case 'core/image': {
+                console.log("IMAGE: ", block);
                 return (
                     <Image 
                         key={block.id} 
@@ -79,7 +90,7 @@ export const BlockRenderer = ({blocks}) => {
                 )
             }
             case 'core/columns': {
-                console.log("COLUMNS: ", block);
+                // console.log("COLUMNS: ", block);
                 return (
                     <Columns 
                         key={block.id} 
@@ -98,7 +109,7 @@ export const BlockRenderer = ({blocks}) => {
                 )
             } 
             case 'core/column': {
-                console.log("COLUMN: ", block);
+                // console.log("COLUMN: ", block);
                 return (
                     <Column 
                         key={block.id}
@@ -158,7 +169,9 @@ export const BlockRenderer = ({blocks}) => {
                         bgColor={theme[block.attributes.backgroundColor] || ""}
                         textColor={theme[block.attributes.textColor] || ""}
                         margin={block.attributes.style?.spacing?.margin}
-                    />
+                    >
+                        {block.attributes.data.label}
+                    </CallToActionButton>
                 )
             }
             case 'acf/property-search': {
@@ -190,6 +203,48 @@ export const BlockRenderer = ({blocks}) => {
                     <TickItem key={block.id}>
                         <BlockRenderer blocks={block.innerBlocks} />
                     </TickItem>
+                )
+            }
+            case 'acf/real-estate-agent-search': {
+                console.log("AGENT SEARCH: ", block);
+                return (
+                    <AgentSearch key={block.id} />
+                )
+            }
+            case 'acf/real-estate-agents-list': {
+                console.log("AGENTS LIST: ", block);
+                return (
+                    <AgentsList key={block.id} />
+                )
+            }
+            case 'acf/properties-filters': {
+                console.log("PROPERTIES FILTERS: ", block);
+                return (
+                    <PropertyFilters key={block.id} />
+                )
+            }
+            case 'acf/properties-list': {
+                console.log("PROPERTIES LIST: ", block);
+                return (
+                    <PropertiesList key={block.id} />
+                )
+            }
+            case 'acf/posts-list': {
+                console.log("POSTS LIST: ", block);
+                return (
+                    <PostsList key={block.id} />
+                )
+            }
+            case 'acf/recent-posts': {
+                console.log("RECENT POSTS: ", block);
+                return (
+                    <RecentPosts key={block.id} />
+                )
+            }
+            case 'acf/post-search': {
+                console.log("POST SEARCH: ", block);
+                return (
+                    <PostSearch key={block.id} />
                 )
             }
             case 'abpsd/feature-section': {

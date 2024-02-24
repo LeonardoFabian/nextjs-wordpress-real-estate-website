@@ -1,0 +1,1 @@
+export {BadgeLink} from './BadgeLink';

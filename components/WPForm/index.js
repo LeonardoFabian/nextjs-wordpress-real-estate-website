@@ -1,0 +1,1 @@
+export { WPForm } from './WPForm';

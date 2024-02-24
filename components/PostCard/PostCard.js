@@ -1,0 +1,48 @@
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { ButtonLink } from "components/ButtonLink"
+import { Heading } from "components/Heading"
+import { PostDate } from "components/Layouts/PostLayout/PostDate"
+import Image from "next/image"
+import Link from "next/link"
+import { mapCategories } from "utils/mapCategories"
+
+export const PostCard = ({post}) => {
+
+    const categories = mapCategories(post.categories.nodes);
+
+    return (
+        <article className={`component-post-card post-${post.databaseId} card w-full mx-auto shadow-lg`}>
+            <header className="p-6">
+                <div className="flex items-center text-xs space-x-4">
+                    {post.categories.map(category => (
+                        <Link key={category.id} href={category.uri}>
+                            <span className="uppercase text-yellow-600">{category.name}</span>
+                        </Link>
+                    ))}  
+                    <PostDate dateTime={post.date} />              
+                </div>
+                <strong><Heading level="6" content={post.title} className="!my-2" /></strong>
+            </header>
+            <div className="h-56 overflow-hidden relative">
+                <Image 
+                    alt="Post Card Image"
+                    src={post.featuredImage}
+                    fill
+                    className="object-cover"
+                />
+            </div>
+            {/* <Image /> */}
+            <footer className="p-6 flex items-center justify-between">
+                {/* <ButtonLink label="Ver más" destination={post.uri} /> */}
+                <Link 
+                    href={post.uri} 
+                    className="uppercase text-xs inline-block items-center justify-center space-x-4 transition-all ease-in-out duration-100 hover:space-x-8"
+                >
+                    <span>Ver más</span>
+                    <FontAwesomeIcon icon={faArrowRight} size="md" />
+                </Link>
+            </footer>
+        </article>
+    )
+}

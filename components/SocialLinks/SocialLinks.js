@@ -18,10 +18,10 @@ export const SocialLinks = ({title, items}) => {
                             <>
                                 {!!item.publish && (
                                     <li key={item.id}>
-                                    <Link href={item.url} target={item.target || "_blank"}>
-                                        {getSocialIcon(`${item.platform}`)}
-                                    </Link>
-                                </li>
+                                        <Link href={item.url} target={item.target || "_blank"}>
+                                            {getSocialIcon(`${item.platform}`)}
+                                        </Link>
+                                    </li>
                                 )}
                             </>
                         ))}

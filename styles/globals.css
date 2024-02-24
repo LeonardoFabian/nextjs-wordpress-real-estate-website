@@ -9,15 +9,39 @@
         @apply max-w-sm md:max-w-3xl lg:max-w-full lg:px-8 mx-auto px-4
     }
     .btn {
-        @apply bg-yellow-500 hover:!bg-opacity-80 text-slate-700 hover:text-white block md:flex md:items-center w-full md:w-max my-2 px-8 md:px-4 py-4 md:py-2 uppercase rounded-md text-xs md:text-base font-semibold cursor-pointer text-center
+        @apply bg-white hover:!bg-slate-100 text-slate-700 hover:text-slate-800 block md:flex md:items-center w-full md:w-max my-2 px-8 md:px-4 py-4 md:py-2 lg:py-4 uppercase rounded-md text-base font-semibold cursor-pointer text-center flex-nowrap whitespace-nowrap transition-all ease-in-out duration-300
     }
 
-    .btn:hover {
+    .btn-primary { 
+        @apply bg-yellow-400 lg:!bg-yellow-500 lg:hover:!bg-yellow-400 !text-slate-700 hover:!text-slate-800 lg:hover:border-yellow-300
+    }
+
+    .btn-default {
+        @apply !bg-slate-300 hover:!bg-slate-400 !text-slate-700 hover:!text-slate-800
+    }
+
+    .btn-link {
+        @apply !bg-transparent hover:!bg-transparent text-blue-700 hover:!text-blue-600
+    }
+
+    /* .btn:hover {
         background-color: rgb(203, 161, 53) !important;
         color: rgb(255,255,255) !important;
-    }
+    } */
 
     .social-icon {
         @apply h-[35px] w-[35px] flex items-center justify-center border-2 border-slate-400 hover:border-slate-50 rounded-md bg-slate-50 bg-opacity-5 hover:bg-opacity-20 hover:text-slate-50 !leading-normal
+    }
+
+    .hexagon {
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+
+    .card {
+        @apply bg-white
+    }
+
+    .map iframe {
+        width: 100%;
     }
 }

@@ -4,7 +4,7 @@ import logo from '../../public/logo.svg';
 export const Logo = ({width, height, classes}) => {
     return (
         <Image
-            src={logo}
+            src="/logo.svg"
             alt="Logo"
             height={height || "100"}
             width={width || "100"}

@@ -1,0 +1,1 @@
+export {PostCategories} from './PostCategories';
