@@ -111,7 +111,7 @@ export const PropertiesList = ({propertyFeatures}) => {
             }),
         });
         const data = await response.json();
-        console.log("PROPERTIES FETCH DATA: ", data);
+        console.log("PROPERTIES LIST FETCH DATA: ", data);
 
         setProperties(data.properties);
         setCategories(data.categories);

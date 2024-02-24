@@ -15,7 +15,7 @@ export const PropertySearch = () => {
     const router = useRouter();
 
     const search = async () => {
-        const {page, minPrice, maxPrice, petFriendly, hasParking} = queryString.parse(window.location.search);
+        const {page, code, floor, condition, listingType, categoryId, bedrooms, bathrooms, parkingQty, petFriendly, status, hasParking, currency, minPrice, maxPrice, zipCode} = queryString.parse(window.location.search);
 
         const filters = {};
 
@@ -27,12 +27,64 @@ export const PropertySearch = () => {
             filters.maxPrice = parseInt(maxPrice);
         }
 
+        // currency
+        if(currency) {
+            filters.currency = currency;
+        }
+
         if(hasParking === "true") {
             filters.hasParking = true;
         }
 
         if(petFriendly === "true") {
             filters.petFriendly = true;
+        }
+
+        
+        if(status) {
+            filters.status = status;
+        }
+
+        // parkingQty
+        if(parkingQty) {
+            filters.parkingQty = parseInt(parkingQty);
+        }
+
+        // bathrooms
+        if(bathrooms) {
+            filters.bathrooms = parseInt(bathrooms);
+        }
+
+        // bedrooms
+        if(bedrooms) {
+            filters.bedrooms = parseInt(bedrooms);
+        }
+
+        // code
+        if(code) {
+            filters.code = code;
+        }
+
+        // floor
+        if(floor) {
+            filters.floor = parseInt(floor);
+        }
+
+        if(listingType) {
+            filters.listingType = listingType;
+        }
+
+        
+        if(condition) {
+            filters.condition = condition;
+        }
+
+        if(zipCode) {
+            filters.zipCode = zipCode;
+        }
+
+        if(categoryId) {
+            filters.categoryId = categoryId;
         }
 
         const response = await fetch(`/api/search`, {
@@ -43,7 +95,7 @@ export const PropertySearch = () => {
             }),
         });
         const data = await response.json();
-        console.log("PROPERTY SEARCH DATA: ", data);
+        console.log("PROPERTY SEARCH FETCH DATA: ", data);
 
         setCategories(data.categories);
 
@@ -74,19 +126,30 @@ export const PropertySearch = () => {
     }, []);
 
     const handleSearch = async ({
+        code, 
+        floor, 
+        condition,
+        listingType, 
+        categoryId, 
+        bedrooms, 
+        bathrooms, 
+        parkingQty, 
         petFriendly, 
+        status,
         hasParking, 
+        currency,
         minPrice, 
         maxPrice,
+        zipCode
     }) => {
         // update our browser url
         // search
         console.log("ROUTER: ", router);
-        console.log("FILTERS: ", petFriendly, hasParking, minPrice, maxPrice);
+        console.log("FILTERS: ", petFriendly, hasParking, minPrice, maxPrice, listingType, categoryId);
 
         if(router.query.slug) {
             await router.push(
-                `${router.query.slug.join("/")}?page=1&petFriendly=${!!petFriendly}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}`, 
+                `${router.query.slug.join("/")}?page=1&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${!!petFriendly}&status=${status}&hasParking=${!!hasParking}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, 
                 null, 
                 {
                     shallow: true,
@@ -94,7 +157,7 @@ export const PropertySearch = () => {
             );
         } else {
             await router.push(
-                `/buying/properties?page=1&petFriendly=${!!petFriendly}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
+                `/buying/properties?page=1&petFriendly=${!!petFriendly}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}&listingType=${listingType}&categoryId=${categoryId}`,
                 null, 
                 {
                     shallow: true,
