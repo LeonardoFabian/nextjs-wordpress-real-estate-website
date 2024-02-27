@@ -11,6 +11,7 @@ import { FooterMenu } from "./FooterMenu"
 import { SocialLinks } from "components/SocialLinks"
 import { ContactInfo } from "./ContacInfo"
 import { WPForm } from "components/WPForm"
+import CookiesAdvice from "components/CookiesAdvice/CookiesAdvice"
 
 export const Footer = ({wpForms, socialNetworksTitle, socialNetworks, emails, phones, addresses, openingHours, footerMenuTitle, footerMenuItems, footerLinksTitle, footerQuickLinks, legalMenuTitle, legalPages, companySettings}) => {
 
@@ -31,6 +32,7 @@ export const Footer = ({wpForms, socialNetworksTitle, socialNetworks, emails, ph
     return (
         <>
             <footer>
+                <CookiesAdvice />
                 <div className="max-w-full bg-slate-800 text-slate-500 text-sm xl:text-xs py-10 md:py-20">
                     <div className="container grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-4 xl:gap-6">
                         <div className="col-span-1 md:col-span-2 lg:col-span-2">
