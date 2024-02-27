@@ -60,8 +60,8 @@ const CookiesAdvice = () => {
     // initialize Google Analytics if user has already accepted
     useEffect(() => {
         if(isAcceptedAnalyticsCookies) {
-            if(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
-                ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS);
+            if(process.env.NEXT_PUBLIC_ANALYTICS_UA_TRACKING_ID) {
+                ReactGA.initialize(process.env.NEXT_PUBLIC_ANALYTICS_UA_TRACKING_ID);
                 ReactGA.pageview(window.location.pathname + window.location.search);
 
                 const handleRouteChange = (url) => {
