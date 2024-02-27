@@ -40,7 +40,7 @@ export const PostCard = ({post}) => {
                     className="uppercase text-xs inline-block items-center justify-center space-x-4 transition-all ease-in-out duration-100 hover:space-x-8"
                 >
                     <span>Ver más</span>
-                    <FontAwesomeIcon icon={faArrowRight} size="md" />
+                    <FontAwesomeIcon icon={faArrowRight} size="lg" />
                 </Link>
             </footer>
         </article>

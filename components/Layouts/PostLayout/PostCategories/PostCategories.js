@@ -6,7 +6,7 @@ export const PostCategories = ({categories}) => {
             {!!categories && (
                 <ul className="text-gray-600 uppercase flex items-center justify-center divide-x">
                     {categories.map(category => (
-                        <li key={categories.id}>
+                        <li key={categories.databaseId}>
                             <Link href={category.slug} className="cursor-pointer">
                                 {category.name}
                             </Link>

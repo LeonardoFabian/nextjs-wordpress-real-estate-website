@@ -20,8 +20,8 @@ export const Footer = ({wpForms, socialNetworksTitle, socialNetworks, emails, ph
 //    console.log("SOCIAL MENU TITLE: ", socialMenuTitle);
 //    console.log("COMPANY SETTINGS: ", companySettings);
 
-    // const wpFormShortcode = wpForms.positions == 'footer' ? `[wpforms id="${wpForm.formId}"]` : '';
-    const wpFormShortcode = `[wpforms id="${wpForms[0].formId}"]`;
+
+    // const wpFormShortcode = `[wpforms id="${wpForms[0].formId}"]`;
 
     const description = !!companySettings[0].description ? companySettings[0].description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id lorem mauris. Nulla semper interdum diam, ut tristique elit. Pellentesque ut mauris augue. Nulla non est convallis, pretium tellus et, pulvinar urna.";
     const address = !!companySettings[0].address ? companySettings[0].address : "Avenida/Calle, Número/apto, Ciudad";

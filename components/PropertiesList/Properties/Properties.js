@@ -5,7 +5,7 @@ import { mapPropertyLocation } from "utils/mapPropertyLocation";
 
 export const Properties = ({properties}) => {
 
-    console.log("PROPERTIES: ", properties);
+    console.log("PROPERTIES: ", properties);    
 
     return (
         <>
@@ -15,6 +15,10 @@ export const Properties = ({properties}) => {
                 const cities = mapPropertyLocation(property.node.cities?.edges);
                 const states = mapPropertyLocation(property.node.states?.edges);
                 const countries = mapPropertyLocation(property.node.countries?.edges);
+
+                {/* if(!property) {
+                    return (<h1 key="0" className="text-slate-900 text-5xl">Loading...</h1>)
+                } */}
 
                 return (                        
                     <PropertyCard 

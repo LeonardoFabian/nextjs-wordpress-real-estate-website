@@ -40,10 +40,11 @@ export const getPageStaticProps = async (context) => {
   } 
 
   const uri = slug ? `/${slug.join("/")}/` : "/";
+  // const uri = context.params.slug ? `/${context.params.slug.join("/")}/` : "/";
 
     console.log("VARIABLE URI: ", uri);
 
-    const {data} = await client.query({
+    const {loading, error, data} = await client.query({
       query: gql`
         query PageQuery($uri: String!) {
           posts {
@@ -118,9 +119,14 @@ export const getPageStaticProps = async (context) => {
               title
               blocks(postTemplate: false)
               featuredImage {
-                node {
-                  sourceUrl
-                }
+                  node {
+                      sourceUrl(size: LARGE)
+                      title(format: RENDERED)
+                      mediaDetails {
+                          width
+                          height
+                      }
+                  }
               }
               seo {
                 title
@@ -136,11 +142,38 @@ export const getPageStaticProps = async (context) => {
               id
               title
               date
-              blocks(postTemplate: true)
+              blocks(postTemplate: false)
               featuredImage {
-                node {
-                  sourceUrl
-                }
+                  node {
+                      sourceUrl(size: LARGE)
+                      title(format: RENDERED)
+                      mediaDetails {
+                          width
+                          height
+                      }
+                  }
+              }
+              author {
+                  node {
+                      databaseId
+                      name
+                      email
+                      slug
+                      uri
+                      avatar {
+                          url
+                      }
+                      userMetadata {
+                          profilePicture {
+                              sourceUrl
+                          }
+                          contactInformation {
+                              userEmail
+                              userPhone
+                              userWhatsapp
+                          }
+                      }
+                  }
               }
               seo {
                 title
@@ -190,9 +223,14 @@ export const getPageStaticProps = async (context) => {
                 zipCode
               }
               featuredImage {
-                node {
-                  sourceUrl
-                }
+                  node {
+                      sourceUrl(size: LARGE)
+                      title(format: RENDERED)
+                      mediaDetails {
+                          width
+                          height
+                      }
+                  }
               }
               contentType {
                 node {
@@ -210,12 +248,26 @@ export const getPageStaticProps = async (context) => {
                 }
               }
               author {
-                node {
-                  name
-                  avatar {
-                    url
+                  node {
+                      databaseId
+                      name
+                      email
+                      slug
+                      uri
+                      avatar {
+                          url
+                      }
+                      userMetadata {
+                          profilePicture {
+                              sourceUrl
+                          }
+                          contactInformation {
+                              userEmail
+                              userPhone
+                              userWhatsapp
+                          }
+                      }
                   }
-                }
               }
               features {
                 edges {
@@ -581,17 +633,17 @@ export const getPageStaticProps = async (context) => {
               }
             }
           }
-          acfOptionsForms {
-            wpForms {
-              acfWpForms {
-                acfWpForm {
-                  acfWpFormLabel
-                  acfWpFormSelect
-                  position
-                }
-              }
-            }
-          }
+          # acfOptionsForms {
+          #   Forms {
+          #     acfWpForms {
+          #       acfWpForm {
+          #         acfWpFormLabel
+          #         acfWpFormSelect
+          #         position
+          #       }
+          #     }
+          #   }
+          # }
         }
       `,
       variables: {
@@ -599,21 +651,23 @@ export const getPageStaticProps = async (context) => {
       },
     });
   
+    // menus
     const mainMenuItems = mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems);
     const footerMenuItems = mapFooterMenuItems(data.acfOptionsFooterPrimaryMenu.footerPrimaryMenu.footerMenuItems);
     const footerQuickLinks = mapFooterQuickLinks(data.acfOptionsFooterQuickLinks.footerQuickLinks.footerQuickLinks);
     const legalPages = mapLegalPages(data.acfOptionsLegalPagesMenu.legalPages.legalPagesItems);
     const pageMenuItems = mapPageMenuItems(data.acfOptionsPageMenu.pageMenu.pageMenuItems);
+    const serializedSocialNetworks = mapSocialNetworks(data.acfOptionsContact.contactMetadata.contactFields.socialNetworks.socialNetwork);
+    
     // const socialLinks = mapSocialLinks(data.acfOptionsSocialMenu.socialMenu.socialMenuItems);
     const companySettings = mapCompanySettings(data.themeGeneralSettings.generalSettings.companySettings || null);
-    const serializedSocialNetworks = mapSocialNetworks(data.acfOptionsContact.contactMetadata.contactFields.socialNetworks.socialNetwork);
     const serializedEmails = mapEmails(data.acfOptionsContact.contactMetadata.contactFields.emails.email);
     const serializedPhones = mapPhones(data.acfOptionsContact.contactMetadata.contactFields.phones.phone);
     const serializedAddresses = mapAddresses(data.acfOptionsContact.contactMetadata.contactFields.addresses.address);
     const serializedOpeningHours = mapOpeningHours(data.acfOptionsContact.contactMetadata.contactFields.openingHours.hours.schedules.schedule);
     const serializedLocation = data.acfOptionsContact.contactMetadata.contactFields.location;
-    const serializedWPForms = mapWPForms(data.acfOptionsForms.wpForms.acfWpForms.acfWpForm);
-    const serializedCategories = mapCategories(data.nodeByUri.categories?.edges);
+    // const serializedWPForms = mapWPForms(data.acfOptionsForms.Forms.acfWpForms.acfWpForm);
+    const serializedCategories = mapCategories(data.nodeByUri?.categories?.edges);
     // const footerMenuItems = '';
     const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks || []);
     const serializedPosts = mapPosts(data.posts.edges);
@@ -629,11 +683,14 @@ export const getPageStaticProps = async (context) => {
     return {
       props: {
         posts: serializedPosts,
-        author: data.nodeByUri.author || "",
-        recentPosts: serializedRecentPosts,
+        faqs: data.acfOptionsFaqs.frequentlyAskedQuestions.faqs.faq,
+
         contentType: data.nodeByUri.contentType.node.name || "",
-        seo: data.nodeByUri.seo || null,
+        recentPosts: serializedRecentPosts,
         title: data.nodeByUri.title || null,
+        seo: data.nodeByUri.seo || null,
+        featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
+        author: data.nodeByUri.author || "",
         date: data.nodeByUri.date || null,
         categories: serializedCategories,
         companySettings: companySettings,
@@ -643,29 +700,32 @@ export const getPageStaticProps = async (context) => {
         propertyCity: serializedPropertyCities || null,
         propertyState: serializedPropertyStates || null,
         propertyCountry: serializedPropertyCountries || null,
-        featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
-        mainMenuItems: mainMenuItems,
+
         footerMenuTitle: data.acfOptionsFooterPrimaryMenu.footerPrimaryMenu.footerMenuTitle || null,
-        footerMenuItems: footerMenuItems,
         footerLinksTitle: data.acfOptionsFooterQuickLinks.footerQuickLinks.quickLinksTitle || null,
-        footerQuickLinks: footerQuickLinks,
         legalMenuTitle: data.acfOptionsLegalPagesMenu.legalPages.legalMenuTitle || null,
-        legalPages: legalPages,
         pageMenuTitle: data.acfOptionsPageMenu.pageMenu.pageMenuTitle || null,
+        socialNetworksTitle: data.acfOptionsContact.contactMetadata.contactFields.socialNetworks.title,
+        
+        mainMenuItems: mainMenuItems,
+        footerMenuItems: footerMenuItems,
+        footerQuickLinks: footerQuickLinks,
+        legalPages: legalPages,
         pageMenuItems: pageMenuItems,
+        socialNetworks: serializedSocialNetworks,
+
         callToActionLabel: data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
         callToActionDestination: data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
-        faqs: data.acfOptionsFaqs.frequentlyAskedQuestions.faqs.faq,
-        socialNetworksTitle: data.acfOptionsContact.contactMetadata.contactFields.socialNetworks.title,
-        socialNetworks: serializedSocialNetworks,
+        
         contactFields: data.acfOptionsContact.contactMetadata.contactFields,
         emails: serializedEmails,
         phones: serializedPhones,
         addresses: serializedAddresses,
         openingHours: serializedOpeningHours,
-        wpForms: serializedWPForms,
+        // wpForms: serializedWPForms,
         blocks,
       },
+      revalidate: 1
     };
   };
 

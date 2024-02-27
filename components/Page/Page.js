@@ -10,6 +10,7 @@ import PostLayout from "components/Layouts/PostLayout/PostLayout";
 import PageLayout from "components/Layouts/PageLayout/PageLayout";
 import PropertyLayout from "components/Layouts/PropertyLayout/PropertyLayout";
 import { Heading } from "components/Heading";
+import { ContactLayout } from "components/Layouts/ContactLayout";
 
 export const Page = (props) => {
 
@@ -71,11 +72,17 @@ export const Page = (props) => {
 
     // if(router.isFallback) {
     //     return (
-    //         <div>
+    //         <h1 className="text-5xl text-slate-700">
     //             Loading...
-    //         </div>
+    //         </h1>
     //     )
     // }
+
+
+        // if(props.isLoading) {
+        //     return (<h1>Loading...</h1>)
+        // }
+   
 
     return (
         <ContentTypeProvider 
@@ -94,26 +101,17 @@ export const Page = (props) => {
                 contactFields: props.contactFields, 
                 author: props.author,
             }}        
-        >
+        >        
             <Head>
                 <title>{props.seo?.title || "Site title"}</title>
                 <meta name="description" content={props.seo?.metaDesc || "Site meta description" } />
             </Head>
+            
             <MainMenu 
                 items={props.mainMenuItems} 
                 callToActionLabel={props.callToActionLabel} 
                 callToActionDestination={props.callToActionDestination}
-            />       
-            {/* {props.contentType === 'page' || props.contentType === 'property' ?  (
-                <PageLayout>
-                    <BlockRenderer blocks={props.blocks} />
-                </PageLayout>
-            ) : (
-                <PostLayout title={props.title} dateTime={props.date} featuredImage={props.featuredImage} categories={props.categories}>
-                    <BlockRenderer blocks={props.blocks} />
-                </PostLayout>                
-            )}     */}
-            
+            />      
             {props.contentType === 'page' || props.contentType === '' ? (
                 <PageLayout>
                     <BlockRenderer blocks={props.blocks} />
@@ -159,7 +157,7 @@ export const Page = (props) => {
                 phones={props.phones}
                 addresses={props.addresses}
                 openingHours={props.openingHours}
-                wpForms={props.wpForms}
+                // wpForms={props.wpForms}
             />
         </ContentTypeProvider>
     )

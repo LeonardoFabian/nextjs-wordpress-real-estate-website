@@ -22,6 +22,7 @@ import { TickItem } from "components/TickItem/TickItem";
 import Image from "next/image";
 import { theme } from "theme";
 import { RecentPosts } from "components/RecentPosts";
+import ContactForm from "components/ContactForm/ContactForm";
 
 export const BlockRenderer = ({blocks, props}) => {
 
@@ -182,7 +183,12 @@ export const BlockRenderer = ({blocks, props}) => {
             case 'acf/formspree-form': {
                 // console.log("FORMSPREE FORM: ", block);
                 return (
+                    <>
                     <FormspreeForm key={block.id} formId={block.attributes.data.form_id} />
+                        <div className="container max-w-lg">
+                            <ContactForm />
+                        </div>
+                    </>
                 )
             }
             case 'acf/property-features': {

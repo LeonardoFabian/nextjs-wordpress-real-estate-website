@@ -17,7 +17,7 @@ const PostLayout = ({ children, title, dateTime, featuredImage, categories }) =>
                 <header className="text-center">
                     <PostCategories categories={categories} />
                     <Heading level="2" content={title} textAlign="center" />
-                    <PostDate dateTime={dateTime} />
+                    {/* <PostDate dateTime={dateTime} /> */}
                 </header>
                 <div className="h-96 my-10 overflow-hidden">
                     <Image 

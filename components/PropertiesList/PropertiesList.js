@@ -103,13 +103,15 @@ export const PropertiesList = ({propertyFeatures}) => {
             propertiesFilters.categoryId = categoryId;
         }
 
-        const response = await fetch(`/api/search`, {
+        const reqOptions = {
             method: "POST",
             body: JSON.stringify({
                 page: parseInt(page || "1"),
                 ...propertiesFilters,
             }),
-        });
+        }
+
+        const response = await fetch(`/api/search`, reqOptions);
         const data = await response.json();
         console.log("PROPERTIES LIST FETCH DATA: ", data);
 
