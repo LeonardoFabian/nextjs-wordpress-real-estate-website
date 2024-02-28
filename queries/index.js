@@ -708,3 +708,27 @@ export const GET_PAGES_BY_URI = gql`
         # }
     }
 `
+export const GET_POSTS_BY_LANGUAGE = gql`
+    query GetPostByLanguage($language: LanguageCodeFilterEnum!) {
+        posts(where: {language: $language}) {
+            edges {
+                node {
+                    databaseId
+                    title
+                    slug
+                    uri
+                    excerpt
+                    date
+                    language {
+                        code
+                        locale
+                    }
+                }
+            }
+        }
+        generalSettings {
+            title
+            description
+        }
+    }
+`

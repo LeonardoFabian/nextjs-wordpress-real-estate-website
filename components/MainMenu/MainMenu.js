@@ -10,14 +10,17 @@ import { faXmark, faBars, faCaretDown, faCaretUp  } from '@fortawesome/free-soli
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import Router from 'next/router';
 import { useRouter } from 'next/router';
+import { LanguageSwitcher } from 'components/LanguageSwitcher';
 
 export const MainMenu = ({items, callToActionLabel, callToActionDestination}) => {
 
     console.log("MAIN MENU ITEMS: ", items);
 
-    const router = useRouter();
+    const {asPath} = useRouter();
 
-    console.log("MAIN MENU ROUTER: ", router);
+    // const availableLocales = locales.filter((locale) => locale !== activeLocale);
+
+    // console.log("MAIN MENU ROUTER: ", router);
 
     const [menuIcon, setMenuIcon] = useState(false);
     const [showMobileSubMenu, setShowMobileSubMenu] = useState(false);
@@ -57,7 +60,7 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                             <Link 
                                 href={item.destination} 
                                 className={`p-3 lg:p-5 block flex-nowrap ${
-                                    `${router.asPath}/` == `${item.destination}` 
+                                    `${asPath}/` == `${item.destination}` 
                                     ? 'text-yellow-500' 
                                     : 'hover:text-slate-400'}`
                                 }
@@ -71,7 +74,7 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                                             <Link 
                                                 href={subMenuItem.destination} 
                                                 className={`p-5 block whitespace-nowrap ${
-                                                    `${router.asPath}/` === `${subMenuItem.destination}`
+                                                    `${asPath}/` === `${subMenuItem.destination}`
                                                     ? 'text-yellow-500' 
                                                     : 'hover:text-slate-400'}`
                                                 }
@@ -84,6 +87,7 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                             )}
                         </li>
                     ))}
+                    <div className='my-auto'><LanguageSwitcher/></div>
                     <div className='hidden md:flex ml-3 my-auto'>
                         <ButtonLink destination={callToActionDestination} className="btn btn-primary">
                             {callToActionLabel}
@@ -116,7 +120,7 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                             >                            
                                 <Link href={item.destination} 
                                     className={`p-5 inline-flex ${
-                                        `${router.asPath}/` === `${item.destination}`
+                                        `${asPath}/` === `${item.destination}`
                                         ? 'text-yellow-500'
                                         : 'text-slate-300'}`
                                     }
@@ -162,6 +166,9 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                                 )}
                             </li>
                         ))}
+                        <div className='flex md:hidden justify-center items-center'>
+                            <LanguageSwitcher />
+                        </div>
                         <div className='md:hidden flex flex-col justify-center items-center'>
                             <ButtonLink destination={callToActionDestination} onClick={handleSmallerScreensNavigation}>
                                 {callToActionLabel}

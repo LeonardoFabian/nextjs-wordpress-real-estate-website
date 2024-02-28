@@ -41,10 +41,12 @@ export const getPageStaticProps = async ({params}) => {
   // } 
 
   const uri = params?.uri ? `/${params.uri.join("/")}/` : "/";
+  const language = params;
   // const uri = params?.uri ? params.uri : "/";
   // const uri = context.params.slug ? `/${context.params.slug.join("/")}/` : "/";
 
   console.log("VARIABLE URI: ", uri);
+  console.log("VARIABLE LOCALE: ", language);
 
     const {data, loading, error} = await client.query({
       query: GET_PAGES_BY_URI,
