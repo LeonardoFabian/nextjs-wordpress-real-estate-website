@@ -50,7 +50,7 @@ export const Accordion = ({children, label}) => {
                     : 'h-0 py-0 overflow-hidden transition-all duration-300 ease-in-out'
                 } 
             >
-                <div className="space-y-3 mt-4">
+                <div className="space-y-3">
                     {children}
                 </div>
             </div>

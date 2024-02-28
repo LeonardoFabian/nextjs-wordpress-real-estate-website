@@ -217,28 +217,29 @@ export const PropertyFilters = ({onSearch, categories}) => {
                 </div>
                 <div className="relative py-3">
                     <Accordion label="Features">
-                        <div className="flex flex-col space-y-3">
-                            <label className="cursor-pointer">
+                        <div className="flex flex-col px-4 bg-slate-100">
+                            <label className="cursor-pointer py-3">
                                 <CheckBox 
                                     checked={hasParking} 
                                     onChange={() => setHasParking(value => !value)} 
                                 />
-                                <span className="ml-3 text-base text-gray-600">has parking</span>
-                            </label>
-                            {hasParking && (
+                                <span className="ml-3 text-base text-gray-600">Parqueo incluido</span>
+                                {hasParking && (
                                 <div className="relative py-5">
-                                    <div><span className="font-semibold text-gray-900">Parkings (Qty)</span></div>
+                                    <div><span className="font-semibold text-gray-900">Parqueos (Cant.)</span></div>
                                     <div className="flex items-center" role="group">
                                         <Input type="number" className="text-center" value={parkingQty} onChange={e => setParkingQty(e.target.value)} />
                                     </div>
                                 </div>
                             )}
-                            <label className="cursor-pointer">
+                            </label>
+                            
+                            <label className="cursor-pointer py-3">
                                 <CheckBox 
                                     checked={petFriendly} 
                                     onChange={() => setPetFriendly(value => !value)} 
                                 />
-                                <span className="ml-3 text-base text-gray-600">pet friendly</span>
+                                <span className="ml-3 text-base text-gray-600">Pet Friendly</span>
                             </label>
                         </div>
                     </Accordion>                

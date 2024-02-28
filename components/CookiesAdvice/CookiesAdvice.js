@@ -81,7 +81,7 @@ const CookiesAdvice = () => {
                         <p>
                             We use two types of cookies on this website, those strictly necessary and those focused on analytics. 
                             Click accept to confirm the use of optional analytics cookies. You can read more information about 
-                            our <Link href="/cookies-policy" className="text-blue-500">Cookies Policy.</Link>
+                            our <Link href="/cookies-policy" className="text-blue-600">Cookies Policy.</Link>
                         </p>
                     </div>
                     <div className="flex items-center gap-4">

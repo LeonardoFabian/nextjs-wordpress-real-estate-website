@@ -50,7 +50,7 @@ export const Filters = ({onSearch, categories}) => {
 
     return (
         // <div className="max-w-5xl mx-auto my-5 block md:flex items-center gap-6 bg-white shadow-lg border-2 p-5 rounded-md relative md:absolute -mt-56 left-0 right-0">
-        <div className="w-full lg:max-w-3xl mx-auto bg-white shadow-lg border-2 p-5 rounded-md relative space-y-6">
+        <div className="w-full lg:max-w-3xl mx-auto bg-white shadow-lg border-2 p-5 rounded-md relative space-y-4">
             <div className="flex items-center gap-4">
                 {listingTypes.map((listingTypeItem, i) => (
                     <button 
@@ -63,7 +63,7 @@ export const Filters = ({onSearch, categories}) => {
                     </button>
                 ))} 
             </div>
-            <div className="block md:flex items-center gap-6">
+            <div className="block md:flex items-center gap-4">
                 <div className="flex-1">
                     <span className="text-slate-500">Tipo de Propiedad</span>
                     <select className="bg-slate-200 border-slate-400 placeholder-slate-400 border-2 p-2 md:py-3 lg:py-4 my-2 text-gray-900 text-sm rounded-lg focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 block w-full" 
@@ -88,7 +88,7 @@ export const Filters = ({onSearch, categories}) => {
             <div className="block lg:flex items-center justify-between gap-8 space-y-6 lg:space-y-0">
                 <div className="block lg:flex items-center gap-x-6">
                     <span className="text-slate-500">Filtros</span>
-                    <ul className="block lg:flex items-center space-y-4 lg:space-y-0 gap-x-8 border border-slate-300 py-4 px-4 rounded-md">
+                    <ul className="block lg:flex items-center space-y-4 lg:space-y-0 gap-x-8 border border-slate-300 py-4 px-4 rounded-md text-sm">
                         <li>
                             <label className="cursor-pointer">
                                 <input type="checkbox" checked={hasParking} onChange={() => setHasParking(value => !value)} />
@@ -103,14 +103,14 @@ export const Filters = ({onSearch, categories}) => {
                         </li>
                     </ul>
                 </div>
-                <div className="block lg:flex items-center gap-x-2">
+                <div className="block lg:flex items-center gap-x-4">
                     <div className="btn btn-default" onClick={handleSearch}>
                         <FontAwesomeIcon icon={faArrowsRotate} size="lg" className="mr-2" />
-                        <span>Resetear</span>
+                        <span className="text-sm">Resetear</span>
                     </div>
                     <div className="btn btn-primary" onClick={handleSearch}>
                         <FontAwesomeIcon icon={faSearch} size="lg" className="mr-2" />
-                        <span>Buscar</span>
+                        <span className="text-sm">Buscar</span>
                     </div>
                 </div>
             </div>

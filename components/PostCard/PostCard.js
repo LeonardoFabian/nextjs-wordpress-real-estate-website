@@ -25,18 +25,28 @@ export const PostCard = ({post}) => {
                 <strong><Heading level="6" content={post.title} className="!my-2" /></strong>
             </header>
             <div className="h-56 overflow-hidden relative">
-                <Image 
-                    alt="Post Card Image"
-                    src={post.featuredImage}
-                    fill
-                    className="object-cover"
-                />
+                {
+                    post.featuredImage
+                    ? 
+                    <Image 
+                        alt="Post Card Image"
+                        src={post.featuredImage}
+                        fill
+                        className="object-cover"
+                    />
+                    : <Image 
+                        alt="Post Card Image"
+                        src="/default-featured-image.jpg"
+                        fill
+                        className="object-cover"
+                    />
+                }
             </div>
             {/* <Image /> */}
             <footer className="p-6 flex items-center justify-between">
                 {/* <ButtonLink label="Ver más" destination={post.uri} /> */}
                 <Link 
-                    href={`blog/${post.uri}`} 
+                    href={`${post.uri}`} 
                     className="uppercase text-xs inline-block items-center justify-center space-x-4 transition-all ease-in-out duration-100 hover:space-x-8"
                 >
                     <span>Ver más</span>
