@@ -8,5 +8,9 @@ export const Heading = ({textAlign, content, level = 2, className}) => {
         className: `font-heading w-full my-5 ${className} ${getFontSizeForHeading(level)} ${getTextAlign(textAlign)}`,
     });
 
-    return tag;
+    return (
+        <div className={`max-w-5xl py-2 mx-auto`}>
+            {tag}
+        </div>
+    );
 }

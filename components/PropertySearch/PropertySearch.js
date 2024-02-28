@@ -147,9 +147,9 @@ export const PropertySearch = () => {
         console.log("ROUTER: ", router);
         console.log("FILTERS: ", petFriendly, hasParking, minPrice, maxPrice, listingType, categoryId);
 
-        if(router.query.slug) {
+        if(router.query.uri) {
             await router.push(
-                `${router.query.slug.join("/")}?page=1&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${!!petFriendly}&status=${status}&hasParking=${!!hasParking}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, 
+                `${router.query.uri.join("/")}?page=1&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${!!petFriendly}&status=${status}&hasParking=${!!hasParking}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, 
                 null, 
                 {
                     shallow: true,

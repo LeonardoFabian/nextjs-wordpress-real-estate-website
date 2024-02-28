@@ -13,10 +13,10 @@ export const PropertyFeatures = ({price, bedrooms, bathrooms, hasParking, petFri
     const formattedListingType = mapListingType(listingType);
     
     return (
-        <div className="max-w-5xl mx-auto my-auto">
+        <div className="lg:flex max-w-5xl mx-auto my-auto">
             <div className="max-w-xl mx-auto text-slate-800">                
                 <div className="grid grid-cols-2 md:grid-cols-5 mb-4 items-stretch h-52 min-h-52">
-                    <div className="col-span-2 md:col-span-3 bg-yellow-500 p-4 h-full shadow">
+                    <div className="col-span-2 md:col-span-3 bg-white lg:bg-yellow-100 bg-opacity-80 p-4 h-full shadow">
                         <div className="flex flex-col justify-between h-52 lg:h-full min-h-52">
                             <div>
                                 <div className="flex items-center gap-2">
@@ -28,7 +28,6 @@ export const PropertyFeatures = ({price, bedrooms, bathrooms, hasParking, petFri
                                 {categories && (categories.map(category => (
                                     <p className="uppercase text-slate-800" key={category.id}>{category.name} en {formattedListingType}</p>
                                 )))}
-                                                          
                                 {propertyLocation?.length > 0 && (
                                     <div className="flex items-start gap-3 text-xs my-4">
                                         <FontAwesomeIcon icon={faMapMarkerAlt} size="lg" />
@@ -52,15 +51,15 @@ export const PropertyFeatures = ({price, bedrooms, bathrooms, hasParking, petFri
                             </div>
                             {callToActionDestination && (
                                 <div>
-                                    <CallToActionButton destination={callToActionDestination} label="Schedule a showing" className="bg-white text-slate-800 py-4 lg:py-2 shadow-lg shadow-yellow-600">
+                                    <CallToActionButton destination={callToActionDestination} label="Schedule a showing" className="btn btn-primary shadow-yellow-600">
                                         {callToActionLabel}
                                     </CallToActionButton>
                                 </div>
                             )}
                         </div>
                     </div>
-                    <div className="col-span-2">
-                        <div className="grid grid-cols-2 h-60 lg:h-full text-sm text-white">
+                    
+                        <div className="col-span-2 hidden lg:grid grid-cols-2 h-60 lg:h-full text-sm text-white">
                             <div className="flex flex-col gap-2 items-center justify-center text-center uppercase h-full w-full bg-slate-900 bg-opacity-80 border border-slate-800">
                                 <span><FontAwesomeIcon icon={faBed} size="2x" /></span>
                                 <span className="text-xs">{bedrooms} bedrooms</span>
@@ -78,7 +77,7 @@ export const PropertyFeatures = ({price, bedrooms, bathrooms, hasParking, petFri
                                 {!!petFriendly && (<span className="text-xs">pet friendly</span>) }
                             </div>
                         </div>
-                    </div>
+                  
                     
                 
                 </div>

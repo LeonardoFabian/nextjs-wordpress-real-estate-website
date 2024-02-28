@@ -12,13 +12,6 @@ export const getStaticPaths = async () => {
     const {data} = await client.query({
         query: gql`
             query AllPagesQuery {
-                pages {
-                    edges {
-                        node {
-                            uri
-                        }
-                    }
-                }
                 properties {
                     edges {
                         node {
@@ -38,13 +31,21 @@ export const getStaticPaths = async () => {
     });
 
     return {
-        paths: [...data.pages.edges, ...data.properties.edges, ...data.posts.edges]
+        paths: 
+            [...data.properties.edges, ...data.posts.edges]
             .filter((page) => page.node.uri !== "/")
             .map((page) => ({
             params: { 
-                slug: page.node.uri.substring(1, page.node.uri.length - 1).split("/")
+                uri: page.node.uri.substring(1, page.node.uri.length - 1).split("/")
             },
         })),
         fallback: "blocking",
     };
+
+
+    // const paths = [];
+    // return {
+    //     paths,
+    //     fallback: "blocking"
+    // }
 };

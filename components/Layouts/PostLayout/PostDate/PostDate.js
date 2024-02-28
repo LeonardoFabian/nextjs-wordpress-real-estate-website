@@ -2,9 +2,12 @@ import {format} from 'date-fns';
 
 export const PostDate = ({dateTime}) => {
 
-    const parsedDate = new Date(dateTime);
+    const formatDate = (date) => new Date(date).toLocaleDateString();
 
-    const formattedDate = format(parsedDate, 'dd/MM/yyyy HH:mm:ss');
+    // const parsedDate = new Date(dateTime);
+
+    // const formattedDate = format(parsedDate, 'dd/MM/yyyy HH:mm:ss');
+    const formattedDate = formatDate(dateTime);
 
     return (
         <div className='text-gray-500'>

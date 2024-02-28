@@ -1,15 +1,15 @@
 import Image from "next/image"
 
-export const Cover = ({children, background}) => {
+export const Cover = ({children, background, className}) => {
     return (
-        <div className="max-w-full h-full lg:h-full bg-slate-800 text-white relative min-h-[450px] flex justify-center items-center">
+        <div className="max-w-full h-full lg:h-full bg-slate-800 text-white relative min-h-[450px] flex flex-1 justify-center items-center">
             {
                 background 
                 ? <Image 
                     alt="Cover" 
                     src={background} 
                     fill 
-                    className="mix-blend-soft-light object-cover" 
+                    className={`mix-blend-soft-light object-cover h-auto ${className ? className : ''}`} 
                     placeholder="blur"
                     blurDataURL={background}
                 />

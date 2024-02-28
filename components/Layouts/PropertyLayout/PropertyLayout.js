@@ -65,9 +65,9 @@ const PropertyLayout = ({
 
     return (
         <Layout title={`${contentType} Layout`}>
-            <section className={`property ${contentType}-layout lg:px-8 space-y-2 lg:py-10`}>
+            <section className={`property ${contentType}-layout lg:px-8 space-y-2 lg:py-10 overflow-hidden`}>
                 <Cover background={featuredImage}>
-                    <Heading level="1" content={title} textAlign="center" />
+                    <Heading level="2" content={title} textAlign="center" className="hidden lg:block mx-auto" />
                     <PropertyFeatures 
                         price={price} 
                         bedrooms={bedrooms} 

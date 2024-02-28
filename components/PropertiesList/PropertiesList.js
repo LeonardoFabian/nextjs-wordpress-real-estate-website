@@ -140,9 +140,13 @@ export const PropertiesList = ({propertyFeatures}) => {
         } = queryString.parse(window.location.search);
 
         await router.push(
-            `${router.query.slug.join("/")}?page=${pageNumber}&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${petFriendly === "true"}&status=${status}&hasParking=${hasParking === "true"}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, null, {
-            shallow: true
-        });
+            `${router.query.uri.join("/")}?page=${pageNumber}&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${petFriendly === "true"}&status=${status}&hasParking=${hasParking === "true"}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, 
+            // `${router.query.slug.join("/")}?page=${pageNumber}&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${petFriendly === "true"}&status=${status}&hasParking=${hasParking === "true"}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, 
+            null, 
+            {
+                shallow: true
+            }
+        );
         getAllProperties();
     };
 
@@ -172,9 +176,13 @@ export const PropertiesList = ({propertyFeatures}) => {
         console.log("PROPERTY HANDLE SEARCH: ", code, floor, condition, listingType, categoryId, bedrooms, bathrooms, parkingQty, petFriendly, status, hasParking, currency, minPrice, maxPrice, zipCode);
        
         await router.push(
-            `${router.query.slug.join("/")}?page=1&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${!!petFriendly}&status=${status}&hasParking=${!!hasParking}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, null, {
-            shallow: true
-        });
+            `${router.query.uri.join("/")}?page=1&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${!!petFriendly}&status=${status}&hasParking=${!!hasParking}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, 
+            // `${router.query.slug.join("/")}?page=1&code=${code}&floor=${floor}&condition=${condition}&listingType=${listingType}&categoryId=${categoryId}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&parkingQty=${parkingQty}&petFriendly=${!!petFriendly}&status=${status}&hasParking=${!!hasParking}&currency=${currency}&minPrice=${minPrice}&maxPrice=${maxPrice}&zipCode=${zipCode}`, 
+            null, 
+            {
+                shallow: true
+            }
+        );
         getAllProperties();
     }
 

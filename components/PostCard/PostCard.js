@@ -36,7 +36,7 @@ export const PostCard = ({post}) => {
             <footer className="p-6 flex items-center justify-between">
                 {/* <ButtonLink label="Ver más" destination={post.uri} /> */}
                 <Link 
-                    href={post.uri} 
+                    href={`blog/${post.uri}`} 
                     className="uppercase text-xs inline-block items-center justify-center space-x-4 transition-all ease-in-out duration-100 hover:space-x-8"
                 >
                     <span>Ver más</span>

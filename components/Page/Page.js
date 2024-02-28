@@ -11,81 +11,34 @@ import PageLayout from "components/Layouts/PageLayout/PageLayout";
 import PropertyLayout from "components/Layouts/PropertyLayout/PropertyLayout";
 import { Heading } from "components/Heading";
 import { ContactLayout } from "components/Layouts/ContactLayout";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import GoogleAnalytics from "components/GoogleAnalytics/GoogleAnalytics";
 
 export const Page = (props) => {
 
     console.log("PAGE PROPS: ", props);
 
+    const analyticsCookies = process.env.NEXT_PUBLIC_ANALYTICS_COOKIES_NAME;
+    const [isAcceptedAnalyticsCookies, setIsAcceptedAnalyticsCookies] = useState(false);
+
     const router = useRouter();
-
     console.log("ROUTER: ", router);
-    const {slug} = router.query;
-    // const contentType = useContentType();
 
-    // console.log("PAGE CONTENT TYPE: ", contentType);
+    useEffect(() => {
+        const googleAnalyticsCookies = Cookies.get(analyticsCookies);
 
-    // return (
-    //     <PageProvider
-    //         value={{ 
-    //             propertyFeatures: props.propertyFeatures,
-    //             title: props.title,
-    //             featuredImage: props.featuredImage,
-    //             pageMenuTitle: props.pageMenuTitle,
-    //             pageMenuItems: props.pageMenuItems,
-    //             companySettings: props.companySettings,
-    //             faqs: props.faqs,
-    //             contactFields: props.contactFields,                
-    //         }}
-    //     >
-    //         <Head>
-    //             <title>{props.seo.title}</title>
-    //             <meta name="description" content={props.seo.metaDesc} />
-    //         </Head>
-    //         <MainMenu 
-    //             items={props.mainMenuItems} 
-    //             callToActionLabel={props.callToActionLabel} 
-    //             callToActionDestination={props.callToActionDestination}
-    //         />
-    //         <BlockRenderer blocks={props.blocks} />
-    //         <Footer 
-    //             footerMenuTitle={props.footerMenuTitle}
-    //             footerMenuItems={props.footerMenuItems}
-    //             footerLinksTitle={props.footerLinksTitle}
-    //             footerQuickLinks={props.footerQuickLinks}
-    //             legalMenuTitle={props.legalMenuTitle}
-    //             legalPages={props.legalPages}
-    //             companySettings={props.companySettings}
-    //             socialNetworksTitle={props.socialNetworksTitle}
-    //             socialNetworks={props.socialNetworks}
-    //             emails={props.emails}
-    //             phones={props.phones}
-    //             addresses={props.addresses}
-    //             openingHours={props.openingHours}
-    //             wpForms={props.wpForms}
-    //         />
-    //         <Script 
-    //             src='http://candelarioconsultores.local/wp-content/plugins/wpforms-lite/assets/js/wpforms.min.js' 
-    //             strategy="afterInteractive"
-    //         />
-    //     </PageProvider>        
-    // );
-
-    // if(router.isFallback) {
-    //     return (
-    //         <h1 className="text-5xl text-slate-700">
-    //             Loading...
-    //         </h1>
-    //     )
-    // }
-
-
-        // if(props.isLoading) {
-        //     return (<h1>Loading...</h1>)
-        // }
-   
+        if(googleAnalyticsCookies) {
+            setIsAcceptedAnalyticsCookies(true);
+        } else {
+            setIsAcceptedAnalyticsCookies(false);
+        }
+    }, []);
 
     return (
-        <ContentTypeProvider 
+
+        props.loading ? (<h1>Loading...</h1>) : (
+            <ContentTypeProvider 
             value={{ 
                 contentType: props.contentType,
                 propertyFeatures: props.propertyFeatures,
@@ -101,11 +54,13 @@ export const Page = (props) => {
                 contactFields: props.contactFields, 
                 author: props.author,
             }}        
-        >        
+        >         
             <Head>
                 <title>{props.seo?.title || "Site title"}</title>
                 <meta name="description" content={props.seo?.metaDesc || "Site meta description" } />
             </Head>
+
+            {!!isAcceptedAnalyticsCookies && <GoogleAnalytics />}
             
             <MainMenu 
                 items={props.mainMenuItems} 
@@ -160,5 +115,7 @@ export const Page = (props) => {
                 // wpForms={props.wpForms}
             />
         </ContentTypeProvider>
+        )
+
     )
 };

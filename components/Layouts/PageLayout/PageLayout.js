@@ -10,7 +10,7 @@ const PageLayout = ({ children }) => {
 
     return (
         <Layout title={`${contentType} Layout`}>
-            <section className={`page ${contentType}-layout`}>{children}</section>
+            <section className={`page ${contentType}-layout overflow-hidden`}>{children}</section>
         </Layout>
     );
 };
