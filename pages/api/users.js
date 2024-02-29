@@ -9,14 +9,20 @@ const handlerUsers = async (req, res) => {
                     users {
                         nodes {
                             databaseId
-                            email
-                            name
-                            avatar {
-                                url
-                            }
-                            uri
                             firstName
                             lastName
+                            slug
+                            uri
+                            userMetadata {
+                                contactInformation {
+                                    userEmail
+                                    userPhone
+                                    userWhatsapp
+                                }
+                                profilePicture {
+                                    sourceUrl
+                                }
+                            }
                         }
                     }
                 }

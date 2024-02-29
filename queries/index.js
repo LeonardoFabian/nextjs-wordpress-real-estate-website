@@ -312,21 +312,18 @@ export const GET_PAGES_BY_URI = gql`
             author {
                 node {
                     databaseId
-                    name
-                    email
+                    firstName
+                    lastName
                     slug
                     uri
-                    avatar {
-                        url
-                    }
                     userMetadata {
-                        profilePicture {
-                            sourceUrl
-                        }
                         contactInformation {
                             userEmail
                             userPhone
                             userWhatsapp
+                        }
+                        profilePicture {
+                            sourceUrl
                         }
                     }
                 }
@@ -384,20 +381,9 @@ export const GET_PAGES_BY_URI = gql`
             }
             ... on User {
             databaseId
-            email
-            name
-            avatar {
-                url
-            }
             description
             firstName
             lastName
-            roles {
-                nodes {
-                name
-                displayName
-                }
-            }
             properties {
                 nodes {
                 title
