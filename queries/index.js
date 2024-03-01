@@ -123,11 +123,11 @@ export const GET_PAGES_BY_URI = gql`
                 }
                 }
                 categories {
-                edges {
-                    node {
-                    name
+                    edges {
+                        node {
+                        name
+                        }
                     }
-                }
                 }
                 author {
                 node {
@@ -380,45 +380,22 @@ export const GET_PAGES_BY_URI = gql`
             }
             }
             ... on User {
-            databaseId
-            description
-            firstName
-            lastName
-            properties {
-                nodes {
-                title
-                uri
                 databaseId
-                propertyFeatures {
-                    price
-                    currency
-                    bedrooms
-                    bathrooms
-                    hasParking
-                    parkingQty
-                    petFriendly
-                    listingType
-                    status
-                    code
-                }
-                date
-                categories {
-                    nodes {
-                    name
+                firstName
+                lastName
+                description
+                slug 
+                uri
+                userMetadata {
+                    contactInformation {
+                        userEmail
+                        userPhone 
+                        userWhatsapp
+                    }
+                    profilePicture {
+                        sourceUrl
                     }
                 }
-                locations {
-                    nodes {
-                    name
-                    }
-                }
-                cities {
-                    nodes {
-                    name
-                    }
-                }
-                }
-            }
             }
             ... on Category {
             databaseId

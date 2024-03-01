@@ -52,6 +52,10 @@ export const getPageStaticProps = async ({params}) => {
         uri,
       },
     });
+
+    if(error) {
+      console.log("QUERY ERROR: ", error);
+    }
   
     // header
     const mainMenuItems = mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems);
@@ -82,6 +86,7 @@ export const getPageStaticProps = async ({params}) => {
     const serializedPropertyCities = mapPropertyLocation(data.nodeByUri?.cities?.edges || []);
     const serializedPropertyStates = mapPropertyLocation(data.nodeByUri?.states?.edges || []);
     const serializedPropertyCountries = mapPropertyLocation(data.nodeByUri?.countries?.edges || []);
+    const contentType = data.nodeByUri?.contentType ? data.nodeByUri?.contentType?.node.name : "page";
 
     console.log("BLOCK FROM CLEAN AND TRANSFORM BLOCKS.............", blocks);
   
@@ -95,7 +100,7 @@ export const getPageStaticProps = async ({params}) => {
         posts: serializedPosts,
         faqs: data.acfOptionsFaqs.frequentlyAskedQuestions.faqs.faq,
 
-        contentType: data.nodeByUri?.contentType?.node.name || "",
+        contentType: contentType,
         recentPosts: serializedRecentPosts,
         title: data.nodeByUri?.title || null,
         seo: data.nodeByUri?.seo || null,

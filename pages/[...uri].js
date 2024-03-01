@@ -33,13 +33,20 @@ export const getStaticPaths = async () => {
                         }
                     }
                 }
+                users {
+                    edges {
+                        node {
+                            uri
+                        }
+                    }
+                }
             }
         `,
     });
 
     return {
         paths: 
-            [...data.pages.edges, ...data.properties.edges, ...data.posts.edges]
+            [...data.pages.edges, ...data.properties.edges, ...data.posts.edges, ...data.users.edges]
             .filter((page) => page.node.uri !== "/")
             .map((page) => ({
             params: { 
