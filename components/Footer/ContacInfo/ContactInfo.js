@@ -44,7 +44,7 @@ export const ContactInfo = (props) => {
                             <FontAwesomeIcon icon={faPhone} size="lg" />
                         </div>
                         <div className="flex-1">
-                            <ul className={`component-contact-info-phone-list flex flex-wrap divide-x divide-slate-500 space-y-1`}>
+                            <ul className={`component-contact-info-phone-list flex items-center flex-wrap divide-x divide-slate-500`}>
                                 {phones.map((phone, i) => (
                                     <>
                                         {!!phone.publish && (

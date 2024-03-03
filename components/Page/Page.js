@@ -2,15 +2,16 @@ import { useRouter } from "next/router";
 import { MainMenu } from "components/MainMenu"
 import { BlockRenderer } from "components/BlockRenderer"
 import { PageProvider } from "context/page";
-import Script from "next/script";
+// import Script from "next/script";
 import Head from "next/head";
 import { Footer } from "components/Footer";
-import { ContentTypeProvider, useContentType } from "context/ContentTypeContext";
+import { ContentTypeProvider } from "context/ContentTypeContext";
 import PostLayout from "components/Layouts/PostLayout/PostLayout";
 import PageLayout from "components/Layouts/PageLayout/PageLayout";
 import PropertyLayout from "components/Layouts/PropertyLayout/PropertyLayout";
-import { Heading } from "components/Heading";
-import { ContactLayout } from "components/Layouts/ContactLayout";
+import UserLayout from "components/Layouts/UserLayout/UserLayout";
+// import { Heading } from "components/Heading";
+// import { ContactLayout } from "components/Layouts/ContactLayout";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import GoogleAnalytics from "components/GoogleAnalytics/GoogleAnalytics";
@@ -36,8 +37,6 @@ export const Page = (props) => {
     }, []);
 
     return (
-
-        props.loading ? (<h1>Loading...</h1>) : (
             <ContentTypeProvider 
             value={{ 
                 contentType: props.contentType,
@@ -62,35 +61,38 @@ export const Page = (props) => {
 
             {!!isAcceptedAnalyticsCookies && <GoogleAnalytics />}
             
-            <MainMenu 
-                items={props.mainMenuItems} 
-                callToActionLabel={props.callToActionLabel} 
-                callToActionDestination={props.callToActionDestination}
-            />      
-            {props.contentType === 'page' || props.contentType === '' ? (
-                <PageLayout>
-                    <BlockRenderer blocks={props.blocks} />
-                </PageLayout>
-            ) : null} 
-            {props.contentType === 'property' ? (
-                <PropertyLayout 
-                    title={props.title} 
-                    blocks={props.blocks}
-                    author={props.author}
-                    featuredImage={props.featuredImage}
-                    propertyFeatures={props.propertyFeatures}
-                    categories={props.categories}
-                    features={props.features}
-                    propertyLocation={props.propertyLocation}
-                    propertyCity={props.propertyCity}
-                    propertyState={props.propertyState}
-                    propertyCountry={props.propertyCountry}
-                    callToActionLabel={props.callToActionLabel}
+                <MainMenu 
+                    items={props.mainMenuItems} 
+                    callToActionLabel={props.callToActionLabel} 
                     callToActionDestination={props.callToActionDestination}
-                >
-                    <BlockRenderer blocks={props.blocks} props={props} />
-                </PropertyLayout>
-            ) : null}  
+                />     
+                {props.contentType === 'page' && props.user ? (
+                    <UserLayout user={props.user}/>
+                ) : null} 
+                {props.contentType === 'page' ? (
+                    <PageLayout>
+                        <BlockRenderer blocks={props.blocks} />
+                    </PageLayout>
+                ) : null} 
+                {props.contentType === 'property' ? (
+                    <PropertyLayout 
+                        title={props.title} 
+                        blocks={props.blocks}
+                        author={props.author}
+                        featuredImage={props.featuredImage}
+                        propertyFeatures={props.propertyFeatures}
+                        categories={props.categories}
+                        features={props.features}
+                        propertyLocation={props.propertyLocation}
+                        propertyCity={props.propertyCity}
+                        propertyState={props.propertyState}
+                        propertyCountry={props.propertyCountry}
+                        callToActionLabel={props.callToActionLabel}
+                        callToActionDestination={props.callToActionDestination}
+                    >
+                        <BlockRenderer blocks={props.blocks} props={props} />
+                    </PropertyLayout>
+                ) : null}  
             {props.contentType === 'post' ? (
                 <PostLayout title={props.title} dateTime={props.date} featuredImage={props.featuredImage} categories={props.categories}>
                     <div className="mx-auto px-6 lg:px-0">
@@ -115,7 +117,6 @@ export const Page = (props) => {
                 // wpForms={props.wpForms}
             />
         </ContentTypeProvider>
-        )
 
     )
 };

@@ -17,17 +17,17 @@ export const AgentCard = ({user}) => {
                     agent.profilePicture
                     ? 
                     <Image 
-                        alt="Agent Image"
+                        alt="Agent profile picture"
                         src={agent.profilePicture}
                         fill 
-                        className="object-cover px-2"
+                        className="object-cover"
                     />
                     :
                     <Image 
-                        alt="Agent Image"
-                        src="/default-profile-picture-2-600x900.svg"
+                        alt="Agent profile picture"
+                        src="/default-profile-picture-600x900.svg"
                         fill 
-                        className=" object-cover px-2"
+                        className=" object-cover"
                     />
                 }
                 

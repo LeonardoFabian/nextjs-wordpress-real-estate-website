@@ -33,6 +33,13 @@ export const getStaticPaths = async () => {
                         }
                     }
                 }
+                categories {
+                    edges {
+                        node {
+                            uri
+                        }
+                    }
+                }
                 users {
                     edges {
                         node {
@@ -46,7 +53,13 @@ export const getStaticPaths = async () => {
 
     return {
         paths: 
-            [...data.pages.edges, ...data.properties.edges, ...data.posts.edges, ...data.users.edges]
+            [
+                ...data.pages.edges, 
+                ...data.properties.edges, 
+                ...data.posts.edges, 
+                ...data.categories.edges, 
+                ...data.users.edges
+            ]
             .filter((page) => page.node.uri !== "/")
             .map((page) => ({
             params: { 
@@ -56,10 +69,4 @@ export const getStaticPaths = async () => {
         fallback: "blocking",
     };
 
-
-    // const paths = [];
-    // return {
-    //     paths,
-    //     fallback: "blocking"
-    // }
 };

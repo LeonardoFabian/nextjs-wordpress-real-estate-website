@@ -1,4 +1,4 @@
-import {format} from 'date-fns';
+// import {format} from 'date-fns';
 
 export const PostDate = ({dateTime}) => {
 
@@ -11,7 +11,7 @@ export const PostDate = ({dateTime}) => {
 
     return (
         <div className='text-gray-500'>
-            {formattedDate}
+            Published on {formattedDate}
         </div>
     )
 }

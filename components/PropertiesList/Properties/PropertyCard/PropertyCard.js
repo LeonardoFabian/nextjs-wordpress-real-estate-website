@@ -19,7 +19,7 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
     if(status === "1") {
         return (        
             <>
-                <Link href={destination} prefetch={false} className="block w-full py-6 relative">                   
+                <Link href={destination ? destination : "" } prefetch={false} className="block w-full py-6 relative">                   
                     <div className="flex flex-col bg-white h-full overflow-hidden shadow hover:shadow-xl rounded-lg">
                         <div className="relative">                    
                             <Image 
@@ -47,7 +47,9 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                 ? (<span className="uppercase text-yellow-600"><FontAwesomeIcon icon={faHouse}/> [{code}]</span>)
                                 : null
                                 }
-                                <DateRelativeTime dateTime={date} />
+                                <PostDate dateTime={date} />
+                                {/* {date} */}
+                                {/* <DateRelativeTime dateTime={date} /> */}
                             </div>
                             <div className="text-3xl text-gray-900 font-semibold inline-flex items-center space-x-2">
                                 <span className="text-sm mr-1">{formattedCurrency}</span>
@@ -109,21 +111,35 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                 <div className="block w-full py-6 relative">                   
                     <div className="flex flex-col bg-white h-full overflow-hidden shadow rounded-lg">
                         <div className="relative grayscale">                    
-                            <Image 
-                            src={image} 
-                            alt="" 
-                            height="256" 
-                            width="320" 
-                            className="w-full object-cover" 
-                            placeholder="blur"
-                            blurDataURL={image}
-                        />
-                        {
-                            categories.map(category => (
-                                    <BadgeLink key={category.node.id} uri={category?.node.uri} className="absolute -bottom-3 cursor-default bg-yellow-500 bg-opacity-90 text-sm uppercase">{category?.node.name}</BadgeLink>
-                                )
-                            )              
-                        }
+                            {
+                                image 
+                                ?
+                                <Image 
+                                    src={image} 
+                                    alt="" 
+                                    height="256" 
+                                    width="320" 
+                                    className="w-full object-cover" 
+                                    placeholder="blur"
+                                    blurDataURL={image}
+                                />
+                                : 
+                                <Image 
+                                    src="/default-featured-image.jpg"
+                                    alt="" 
+                                    height="256" 
+                                    width="320" 
+                                    className="w-full object-cover" 
+                                    placeholder="blur"
+                                    blurDataURL={image}
+                                />
+                            }
+                            {
+                                categories.map(category => (
+                                        <BadgeLink key={category.node.id} uri={category?.node.uri} className="absolute -bottom-3 cursor-default bg-yellow-500 bg-opacity-90 text-sm uppercase">{category?.node.name}</BadgeLink>
+                                    )
+                                )              
+                            }
                         </div>
     
                         <div className="p-4 mb-auto">
@@ -132,7 +148,8 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                 ? (<span className="uppercase text-yellow-600"><FontAwesomeIcon icon={faHouse}/> [{code}]</span>)
                                 : null
                                 }
-                                <DateRelativeTime dateTime={date} />
+                                <PostDate dateTime={date} />
+                                {/* <DateRelativeTime dateTime={date} /> */}
                             </div>
                             <div className="text-3xl text-gray-400 font-semibold inline-flex items-center space-x-2">
                                 <span className="text-sm mr-1">{formattedCurrency}</span>

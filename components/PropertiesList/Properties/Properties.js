@@ -9,7 +9,7 @@ export const Properties = ({properties}) => {
 
     return (
         <>
-            {properties.map(property => {
+            {(properties).map(property => {
 
                 const locations = mapLocations(property.node.locations?.edges);
                 const cities = mapPropertyLocation(property.node.cities?.edges);

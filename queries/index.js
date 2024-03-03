@@ -1,145 +1,74 @@
 import { gql } from "@apollo/client";
 
-export const GET_MENUS = gql`
-    query GetMenus {
-        acfOptionsMainMenu {
-            mainMenu {
-                callToActionButton {
-                    label
-                    destination {
-                        ... on Page {
-                            uri
-                        }
-                    }
-                }
-                menuItems {
-                    items {
-                        label
-                        destination {
-                            ... on Page {
-                                uri
-                            }
-                        }
-                    }
-                    menuItem {
-                        label
-                        destination {
-                            ... on Page {
-                                uri
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
-export const GET_POST_BY_URI = gql`
-    query GetPostByUri($id: ID!) {
-        post(id: $id, idType: URI) {
-            title
-            slug
-            content
-            date
-            uri
-            author {
-                node {
-                    firstName
-                    lastName
-                    email
-                }
-            }
-            blocks(postTemplate: false)
-            featuredImage {
-                node {
-                    sourceUrl(size: LARGE)
-                    title
-                    mediaDetails {
-                        width
-                        height
-                    }
-                }
-            }
-            categories {
-                edges {
-                    node {
-                        databaseId
-                        name
-                        slug
-                        uri
-                    }
-                }
-            }
-            seo {
-                title
-                metaDesc
-            }
-        }
-        acfOptionsMainMenu {
-            mainMenu {
-                callToActionButton {
-                    label
-                    destination {
-                        ... on Page {
-                            uri
-                        }
-                    }
-                }
-                menuItems {
-                    items {
-                        label
-                        destination {
-                            ... on Page {
-                                uri
-                            }
-                        }
-                    }
-                    menuItem {
-                        label
-                        destination {
-                            ... on Page {
-                                uri
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
+// export const GET_MENUS = gql`
+//     query GetMenus {
+//         acfOptionsMainMenu {
+//             mainMenu {
+//                 callToActionButton {
+//                     label
+//                     destination {
+//                         ... on Page {
+//                             uri
+//                         }
+//                     }
+//                 }
+//                 menuItems {
+//                     items {
+//                         label
+//                         destination {
+//                             ... on Page {
+//                                 uri
+//                             }
+//                         }
+//                     }
+//                     menuItem {
+//                         label
+//                         destination {
+//                             ... on Page {
+//                                 uri
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// `
+
+
 export const GET_PAGES_BY_URI = gql`
-    query PageQuery($uri: String!) {
+    query PageQuery($uri: String!) {        
         posts {
             edges {
-            node {
-                title
-                slug
-                databaseId
-                date
-                excerpt
-                featuredImage {
                 node {
-                    sourceUrl(size: LARGE)
-                }
-                }
-                categories {
-                    edges {
-                        node {
-                        name
+                    title
+                    slug
+                    databaseId
+                    date
+                    excerpt
+                    featuredImage {
+                    node {
+                        sourceUrl(size: LARGE)
+                    }
+                    }
+                    categories {
+                        edges {
+                            node {
+                            name
+                            }
                         }
                     }
+                    author {
+                    node {
+                        name
+                    }
+                    } 
+                    seo {
+                    title
+                    metaDesc
+                    }
+                    uri
                 }
-                author {
-                node {
-                    name
-                }
-                } 
-                seo {
-                title
-                metaDesc
-                }
-                uri
-            }
             }
         }
         recentPosts: posts(last: 3, where: {orderby: {field: DATE, order: DESC}}) {
@@ -177,226 +106,230 @@ export const GET_PAGES_BY_URI = gql`
         }
         nodeByUri(uri: $uri) {
             ... on Page {
-            id
-            title
-            blocks(postTemplate: false)
-            featuredImage {
-                node {
-                    sourceUrl(size: LARGE)
-                    title(format: RENDERED)
-                    mediaDetails {
-                        width
-                        height
+                id
+                title
+                blocks(postTemplate: false)
+                featuredImage {
+                    node {
+                        sourceUrl(size: LARGE)
+                        title(format: RENDERED)
+                        mediaDetails {
+                            width
+                            height
+                        }
                     }
                 }
-            }
-            seo {
-                title
-                metaDesc
-            }
-            contentType {
-                node {
-                name
+                seo {
+                    title
+                    metaDesc
                 }
-            }
+                contentType {
+                    node {
+                    name
+                    }
+                }
             }
             ... on Post {
-            id
-            title
-            date
-            blocks(postTemplate: false)
-            featuredImage {
-                node {
-                    sourceUrl(size: LARGE)
-                    title(format: RENDERED)
-                    mediaDetails {
-                        width
-                        height
-                    }
-                }
-            }
-            author {
-                node {
-                    databaseId
-                    name
-                    email
-                    slug
-                    uri
-                    avatar {
-                        url
-                    }
-                    userMetadata {
-                        profilePicture {
-                            sourceUrl
-                        }
-                        contactInformation {
-                            userEmail
-                            userPhone
-                            userWhatsapp
-                        }
-                    }
-                }
-            }
-            seo {
+                id
                 title
-                metaDesc
-            }
-            contentType {
-                node {
-                name
+                date
+                blocks(postTemplate: false)
+                featuredImage {
+                    node {
+                        sourceUrl(size: LARGE)
+                        title(format: RENDERED)
+                        mediaDetails {
+                            width
+                            height
+                        }
+                    }
                 }
-            }
-            categories {
-                edges {
-                node {
-                    databaseId
+                author {
+                    node {
+                        databaseId
+                        name
+                        email
+                        slug
+                        uri
+                        avatar {
+                            url
+                        }
+                        userMetadata {
+                            profilePicture {
+                                sourceUrl
+                            }
+                            contactInformation {
+                                userEmail
+                                userPhone
+                                userWhatsapp
+                            }
+                        }
+                    }
+                }
+                seo {
+                    title
+                    metaDesc
+                }
+                contentType {
+                    node {
                     name
-                    slug
-                    uri
+                    }
                 }
+                categories {
+                    edges {
+                    node {
+                        databaseId
+                        name
+                        slug
+                        uri
+                    }
+                    }
                 }
-            }
             }  
             ... on Property {
-            id
-            title
-            blocks(postTemplate: false)
-            seo {
+                id
                 title
-                metaDesc
-            }
-            propertyFeatures {
-                code
-                listingType
-                bedrooms
-                bathrooms
-                hasParking
-                parkingQty
-                squareFeet
-                petFriendly
-                status
-                price
-                currency
-                floor
-                deliveryDate
-                yearBuilt
-                condition
-                propertyLocationMap
-                zipCode
-            }
-            featuredImage {
-                node {
-                    sourceUrl(size: LARGE)
-                    title(format: RENDERED)
-                    mediaDetails {
-                        width
-                        height
-                    }
+                blocks(postTemplate: false)
+                seo {
+                    title
+                    metaDesc
                 }
-            }
-            contentType {
-                node {
-                name
+                propertyFeatures {
+                    code
+                    listingType
+                    bedrooms
+                    bathrooms
+                    hasParking
+                    parkingQty
+                    squareFeet
+                    petFriendly
+                    status
+                    price
+                    currency
+                    floor
+                    deliveryDate
+                    yearBuilt
+                    condition
+                    propertyLocationMap
+                    zipCode
                 }
-            }
-            categories {
-                edges {
-                node {
-                    databaseId
-                    name
-                    slug
-                    uri
-                }
-                }
-            }
-            author {
-                node {
-                    databaseId
-                    firstName
-                    lastName
-                    slug
-                    uri
-                    userMetadata {
-                        contactInformation {
-                            userEmail
-                            userPhone
-                            userWhatsapp
-                        }
-                        profilePicture {
-                            sourceUrl
+                featuredImage {
+                    node {
+                        sourceUrl(size: LARGE)
+                        title(format: RENDERED)
+                        mediaDetails {
+                            width
+                            height
                         }
                     }
                 }
-            }
-            features {
-                edges {
-                node {
-                    databaseId
+                contentType {
+                    node {
                     name
-                    slug
-                    uri
-                }
-                }
-            }
-            locations {
-                edges {
-                node {
-                    databaseId
-                    name
-                    slug
-                    uri
-                }
-                }
-            }
-            cities {
-                edges {
-                node {
-                    databaseId
-                    name
-                    slug
-                    uri
-                }
-                }
-            }
-            states {
-                edges {
-                node {
-                    databaseId
-                    name
-                    slug
-                    uri
-                }
-                }
-            }
-            countries {
-                edges {
-                node {
-                    databaseId
-                    name
-                    slug
-                    uri
-                }
-                }
-            }
-            }
-            ... on User {
-                databaseId
-                firstName
-                lastName
-                description
-                slug 
-                uri
-                userMetadata {
-                    contactInformation {
-                        userEmail
-                        userPhone 
-                        userWhatsapp
-                    }
-                    profilePicture {
-                        sourceUrl
                     }
                 }
+                categories {
+                    edges {
+                    node {
+                        databaseId
+                        name
+                        slug
+                        uri
+                    }
+                    }
+                }
+                author {
+                    node {
+                        databaseId
+                        firstName
+                        lastName
+                        slug
+                        uri
+                        userMetadata {
+                            jobTitle
+                            contactInformation {
+                                userAddress
+                                userEmail
+                                userPhone
+                                userWhatsapp
+                                userWebsite
+                                userLinkedin
+                            }
+                            profilePicture {
+                                sourceUrl
+                            }
+                        }
+                    }
+                }
+                features {
+                    edges {
+                    node {
+                        databaseId
+                        name
+                        slug
+                        uri
+                    }
+                    }
+                }
+                locations {
+                    edges {
+                    node {
+                        databaseId
+                        name
+                        slug
+                        uri
+                    }
+                    }
+                }
+                cities {
+                    edges {
+                    node {
+                        databaseId
+                        name
+                        slug
+                        uri
+                    }
+                    }
+                }
+                states {
+                    edges {
+                    node {
+                        databaseId
+                        name
+                        slug
+                        uri
+                    }
+                    }
+                }
+                countries {
+                    edges {
+                    node {
+                        databaseId
+                        name
+                        slug
+                        uri
+                    }
+                    }
+                }
             }
+            # ... on User {
+            #     databaseId
+            #     firstName
+            #     lastName
+            #     description
+            #     slug 
+            #     uri
+            #     userMetadata {
+            #         contactInformation {
+            #             userEmail
+            #             userPhone 
+            #             userWhatsapp
+            #         }
+            #         profilePicture {
+            #             sourceUrl
+            #         }
+            #     }
+            # }
             ... on Category {
             databaseId
             name

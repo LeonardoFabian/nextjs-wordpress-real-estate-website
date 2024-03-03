@@ -135,7 +135,7 @@ const PropertyLayout = ({
                                 </CallToActionButton>
                             )}
                         </section>
-                        <div className="flex items-center gap-2 divide-x">
+                        <div className="block lg:flex items-center gap-2 lg:divide-x">
                             {condition && (
                                 <span>
                                     {(propertyConditions || []).map(propertyCondition => (
@@ -146,7 +146,7 @@ const PropertyLayout = ({
                                 </span>
                             )}
                             {deliveryDate && (
-                                <span className={`flex items-center my-5 ${condition ? 'pl-2' : null}`}>
+                                <span className={`flex items-center ${condition ? 'lg:pl-2' : null}`}>
                                     {deliveryDate && (<span>Fecha de entrega: <strong>{deliveryDate}</strong></span>)}
                                 </span>
                             )}
@@ -186,7 +186,7 @@ const PropertyLayout = ({
                     </div>
                     <div className="col-span-1 space-y-4">
                         {code && (<PropertyID><span className="flex items-center gap-x-4">ID de la Propiedad: <span className="flex flex-1 p-2 text-xl justify-center bg-yellow-300 bg-opacity-20 text-yellow-500">{code}</span></span></PropertyID>)}
-                        <AgentCard name={author.node.name} image={author.node.avatar.url} />
+                        <AgentCard user={author} />
                     </div>
                 </div>
                 

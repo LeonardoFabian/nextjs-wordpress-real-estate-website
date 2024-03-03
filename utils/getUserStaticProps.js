@@ -21,10 +21,10 @@ import { mapPropertyLocation } from "./mapPropertyLocation";
 import { mapState } from "./mapState";
 import { mapCountries } from "./mapCountries";
 import { GET_PAGES_BY_URI } from "queries";
-import {GET_USER_BY_URI} from "queries/getUserByUri";
-import {GET_POST_BY_URI} from "queries/getPostByUri";
+import { GET_USER_BY_URI } from "queries/getUserByUri";
+import { GET_POST_BY_URI } from "queries/getPostByUri";
 
-export const getPageStaticProps = async ({params}) => {
+export const getUserStaticProps = async ({params}) => {
 
   console.log("------------------------------------------------------------------------- GET PAGE STATIC PROPS PARAMS: ", params);
 
@@ -48,30 +48,26 @@ export const getPageStaticProps = async ({params}) => {
 
   console.log("VARIABLE URI: ", uri);
 
-  const {data: userData} = await client.query({
-    query: GET_USER_BY_URI,
-    variables: {
-      uri: params && params.uri != "agents" ? `/${params.uri.join("/")}/` : "",
-    },
-  }); 
+    const {data: pageData} = await client.query({
+      query: GET_PAGES_BY_URI,
+      variables: {
+        uri,
+      },
+    });  
 
-  const {data: pageData} = await client.query({
-    query: GET_PAGES_BY_URI,
-    variables: {
-      uri,
-    },
-  }); 
+    const {data: postData} = await client.query({
+      query: GET_POST_BY_URI,
+      variables: {
+        id: uri,
+      },
+    });
 
-
-
-    // const {data: postData} = await client.query({
-    //   query: GET_POST_BY_URI,
-    //   variables: {
-    //     id: uri,
-    //   },
-    // });
-
-   
+    const {data: userData} = await client.query({
+      query: GET_USER_BY_URI,
+      variables: {
+        id: uri,
+      },
+    });
 
     // if(postError) console.log("POST ERROR: ", postError);
 
@@ -106,7 +102,6 @@ export const getPageStaticProps = async ({params}) => {
     const serializedPropertyStates = mapPropertyLocation(pageData.nodeByUri?.states?.edges || []);
     const serializedPropertyCountries = mapPropertyLocation(pageData.nodeByUri?.countries?.edges || []);
     const contentType = pageData.nodeByUri?.contentType ? pageData.nodeByUri?.contentType?.node.name : "page";
-    const user = userData ? userData.user : null;
 
     console.log("BLOCK FROM CLEAN AND TRANSFORM BLOCKS.............", blocks);
   
@@ -116,8 +111,8 @@ export const getPageStaticProps = async ({params}) => {
         callToActionLabel: callToActionLabel,
         callToActionDestination: callToActionDestination,
 
-        user: user,
-        // post: postData.post || [],
+        user: userData.user || [],
+        post: postData.post || [],
         posts: serializedPosts,
         faqs: pageData.acfOptionsFaqs.frequentlyAskedQuestions.faqs.faq,
 
