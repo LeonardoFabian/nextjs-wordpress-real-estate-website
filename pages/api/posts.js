@@ -93,12 +93,12 @@ const handlerPosts = async (req, res) => {
             `,
         });
 
-        const posts = mapPosts(data.posts.edges);
-        const recentPosts = mapPosts(data.recentPosts.edges);
+        const posts = mapPosts(data?.posts?.edges);
+        const recentPosts = mapPosts(data?.recentPosts?.edges);
 
         return res.status(200).json({
-            posts: posts,
-            recentPosts: recentPosts
+            posts: posts || [],
+            recentPosts: recentPosts || []
         });
 
     } catch (e) {

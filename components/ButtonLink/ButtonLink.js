@@ -10,20 +10,22 @@ export const ButtonLink = ({destination, children, bgColor, textColor, marginTop
     const marginRightStyle = marginRight ? {marginRight: marginRight} : {};
 
     return (
-        <Link 
-            href={destination} 
-            className={`next-button-link btn ${className} gap-2`}
-            style={{ 
-                ...colorStyle,
-                ...backgroundColorStyle,
-                ...marginTopStyle,
-                ...marginBottomStyle,
-                ...marginLeftStyle,
-                ...marginRightStyle
-             }}
-             onClick={onClick}
-        >
-            {children}
-        </Link>
+        <div>
+            <Link 
+                href={destination} 
+                className={`next-button-link btn ${className} gap-2`}
+                style={{ 
+                    ...colorStyle,
+                    ...backgroundColorStyle,
+                    ...marginTopStyle,
+                    ...marginBottomStyle,
+                    ...marginLeftStyle,
+                    ...marginRightStyle
+                }}
+                onClick={onClick}
+            >
+                {children}
+            </Link>
+        </div>
     );
 };

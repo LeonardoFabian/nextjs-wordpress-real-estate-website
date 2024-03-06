@@ -34,7 +34,7 @@ const handlerUsers = async (req, res) => {
         });
 
         return res.status(200).json({
-            users: data.users.nodes,
+            users: data?.users?.nodes || [],
         });
         
     } catch (e) {

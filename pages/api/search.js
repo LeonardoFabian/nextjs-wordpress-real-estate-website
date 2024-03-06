@@ -309,12 +309,12 @@ const handler = async (req, res) => {
         });
 
         console.log("---------------------------SERVER SIDE PROPERTIES DATA: ", data);
-        console.log("---------------------------SERVER SIDE CATEGORIES DATA: ", data.categories.edges);
+        console.log("---------------------------SERVER SIDE CATEGORIES DATA: ", data.categories?.edges);
 
         return res.status(200).json({
-            total: data.properties.pageInfo.offsetPagination.total,
-            properties: data.properties.edges,
-            categories: data.categories.edges,
+            total: data.properties?.pageInfo?.offsetPagination?.total || 0,
+            properties: data.properties?.edges || [],
+            categories: data.categories?.edges || [],
         });
 
     } catch(e) {

@@ -258,12 +258,12 @@ const handler = async (req, res) => {
             `,
         });
 
-        console.log("PROPERTIES API DATA: ", data.properties.nodes);
+        console.log("PROPERTIES API DATA: ", data?.properties?.nodes);
 
         return res.status(200).json({
-            total: data.properties.pageInfo.offsetPagination.total,
-            properties: data.properties.nodes,
-            categories: data.categories.nodes,
+            total: data?.properties?.pageInfo?.offsetPagination?.total,
+            properties: data?.properties?.nodes || [],
+            categories: data?.categories?.nodes || [],
         });
 
     } catch(e) {
