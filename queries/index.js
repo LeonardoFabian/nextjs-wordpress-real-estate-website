@@ -333,6 +333,57 @@ export const GET_PAGES_BY_URI = gql`
                         userLinkedin
                     }
                 }
+            #     properties {
+            #     edges {
+            #         node {
+            #         title(format: RENDERED)
+            #         slug
+            #         uri
+            #         featuredImage {
+            #             node {
+            #             sourceUrl(size: LARGE)
+            #             }
+            #         }
+            #         date
+            #         propertyFeatures {
+            #             code
+            #             listingType
+            #             price
+            #             currency
+            #             bedrooms
+            #             bathrooms
+            #             hasParking
+            #             parkingQty
+            #             petFriendly
+            #             status
+            #         }
+            #         locations {
+            #             edges {
+            #                 node {
+            #                     name
+            #                 }
+            #             }
+            #         }
+            #         cities {
+            #             edges {
+            #                 node {
+            #                     name
+            #                 }
+            #             }
+            #         }
+            #             categories {
+            #                 edges {
+            #                     node {
+            #                         databaseId
+            #                         name
+            #                         slug
+            #                         uri
+            #                     }
+            #                 }
+            #             }
+            #         }
+            #     }
+            # }
             }
             ... on Category {
             databaseId

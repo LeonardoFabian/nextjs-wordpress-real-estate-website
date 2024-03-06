@@ -22,7 +22,7 @@ import { mapState } from "./mapState";
 import { mapCountries } from "./mapCountries";
 import { GET_PAGES_BY_URI } from "queries";
 import {GET_USER_BY_URI} from "queries/getUserByUri";
-import {GET_POST_BY_URI} from "queries/getPostByUri";
+// import {GET_POST_BY_URI} from "queries/getPostByUri";
 
 export const getPageStaticProps = async ({params}) => {
 
