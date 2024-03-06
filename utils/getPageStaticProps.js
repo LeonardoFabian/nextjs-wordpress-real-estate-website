@@ -51,7 +51,7 @@ export const getPageStaticProps = async ({params}) => {
   const {data: userData} = await client.query({
     query: GET_USER_BY_URI,
     variables: {
-      uri: params && params.uri != "agents" ? `/${params.uri.join("/")}/` : "",
+      uri: params && params.uri[0] === "author" ? `/${params.uri.join("/")}/` : "",
     },
   }); 
 
