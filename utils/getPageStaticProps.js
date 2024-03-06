@@ -98,7 +98,7 @@ export const getPageStaticProps = async ({params}) => {
     // const serializedWPForms = mapWPForms(pageData.acfOptionsForms.Forms.acfWpForms.acfWpForm);
     const serializedCategories = mapCategories(pageData?.nodeByUri?.categories?.edges);
     // const footerMenuItems = '';
-    const blocks = cleanAndTransformBlocks(pageData.nodeByUri?.blocks || []);
+    const blocks = cleanAndTransformBlocks(pageData?.nodeByUri?.blocks || []);
     const serializedPosts = mapPosts(pageData.posts?.edges);
     const serializedRecentPosts = mapPosts(pageData.recentPosts?.edges);
     const serializedFeatures = mapFeatures(pageData.nodeByUri?.features?.edges);

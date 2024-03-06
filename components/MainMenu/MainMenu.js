@@ -16,6 +16,7 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
     console.log("MAIN MENU ITEMS: ", items);
 
     const router = useRouter();
+    const currentPath = router.asPath + '/';
 
     console.log("MAIN MENU ROUTER: ", router);
 
@@ -56,11 +57,7 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                         <li key={i} className='cursor-pointer relative group text-xs lg:text-lg flex items-center group'>                            
                             <Link 
                                 href={item.destination} 
-                                className={`p-3 lg:p-5 block flex-nowrap ${
-                                    `${router.asPath}/` == `${item.destination}` 
-                                    ? 'text-yellow-500' 
-                                    : 'hover:text-slate-400'}`
-                                }
+                                className={`p-3 lg:p-5 block flex-nowrap ${currentPath == item.destination ? 'text-yellow-500' : 'hover:text-slate-400'}`}
                             >
                                 {item.label}
                             </Link>                        
@@ -70,11 +67,7 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                                         <li key={index} className='hover:bg-slate-700 cursor-pointer relative group'>
                                             <Link 
                                                 href={subMenuItem.destination} 
-                                                className={`p-5 block whitespace-nowrap ${
-                                                    `${router.asPath}/` === `${subMenuItem.destination}`
-                                                    ? 'text-yellow-500' 
-                                                    : 'hover:text-slate-400'}`
-                                                }
+                                                className={`p-5 block whitespace-nowrap ${currentPath == subMenuItem.destination ? 'text-yellow-500' : 'hover:text-slate-400'}` }
                                             >
                                                 {subMenuItem.label}
                                             </Link>
@@ -115,11 +108,7 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                                 onClick={!item.subMenuItems.length > 0 ? handleSmallerScreensNavigation : handleClick}
                             >                            
                                 <Link href={item.destination} 
-                                    className={`p-5 inline-flex ${
-                                        `${router.asPath}/` === `${item.destination}`
-                                        ? 'text-yellow-500'
-                                        : 'text-slate-300'}`
-                                    }
+                                    className={`p-5 inline-flex ${currentPath == item.destination ? 'text-yellow-500' : 'text-slate-300'}` }
                                 >
                                     {item.label}
                                     {!!item.subMenuItems.length > 0 && (

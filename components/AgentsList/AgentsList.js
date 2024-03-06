@@ -81,8 +81,8 @@ export const AgentsList = () => {
                     
                     <div className="agents-list col-span-1 md:col-span-4 lg:col-span-6">
                         <div className="px-4 grid grid-flow-row grid-cols-1 md:grid-cols-1 lg:grid-cols-4 2xl:grid-cols-5 items-stretch gap-x-10 lg:gap-x-8 2xl:gap-x-6 gap-y-4">
-                            {agents.map(agent => (
-                                <AgentCard key={agent.id} user={agent} />
+                            {agents.map((agent, i) => (
+                                <AgentCard key={i} user={agent} />
                             ))}
                         </div>
                     </div>

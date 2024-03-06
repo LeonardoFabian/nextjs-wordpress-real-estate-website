@@ -31,7 +31,7 @@ export const BlockRenderer = ({blocks}) => {
 
     // console.log("BLOCKS: ", blocks);  
 
-    return blocks.map(block => {
+    return (blocks || []).map(block => {
         switch(block.name) {
             case 'core/embed': {
                 // console.log("CORE/EMBED: ", block);
