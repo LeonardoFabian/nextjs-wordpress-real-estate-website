@@ -49,8 +49,7 @@ const UserLayout = ({user}) => {
                                 alt="Agent profile picture"
                                 src="/default-profile-picture-600x900.png"
                                 fill
-                                className="object-cover w-full"
-                                
+                                className="object-cover w-full"                                
                             />
                             }
                         </div>
