@@ -385,32 +385,34 @@ export const GET_PAGES_BY_URI = gql`
             #     }
             # }
             #}
-            ... on Category {
-            databaseId
-            name
-            posts {
-                nodes {
-                uri
-                title
-                contentType {
-                    node {
-                    name
-                    }
-                }
-                }
-            }
-            properties {
-                nodes {
-                uri
-                title
-                contentType {
-                    node {
-                    name
-                    }
-                }
-                }
-            }
-            }
+            # ... on Category {
+            #     databaseId
+            #     name
+            #     slug 
+            #     uri
+            #     posts {
+            #         nodes {
+            #             uri
+            #             title
+            #             contentType {
+            #                 node {
+            #                     name
+            #                 }
+            #             }
+            #         }
+            #     }
+            #     properties {
+            #         nodes {
+            #             uri
+            #             title
+            #             contentType {
+            #                 node {
+            #                     name
+            #                 }
+            #             }
+            #         }
+            #     }
+            # }
         }
         themeGeneralSettings {   
             generalSettings {

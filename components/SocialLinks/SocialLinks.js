@@ -14,17 +14,15 @@ export const SocialLinks = ({title, items}) => {
             
                 <div className="my-5">
                     <ul className="flex items-center gap-2">
-                        {(items || []).map(item => (
-                            <>
-                                {!!item.publish && (
-                                    <li key={item.id}>
-                                        <Link href={item.url} target={item.target || "_blank"}>
-                                            {getSocialIcon(`${item.platform}`)}
-                                        </Link>
-                                    </li>
-                                )}
-                            </>
-                        ))}
+                        {(items || []).map((item, i) => {
+                           !!item.publish && (
+                                <li key={i}>
+                                    <Link href={item.url} target={item.target || "_blank"}>
+                                        {getSocialIcon(`${item.platform}`)}
+                                    </Link>
+                                </li>
+                            )
+                        })}
                     </ul>                
                 </div>
                 </>

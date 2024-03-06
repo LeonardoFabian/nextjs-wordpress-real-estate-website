@@ -27,10 +27,9 @@ import { ListItem } from "components/List/ListItem";
 import { List } from "components/List";
 import { Embed } from "components/Embed";
 
-export const BlockRenderer = ({blocks, props}) => {
+export const BlockRenderer = ({blocks}) => {
 
-    // console.log("BLOCKS: ", blocks);
-    console.log("BLOCK RENDERER PROPS: ", props);
+    // console.log("BLOCKS: ", blocks);  
 
     return blocks.map(block => {
         switch(block.name) {

@@ -15,6 +15,8 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
     const formattedCurrency = mapCurrencyCode(currency);
     const formattedListingType = mapListingType(listingType);
 
+    const hasCategories = Boolean(categories);
+
     // console.log("PROPERTY CARD LOCATION: ", location);
     if(status === "1") {
         return (        
@@ -48,13 +50,16 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                     />
                                 }                 
                                 
-                            {
-                                categories.map(category => (
-                                        <BadgeLink key={category.node.id} uri={category?.node.uri} className="absolute -bottom-3 bg-yellow-500 bg-opacity-90 text-sm uppercase">
-                                            {(category?.node.name && typeof category?.node.name !== "undefined") ? category.node.name : "Sin Categoría" }
+                            { hasCategories
+                                ?
+                                categories.map((category, i) => (
+                                        <BadgeLink key={i} uri={category?.node.uri} className="absolute -bottom-3 bg-yellow-500 bg-opacity-90 text-sm uppercase">
+                                            {category?.node.name ? category.node.name : "Sin Categoría" }
                                         </BadgeLink>
                                     )
-                                )              
+                                )  
+                                :
+                                null            
                             }
                             </div>
         
@@ -71,7 +76,7 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                 <div className="text-3xl text-gray-900 font-semibold inline-flex items-center space-x-2">
                                     <span className="text-sm mr-1">{formattedCurrency}</span>
                                     {numeral(price).format("0,0")}
-                                    {formattedListingType !== "undefined" && (
+                                    {formattedListingType && (
                                         <Badge className="-mt-2 bg-blue-400 text-slate-800">
                                             {formattedListingType}
                                         </Badge>
@@ -153,10 +158,14 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                 />
                             }
                             {
-                                categories.map(category => (
-                                        <BadgeLink key={category.node.id} uri={category?.node.uri} className="absolute -bottom-3 cursor-default bg-yellow-500 bg-opacity-90 text-sm uppercase">{category?.node.name}</BadgeLink>
+                                hasCategories 
+                                ?
+                                categories.map((category, i) => (
+                                        <BadgeLink key={i} uri={category?.node.uri} className="absolute -bottom-3 cursor-default bg-yellow-500 bg-opacity-90 text-sm uppercase">{category?.node.name}</BadgeLink>
                                     )
-                                )              
+                                )    
+                                :
+                                null          
                             }
                         </div>
     

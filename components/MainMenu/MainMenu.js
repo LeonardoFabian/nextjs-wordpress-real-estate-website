@@ -52,8 +52,8 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                 {/* larger screens navigation */}
 
                 <ul className='hidden md:flex flex-1 justify-end'>
-                    {(items || []).map(item => (
-                        <li key={item.id} className='cursor-pointer relative group text-xs lg:text-lg flex items-center group'>                            
+                    {(items || []).map((item, i) => (
+                        <li key={i} className='cursor-pointer relative group text-xs lg:text-lg flex items-center group'>                            
                             <Link 
                                 href={item.destination} 
                                 className={`p-3 lg:p-5 block flex-nowrap ${
@@ -66,8 +66,8 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                             </Link>                        
                             {!!item.subMenuItems?.length && (
                                 <ul className='group-hover:block hidden bg-slate-800 text-right absolute right-0 top-full -mt-3'>
-                                    {item.subMenuItems.map(subMenuItem => (
-                                        <li key={subMenuItem.id} className='hover:bg-slate-700 cursor-pointer relative group'>
+                                    {item.subMenuItems.map((subMenuItem, index) => (
+                                        <li key={index} className='hover:bg-slate-700 cursor-pointer relative group'>
                                             <Link 
                                                 href={subMenuItem.destination} 
                                                 className={`p-5 block whitespace-nowrap ${

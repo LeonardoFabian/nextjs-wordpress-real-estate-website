@@ -9,7 +9,7 @@ export const Properties = ({properties}) => {
 
     return (
         <>
-            {(properties).map(property => {
+            {(properties).map((property, i) => {
 
                 const locations = mapLocations(property.node.locations?.edges);
                 const cities = mapPropertyLocation(property.node.cities?.edges);
@@ -22,7 +22,7 @@ export const Properties = ({properties}) => {
 
                 return (                        
                     <PropertyCard 
-                        key={property.databaseId}
+                        key={i}
                         categories={property.node.categories.edges}
                         city={cities[0]}
                         state={states[0]}

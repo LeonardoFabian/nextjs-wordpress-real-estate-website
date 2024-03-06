@@ -312,7 +312,7 @@ const handler = async (req, res) => {
         console.log("---------------------------SERVER SIDE CATEGORIES DATA: ", data.categories?.edges);
 
         return res.status(200).json({
-            total: data.properties?.pageInfo?.offsetPagination?.total || 0,
+            total: data.properties?.pageInfo?.offsetPagination?.total,
             properties: data.properties?.edges || [],
             categories: data.categories?.edges || [],
         });
