@@ -48,12 +48,7 @@ export const getPageStaticProps = async ({params}) => {
 
   // console.log("VARIABLE URI: ", uri);
 
-  const {data: userData} = await client.query({
-    query: GET_USER_BY_URI,
-    variables: {
-      uri: params && params.uri[0] === "author" ? `/${params.uri.join("/")}/` : "",
-    },
-  }); 
+  
 
   const {data: pageData} = await client.query({
     query: GET_PAGES_BY_URI,
@@ -62,6 +57,12 @@ export const getPageStaticProps = async ({params}) => {
     },
   }); 
 
+  const {data: userData} = await client.query({
+    query: GET_USER_BY_URI,
+    variables: {
+      uri: params && params.uri[0] === "author" ? `/${params.uri.join("/")}/` : "",
+    },
+  }); 
 
 
     // const {data: postData} = await client.query({
