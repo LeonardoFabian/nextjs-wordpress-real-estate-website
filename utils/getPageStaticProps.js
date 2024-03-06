@@ -96,7 +96,7 @@ export const getPageStaticProps = async ({params}) => {
     const serializedOpeningHours = mapOpeningHours(pageData.acfOptionsContact.contactMetadata.contactFields.openingHours.hours.schedules.schedule);
     const serializedLocation = pageData.acfOptionsContact.contactMetadata.contactFields.location;
     // const serializedWPForms = mapWPForms(pageData.acfOptionsForms.Forms.acfWpForms.acfWpForm);
-    const serializedCategories = mapCategories(pageData.nodeByUri?.categories?.edges);
+    const serializedCategories = mapCategories(pageData?.nodeByUri?.categories?.edges);
     // const footerMenuItems = '';
     const blocks = cleanAndTransformBlocks(pageData.nodeByUri?.blocks || []);
     const serializedPosts = mapPosts(pageData.posts.edges);
