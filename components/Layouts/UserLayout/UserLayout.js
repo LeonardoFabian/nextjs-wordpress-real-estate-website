@@ -17,7 +17,7 @@ const UserLayout = ({user}) => {
     const hasFirstName = Boolean(firstName);
     const hasLastName = Boolean(lastName);
     const hasDescription = Boolean(description);
-    const hasProperties = Boolean(properties.length);
+    const hasProperties = Boolean(properties);
     const hasJobTitle = Boolean(userMetadata.jobTitle);
     const hasEmail = Boolean(userMetadata.contactInformation.userEmail);
     const hasPhone = Boolean(userMetadata.contactInformation.userPhone);
@@ -40,7 +40,7 @@ const UserLayout = ({user}) => {
                             ?
                             <Image 
                                 alt="Agent profile picture"
-                                src={userMetadata.profilePicture}
+                                src={userMetadata.profilePicture.sourceUrl}
                                 fill
                                 className="object-cover w-full"
                             />
@@ -133,16 +133,14 @@ const UserLayout = ({user}) => {
                             <p>{description}</p>
                         </div>
                     )}
-                    <div className="properties-list">
-                        <Heading level="3" content={`Inmuebles publicados por ${firstName} ${lastName}`} textAlign="left" />
-                        <div className="px-4 grid grid-flow-row grid-cols-1 md:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-45 items-stretch gap-x-10 lg:gap-x-8 2xl:gap-x-6 gap-y-4">
-                            <Properties properties={properties.edges} />
+                    {!!hasProperties && (
+                        <div className="properties-list">
+                            <Heading level="3" content={`Inmuebles publicados por ${firstName} ${lastName}`} textAlign="left" />
+                            <div className="px-4 grid grid-flow-row grid-cols-1 md:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-45 items-stretch gap-x-10 lg:gap-x-8 2xl:gap-x-6 gap-y-4">
+                                <Properties properties={properties.edges} />
+                            </div>
                         </div>
-                        {/* <Pagination 
-                            totalPages={Math.ceil(totalResults / pageSize)}
-                            onPageClick={handlerPageClick}
-                        /> */}
-                    </div>
+                    )}
                 </div>
             </section>
         </Layout>

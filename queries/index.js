@@ -312,24 +312,28 @@ export const GET_PAGES_BY_URI = gql`
                     }
                 }
             }
-            # ... on User {
-            #     databaseId
-            #     firstName
-            #     lastName
-            #     description
-            #     slug 
-            #     uri
-            #     userMetadata {
-            #         contactInformation {
-            #             userEmail
-            #             userPhone 
-            #             userWhatsapp
-            #         }
-            #         profilePicture {
-            #             sourceUrl
-            #         }
-            #     }
-            # }
+            ... on User {
+                databaseId
+                firstName
+                lastName
+                description
+                slug 
+                uri
+                userMetadata {
+                    jobTitle
+                    profilePicture {
+                        sourceUrl
+                    }
+                    contactInformation {
+                        userAddress
+                        userEmail
+                        userPhone
+                        userWhatsapp
+                        userWebsite
+                        userLinkedin
+                    }
+                }
+            }
             ... on Category {
             databaseId
             name
