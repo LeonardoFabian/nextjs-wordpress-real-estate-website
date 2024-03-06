@@ -78,29 +78,29 @@ export const getPageStaticProps = async ({params}) => {
 
   
     // header
-    const mainMenuItems = mapMainMenuItems(pageData.acfOptionsMainMenu.mainMenu.menuItems);
-    const callToActionLabel = pageData.acfOptionsMainMenu.mainMenu.callToActionButton.label;
-    const callToActionDestination = pageData.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri;
+    const mainMenuItems = mapMainMenuItems(pageData.acfOptionsMainMenu?.mainMenu.menuItems);
+    const callToActionLabel = pageData.acfOptionsMainMenu?.mainMenu.callToActionButton.label;
+    const callToActionDestination = pageData.acfOptionsMainMenu?.mainMenu.callToActionButton.destination.uri;
 
-    const footerMenuItems = mapFooterMenuItems(pageData.acfOptionsFooterPrimaryMenu.footerPrimaryMenu.footerMenuItems);
-    const footerQuickLinks = mapFooterQuickLinks(pageData.acfOptionsFooterQuickLinks.footerQuickLinks.footerQuickLinks);
-    const legalPages = mapLegalPages(pageData.acfOptionsLegalPagesMenu.legalPages.legalPagesItems);
-    const pageMenuItems = mapPageMenuItems(pageData.acfOptionsPageMenu.pageMenu.pageMenuItems);
+    const footerMenuItems = mapFooterMenuItems(pageData.acfOptionsFooterPrimaryMenu?.footerPrimaryMenu.footerMenuItems);
+    const footerQuickLinks = mapFooterQuickLinks(pageData.acfOptionsFooterQuickLinks?.footerQuickLinks.footerQuickLinks);
+    const legalPages = mapLegalPages(pageData.acfOptionsLegalPagesMenu?.legalPages.legalPagesItems);
+    const pageMenuItems = mapPageMenuItems(pageData.acfOptionsPageMenu?.pageMenu.pageMenuItems);
     const serializedSocialNetworks = mapSocialNetworks(pageData.acfOptionsContact.contactMetadata.contactFields.socialNetworks.socialNetwork);
     
     // const socialLinks = mapSocialLinks(pageData.acfOptionsSocialMenu.socialMenu.socialMenuItems);
-    const companySettings = mapCompanySettings(pageData.themeGeneralSettings.generalSettings.companySettings || null);
-    const serializedEmails = mapEmails(pageData.acfOptionsContact.contactMetadata.contactFields.emails.email);
-    const serializedPhones = mapPhones(pageData.acfOptionsContact.contactMetadata.contactFields.phones.phone);
-    const serializedAddresses = mapAddresses(pageData.acfOptionsContact.contactMetadata.contactFields.addresses.address);
-    const serializedOpeningHours = mapOpeningHours(pageData.acfOptionsContact.contactMetadata.contactFields.openingHours.hours.schedules.schedule);
-    const serializedLocation = pageData.acfOptionsContact.contactMetadata.contactFields.location;
+    const companySettings = mapCompanySettings(pageData.themeGeneralSettings?.generalSettings?.companySettings || null);
+    const serializedEmails = mapEmails(pageData.acfOptionsContact?.contactMetadata.contactFields.emails.email);
+    const serializedPhones = mapPhones(pageData.acfOptionsContact?.contactMetadata.contactFields.phones.phone);
+    const serializedAddresses = mapAddresses(pageData.acfOptionsContact?.contactMetadata.contactFields.addresses.address);
+    const serializedOpeningHours = mapOpeningHours(pageData.acfOptionsContact?.contactMetadata.contactFields.openingHours.hours.schedules.schedule);
+    const serializedLocation = pageData.acfOptionsContact?.contactMetadata.contactFields.location;
     // const serializedWPForms = mapWPForms(pageData.acfOptionsForms.Forms.acfWpForms.acfWpForm);
     const serializedCategories = mapCategories(pageData?.nodeByUri?.categories?.edges);
     // const footerMenuItems = '';
     const blocks = cleanAndTransformBlocks(pageData.nodeByUri?.blocks || []);
-    const serializedPosts = mapPosts(pageData.posts.edges);
-    const serializedRecentPosts = mapPosts(pageData.recentPosts.edges);
+    const serializedPosts = mapPosts(pageData.posts?.edges);
+    const serializedRecentPosts = mapPosts(pageData.recentPosts?.edges);
     const serializedFeatures = mapFeatures(pageData.nodeByUri?.features?.edges);
     const serializedPropertyLocations = mapPropertyLocation(pageData.nodeByUri?.locations?.edges || []);
     const serializedPropertyCities = mapPropertyLocation(pageData.nodeByUri?.cities?.edges || []);
