@@ -11,7 +11,7 @@ export const Results = ({properties}) => {
         {/* <Sidebar /> */}
         {/* <div className="max-w-full mx-auto block md:grid lg:grid-cols-3 xl:grid-cols-4 gap-x-4 mb-10"> */}
       
-            {properties.map(property => {
+            {(properties || []).map(property => {
                 const locations = mapLocations(property.locations.nodes);
                 const cities = mapPropertyLocation(property.cities.nodes);
                 const categories = mapCategories(property.categories.nodes);
