@@ -42,11 +42,11 @@ export const getPageStaticProps = async ({params}) => {
   //   params.uri.shift(); // remove the first element of single post to retrieve the post blocks
   // } 
 
-  const uri = params?.uri ? `/${params.uri.join("/")}/` : "/";
+  // const uri = params?.uri ? `/${params.uri.join("/")}/` : "/";
   // const uri = params?.uri ? params.uri : "/";
   // const uri = context.params.slug ? `/${context.params.slug.join("/")}/` : "/";
 
-  console.log("VARIABLE URI: ", uri);
+  // console.log("VARIABLE URI: ", uri);
 
   const {data: userData} = await client.query({
     query: GET_USER_BY_URI,
@@ -58,7 +58,7 @@ export const getPageStaticProps = async ({params}) => {
   const {data: pageData} = await client.query({
     query: GET_PAGES_BY_URI,
     variables: {
-      uri,
+      uri: params?.uri ? `/${params.uri.join("/")}/` : "/",
     },
   }); 
 

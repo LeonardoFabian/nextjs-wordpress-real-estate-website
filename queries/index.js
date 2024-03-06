@@ -312,27 +312,27 @@ export const GET_PAGES_BY_URI = gql`
                     }
                 }
             }
-            ... on User {
-                databaseId
-                firstName
-                lastName
-                description
-                slug 
-                uri
-                userMetadata {
-                    jobTitle
-                    profilePicture {
-                        sourceUrl
-                    }
-                    contactInformation {
-                        userAddress
-                        userEmail
-                        userPhone
-                        userWhatsapp
-                        userWebsite
-                        userLinkedin
-                    }
-                }
+            # ... on User {
+            #     databaseId
+            #     firstName
+            #     lastName
+            #     description
+            #     slug 
+            #     uri
+            #     userMetadata {
+            #         jobTitle
+            #         profilePicture {
+            #             sourceUrl
+            #         }
+            #         contactInformation {
+            #             userAddress
+            #             userEmail
+            #             userPhone
+            #             userWhatsapp
+            #             userWebsite
+            #             userLinkedin
+            #         }
+            #     }
             #     properties {
             #     edges {
             #         node {
@@ -384,7 +384,7 @@ export const GET_PAGES_BY_URI = gql`
             #         }
             #     }
             # }
-            }
+            #}
             ... on Category {
             databaseId
             name
