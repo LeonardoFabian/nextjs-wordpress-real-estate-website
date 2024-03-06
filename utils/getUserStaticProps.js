@@ -22,7 +22,7 @@ import { mapState } from "./mapState";
 import { mapCountries } from "./mapCountries";
 import { GET_PAGES_BY_URI } from "queries";
 import { GET_USER_BY_URI } from "queries/getUserByUri";
-import { GET_POST_BY_URI } from "queries/getPostByUri";
+// import { GET_POST_BY_URI } from "queries/getPostByUri";
 
 export const getUserStaticProps = async ({params}) => {
 
@@ -42,32 +42,25 @@ export const getUserStaticProps = async ({params}) => {
   //   params.uri.shift(); // remove the first element of single post to retrieve the post blocks
   // } 
 
-  const uri = params?.uri ? `/${params.uri.join("/")}/` : "/";
+  // const uri = params?.uri ? `/${params.uri.join("/")}/` : "";
   // const uri = params?.uri ? params.uri : "/";
   // const uri = context.params.slug ? `/${context.params.slug.join("/")}/` : "/";
 
-  console.log("VARIABLE URI: ", uri);
-
-    const {data: pageData} = await client.query({
-      query: GET_PAGES_BY_URI,
-      variables: {
-        uri,
-      },
-    });  
-
-    const {data: postData} = await client.query({
-      query: GET_POST_BY_URI,
-      variables: {
-        id: uri,
-      },
-    });
+  // console.log("VARIABLE URI: ", uri);
 
     const {data: userData} = await client.query({
       query: GET_USER_BY_URI,
       variables: {
-        id: uri,
+        uri: params?.uri ? `/${params.uri.join("/")}/` : "",
       },
     });
+
+    const {data: pageData} = await client.query({
+      query: GET_PAGES_BY_URI,
+      variables: {
+        uri: params?.uri ? `/${params.uri.join("/")}/` : "",
+      },
+    }); 
 
     // if(postError) console.log("POST ERROR: ", postError);
 
@@ -112,7 +105,7 @@ export const getUserStaticProps = async ({params}) => {
         callToActionDestination: callToActionDestination,
 
         user: userData.user || [],
-        post: postData.post || [],
+        // post: postData.post || [],
         posts: serializedPosts,
         faqs: pageData.acfOptionsFaqs.frequentlyAskedQuestions.faqs.faq,
 

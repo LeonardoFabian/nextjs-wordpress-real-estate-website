@@ -18,14 +18,14 @@ const UserLayout = ({user}) => {
     const hasLastName = Boolean(lastName);
     const hasDescription = Boolean(description);
     const hasProperties = Boolean(properties);
-    const hasJobTitle = Boolean(userMetadata.jobTitle);
-    const hasEmail = Boolean(userMetadata.contactInformation.userEmail);
-    const hasPhone = Boolean(userMetadata.contactInformation.userPhone);
-    const hasAddress = Boolean(userMetadata.contactInformation.userAddress);
-    const hasProfilePicture = Boolean(userMetadata.profilePicture);
-    const hasWhatsapp = Boolean(userMetadata.contactInformation.userWhatsapp);
-    const hasWebsite = Boolean(userMetadata.contactInformation.userWebsite);
-    const hasLinkedin = Boolean(userMetadata.contactInformation.userLinkedin);
+    const hasJobTitle = Boolean(userMetadata?.jobTitle);
+    const hasEmail = Boolean(userMetadata?.contactInformation?.userEmail);
+    const hasPhone = Boolean(userMetadata?.contactInformation?.userPhone);
+    const hasAddress = Boolean(userMetadata?.contactInformation?.userAddress);
+    const hasProfilePicture = Boolean(userMetadata?.profilePicture);
+    const hasWhatsapp = Boolean(userMetadata?.contactInformation?.userWhatsapp);
+    const hasWebsite = Boolean(userMetadata?.contactInformation?.userWebsite);
+    const hasLinkedin = Boolean(userMetadata?.contactInformation?.userLinkedin);
 
 
 
@@ -55,7 +55,7 @@ const UserLayout = ({user}) => {
                         </div>
                         <div className="block lg:flex-1">
                             <div className="my-3 lg:mb-3 text-center lg:text-left">
-                                <p className="text-2xl font-semibold">{firstName} {lastName}</p>
+                                <p className="text-2xl font-semibold">{hasFirstName && (<span>{firstName}</span>)} {hasLastName && (<span>{lastName}</span>)}</p>
                                 {hasJobTitle && <p className="text-sm">{userMetadata.jobTitle}</p>}
                             </div>
                             <div className="my-10 lg:my-5 space-y-3 lg:space-y-1.5">
@@ -128,13 +128,13 @@ const UserLayout = ({user}) => {
                 <div className="w-full lg:max-w-5xl px-4 mx-auto my-10 space-y-10">
                     {hasDescription && (
                         <div className="agent-description">
-                            <Heading level="3" content={`Más acerca de ${firstName} ${lastName}`} textAlign="left" />
+                            <Heading level="3" content={`Más acerca de ${hasFirstName ? firstName : ''} ${hasLastName ? lastName : ''}`} textAlign="left" />
                             <p>{description}</p>
                         </div>
                     )}
                     {!!hasProperties && (
                         <div className="properties-list">
-                            <Heading level="3" content={`Inmuebles publicados por ${firstName} ${lastName}`} textAlign="left" />
+                            <Heading level="3" content={`Inmuebles publicados por ${hasFirstName ? firstName : ''} ${hasLastName ? lastName : ''}`} textAlign="left" />
                             <div className="px-4 grid grid-flow-row grid-cols-1 md:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-45 items-stretch gap-x-10 lg:gap-x-8 2xl:gap-x-6 gap-y-4">
                                 <Properties properties={properties.edges} />
                             </div>
