@@ -136,7 +136,7 @@ const UserLayout = ({user}) => {
                         <div className="properties-list">
                             <Heading level="3" content={`Inmuebles publicados por ${hasFirstName ? firstName : ''} ${hasLastName ? lastName : ''}`} textAlign="left" />
                             <div className="px-4 grid grid-flow-row grid-cols-1 md:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-45 items-stretch gap-x-10 lg:gap-x-8 2xl:gap-x-6 gap-y-4">
-                                <Properties properties={properties.edges} />
+                                <Properties properties={properties?.edges} />
                             </div>
                         </div>
                     )}
