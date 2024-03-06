@@ -19,7 +19,7 @@ export const PropertyCard = ({title, date, destination, bedrooms, bathrooms, has
         <div>
             <Link href={destination} prefetch={false} className="block w-full py-6 relative">
             {category && (
-                <BadgeLink uri={category.uri}>{category.name}</BadgeLink>
+                <div><BadgeLink uri={category.uri}>{category.name}</BadgeLink></div>
             )}
             <div className="flex flex-col bg-white h-full overflow-hidden shadow-xl rounded-lg">
                 {

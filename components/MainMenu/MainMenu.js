@@ -151,8 +151,8 @@ export const MainMenu = ({items, callToActionLabel, callToActionDestination}) =>
                                         }}
                                         
                                     >
-                                        {item.subMenuItems.map(subMenuItem => (
-                                            <li key={subMenuItem.id} className='cursor-pointer relative group'>
+                                        {item.subMenuItems.map((subMenuItem, i) => (
+                                            <li key={i} className='cursor-pointer relative group'>
                                                 <Link href={subMenuItem.destination} className='p-5 block whitespace-nowrap' onClick={handleSmallerScreensNavigation}>
                                                     {subMenuItem.label}
                                                 </Link>                                              

@@ -53,9 +53,11 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                             { hasCategories
                                 ?
                                 categories.map((category, i) => (
-                                        <BadgeLink key={i} uri={category?.node.uri} className="absolute -bottom-3 bg-yellow-500 bg-opacity-90 text-sm uppercase">
-                                            {category?.node.name ? category.node.name : "Sin Categoría" }
-                                        </BadgeLink>
+                                        <div key={i}>
+                                            <BadgeLink uri={category?.node?.uri} className="absolute -bottom-3 bg-yellow-500 bg-opacity-90 text-sm uppercase">
+                                                {category?.node?.name ? category.node.name : "Sin Categoría" }
+                                            </BadgeLink>
+                                        </div>
                                     )
                                 )  
                                 :

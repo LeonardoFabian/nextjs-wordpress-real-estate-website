@@ -89,8 +89,8 @@ const PropertyLayout = ({
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 lg:px-0 py-10 max-w-full text-slate-600">
                     <div className="col-span-1 lg:col-span-2">
                         <div>
-                            {categories.map(category => (
-                                <Badge className="bg-yellow-300 rounded-sm text-base py-2" key={category.id}>{category?.name}</Badge>
+                            {categories.map((category, i) => (
+                                <Badge className="bg-yellow-300 rounded-sm text-base py-2" key={i}>{category?.name}</Badge>
                             ))}
                             <Heading level="3" content={title} className="text-slate-700 font-medium" />
                         </div>
