@@ -1,4 +1,3 @@
-import { ButtonLink } from "components/ButtonLink";
 import { Input } from "components/Input";
 import { Textarea } from "components/Textarea";
 import { useState } from "react";
@@ -82,7 +81,7 @@ const ContactForm = () => {
             }));
         }
 
-        console.log("CONTACT FORM RESPONSE: ", response);
+        // console.log("CONTACT FORM RESPONSE: ", response);
 
         alert(response.message);
     }

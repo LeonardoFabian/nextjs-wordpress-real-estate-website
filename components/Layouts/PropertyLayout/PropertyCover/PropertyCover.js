@@ -10,8 +10,8 @@ export const PropertyCover = ({children, background}) => {
                     src={background} 
                     fill 
                     className="mix-blend-soft-light object-cover" 
-                    placeholder="blur"
-                    blurDataURL={background}
+                    // placeholder="blur"
+                    // blurDataURL={background}
                 />
                 : null
             }            

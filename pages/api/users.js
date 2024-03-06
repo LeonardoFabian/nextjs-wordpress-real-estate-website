@@ -2,7 +2,7 @@ import client from "client";
 import { gql } from "@apollo/client";
 
 const handlerUsers = async (req, res) => {
-    try {
+    try {      
         const {data} = await client.query({
             query: gql`
                 query UsersQuery {
@@ -14,10 +14,14 @@ const handlerUsers = async (req, res) => {
                             slug
                             uri
                             userMetadata {
+                                jobTitle
                                 contactInformation {
+                                    userAddress
                                     userEmail
                                     userPhone
                                     userWhatsapp
+                                    userWebsite
+                                    userLinkedin
                                 }
                                 profilePicture {
                                     sourceUrl

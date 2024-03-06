@@ -7,16 +7,14 @@ export const Cover = ({children, background, className}) => {
                 background 
                 ? 
                 <Image 
-                    alt="Cover" 
+                    alt="Cover image" 
                     src={background} 
                     fill 
                     className={`mix-blend-soft-light object-cover h-auto ${className ? className : ''}`} 
-                    placeholder="blur"
-                    blurDataURL={background}
                 />
                 : 
                 <Image 
-                    alt="Cover"
+                    alt="Cover image"
                     src="/default-featured-image.jpg"
                     fill
                     className={`mix-blend-soft-light object-cover h-auto ${className ? className : ''}`} 

@@ -21,15 +21,25 @@ export const PropertyCard = ({title, date, destination, bedrooms, bathrooms, has
                 <BadgeLink uri={category.uri}>{category.name}</BadgeLink>
             )}
             <div className="flex flex-col bg-white h-full overflow-hidden shadow-xl rounded-lg">
-                <Image 
-                    src={image} 
-                    alt="" 
-                    height="256" 
-                    width="320" 
-                    className="w-full object-cover" 
-                    placeholder="blur"
-                    blurDataURL={image}
-                />
+                {
+                    image 
+                    ?
+                    <Image 
+                        src={image} 
+                        alt="Property featured image" 
+                        height="256" 
+                        width="320" 
+                        className="w-full object-cover" 
+                    />
+                    :
+                    <Image 
+                        src="/default-featured-image.jpg"
+                        alt="Default property featured image" 
+                        height="256" 
+                        width="320" 
+                        className="w-full object-cover" 
+                    />
+                }
 
                 <div className="p-4 mb-auto">
                     <p className="tracking-wide text-xs text-gray-400 flex items-center space-x-4">

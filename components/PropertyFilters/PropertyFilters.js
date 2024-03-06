@@ -82,8 +82,7 @@ export const PropertyFilters = ({onSearch, categories}) => {
             maxPrice: maxPriceInitial,
             minSquareFeet: minSquareFeetInitial,
             maxSquareFeet: maxSquareFeetInitial,
-            zipCode: zipCodeInitial,
-
+            zipCode: zipCodeInitial
         } = queryString.parse(
             window.location.properties
         );

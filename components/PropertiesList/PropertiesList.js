@@ -12,7 +12,7 @@ import { Heading } from "components/Heading";
 
 export const PropertiesList = ({propertyFeatures}) => {
 
-    console.log("PROPERTY LIST- PROPERTY FEATURES: ", propertyFeatures);
+    // console.log("PROPERTY LIST- PROPERTY FEATURES: ", propertyFeatures);
 
     const [properties, setProperties] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -113,7 +113,7 @@ export const PropertiesList = ({propertyFeatures}) => {
 
         const response = await fetch(`/api/search`, reqOptions);
         const data = await response.json();
-        console.log("PROPERTIES LIST FETCH DATA: ", data);
+        // console.log("PROPERTIES LIST FETCH DATA: ", data);
 
         setProperties(data.properties);
         setCategories(data.categories);

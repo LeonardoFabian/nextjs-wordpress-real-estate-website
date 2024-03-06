@@ -47,9 +47,10 @@ const UserLayout = ({user}) => {
                             :
                             <Image 
                                 alt="Agent profile picture"
-                                src="/default-profile-picture-600x900.svg"
+                                src="/default-profile-picture-600x900.png"
                                 fill
                                 className="object-cover w-full"
+                                
                             />
                             }
                         </div>
@@ -60,22 +61,28 @@ const UserLayout = ({user}) => {
                             </div>
                             <div className="my-10 lg:my-5 space-y-3 lg:space-y-1.5">
                                 {hasEmail && (                              
+                                    <div>
                                     <Link href={`mailto:${userMetadata.contactInformation.userEmail}`} className="text-sm flex items-start gap-x-3 my-2">
                                         <FontAwesomeIcon icon={faEnvelope} size="sm" />
                                         {userMetadata.contactInformation.userEmail}
-                                    </Link>                
+                                    </Link> 
+                                    </div>               
                                 )}
                                 {hasPhone && (                              
+                                    <div>
                                     <Link href={`tel:${userMetadata.contactInformation.userPhone}`} className="text-sm flex items-start gap-x-3 my-2">
                                         <FontAwesomeIcon icon={faPhone} size="sm" />
                                         {userMetadata.contactInformation.userPhone}
-                                    </Link>                
+                                    </Link>  
+                                    </div>              
                                 )}
                                 {hasAddress && (                              
-                                    <Link href={`${userMetadata.contactInformation.userAddress}`} className="text-sm flex items-start gap-x-3 my-2">
+                                   <div>
+                                   <Link href={`${userMetadata.contactInformation.userAddress}`} className="text-sm flex items-start gap-x-3 my-2">
                                         <FontAwesomeIcon icon={faMapMarkerAlt} size="sm" />
                                         {userMetadata.contactInformation.userAddress}
-                                    </Link>                
+                                    </Link>  
+                                   </div>              
                                 )}
                             </div>
                             <ul className="flex items-center gap-3 my-3">

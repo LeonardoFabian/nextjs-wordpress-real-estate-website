@@ -18,7 +18,7 @@ import { mapCategories } from "./mapCategories";
 
 export const getPageCategoryStaticProps = async (context) => {
 
-  console.log("CONTEXT: ", context);
+  // console.log("CONTEXT: ", context);
 
   // const {contentType, slug} = context.params;
 

@@ -5,7 +5,7 @@ import { mapPropertyLocation } from "utils/mapPropertyLocation";
 
 export const Properties = ({properties}) => {
 
-    console.log("PROPERTIES: ", properties);    
+    // console.log("PROPERTIES: ", properties);    
 
     return (
         <>

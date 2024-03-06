@@ -21,16 +21,32 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
             <>
                 <Link href={destination ? destination : "" } prefetch={false} className="block w-full py-6 relative">                   
                     <div className="flex flex-col bg-white h-full overflow-hidden shadow hover:shadow-xl rounded-lg">
-                        <div className="relative">                    
-                            <Image 
-                            src={image} 
-                            alt="" 
-                            height="256" 
-                            width="320" 
-                            className="w-full object-cover" 
-                            placeholder="blur"
-                            blurDataURL={image}
-                        />
+                        <div className="relative">   
+                            {
+                                image 
+                                ? 
+                                <Image 
+                                    src={image} 
+                                    alt="Property featured image" 
+                                    height="256" 
+                                    width="320" 
+                                    className="w-full object-cover" 
+                                    // className="w-full object-cover scale-100 hover:scale-125 ease-in duration-500" 
+                                    // placeholder="blur"
+                                    // blurDataURL={image}
+                                />
+                                : 
+                                <Image 
+                                    src="/default-featured-image.jpg" 
+                                    alt="Default property featured image" 
+                                    height="256" 
+                                    width="320" 
+                                    className="w-full object-cover sepia opacity-75" 
+                                    // placeholder="blur"
+                                    // blurDataURL={image}
+                                />
+                            }                 
+                            
                         {
                             categories.map(category => (
                                     <BadgeLink key={category.node.id} uri={category?.node.uri} className="absolute -bottom-3 bg-yellow-500 bg-opacity-90 text-sm uppercase">
@@ -116,22 +132,22 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                 ?
                                 <Image 
                                     src={image} 
-                                    alt="" 
+                                    alt="Property featured image" 
                                     height="256" 
                                     width="320" 
-                                    className="w-full object-cover" 
-                                    placeholder="blur"
-                                    blurDataURL={image}
+                                    className="property-featured-image w-full object-cover" 
+                                    // placeholder="blur"
+                                    // blurDataURL={image}
                                 />
                                 : 
                                 <Image 
                                     src="/default-featured-image.jpg"
-                                    alt="" 
+                                    alt="Default property featured image" 
                                     height="256" 
                                     width="320" 
-                                    className="w-full object-cover" 
-                                    placeholder="blur"
-                                    blurDataURL={image}
+                                    className="default-property-featured-image w-full object-cover" 
+                                    // placeholder="blur"
+                                    // blurDataURL={image}
                                 />
                             }
                             {

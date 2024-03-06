@@ -23,6 +23,9 @@ import Image from "next/image";
 import { theme } from "theme";
 import { RecentPosts } from "components/RecentPosts";
 import ContactForm from "components/ContactForm/ContactForm";
+import { ListItem } from "components/List/ListItem";
+import { List } from "components/List";
+import { Embed } from "components/Embed";
 
 export const BlockRenderer = ({blocks, props}) => {
 
@@ -31,6 +34,26 @@ export const BlockRenderer = ({blocks, props}) => {
 
     return blocks.map(block => {
         switch(block.name) {
+            case 'core/embed': {
+                // console.log("CORE/EMBED: ", block);
+                return (
+                    <Embed key={block.id} url={block.attributes.url} />
+                )
+            }
+            case 'core/list': {
+                // console.log("CORE/LIST: ", block);
+                return (
+                    <List key={block.id}>
+                        <BlockRenderer blocks={block.innerBlocks} />
+                    </List>
+                )
+            }
+            case 'core/list-item': {
+                // console.log("LIST ITEM: ", block);
+                return (
+                    <ListItem key={block.id} content={block.attributes.content} />
+                )
+            }
             case 'core/group': {
                 // console.log("CORE GROUP: ", block);
                 return (
@@ -212,49 +235,49 @@ export const BlockRenderer = ({blocks, props}) => {
                 )
             }
             case 'acf/real-estate-agent-search': {
-                console.log("AGENT SEARCH: ", block);
+                // console.log("AGENT SEARCH: ", block);
                 return (
                     <AgentSearch key={block.id} />
                 )
             }
             case 'acf/real-estate-agents-list': {
-                console.log("AGENTS LIST: ", block);
+                // console.log("AGENTS LIST: ", block);
                 return (
                     <AgentsList key={block.id} />
                 )
             }
             case 'acf/properties-filters': {
-                console.log("PROPERTIES FILTERS: ", block);
+                // console.log("PROPERTIES FILTERS: ", block);
                 return (
                     <PropertyFilters key={block.id} />
                 )
             }
             case 'acf/properties-list': {
-                console.log("PROPERTIES LIST: ", block);
+                // console.log("PROPERTIES LIST: ", block);
                 return (
                     <PropertiesList key={block.id} />
                 )
             }
             case 'acf/posts-list': {
-                console.log("POSTS LIST: ", block);
+                // console.log("POSTS LIST: ", block);
                 return (
                     <PostsList key={block.id} />
                 )
             }
             case 'acf/recent-posts': {
-                console.log("RECENT POSTS: ", block);
+                // console.log("RECENT POSTS: ", block);
                 return (
                     <RecentPosts key={block.id} />
                 )
             }
             case 'acf/post-search': {
-                console.log("POST SEARCH: ", block);
+                // console.log("POST SEARCH: ", block);
                 return (
                     <PostSearch key={block.id} />
                 )
             }
             case 'abpsd/feature-section': {
-                console.log("FEATURE SECTION: ", block);
+                // console.log("FEATURE SECTION: ", block);
                 return (
                     <FeatureSection 
                         key={block.id}
@@ -266,7 +289,7 @@ export const BlockRenderer = ({blocks, props}) => {
                 )
             }
             case 'abpsd/feature': {
-                console.log("FEATURE: ", block);
+                // console.log("FEATURE: ", block);
                 return (
                     <Feature 
                         key={block.id}

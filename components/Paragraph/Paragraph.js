@@ -13,7 +13,7 @@ export const Paragraph = ({content, textAlign = "left", textColor, backgroundCol
                 marginLeft: margin?.left,
                 marginRight: margin?.right,
             }}
-            className={`max-w-5xl mx-auto ${getTextAlign(textAlign)} text-${fontSize}`}
+            className={`max-w-5xl mx-auto my-3 leading-loose ${getTextAlign(textAlign)} text-${fontSize}`}
             dangerouslySetInnerHTML={{ __html: relativeToAbsoluteUrls(content) }} 
         />
     );

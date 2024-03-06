@@ -157,7 +157,7 @@ export const PropertySearch = () => {
             );
         } else {
             await router.push(
-                `/buying/properties?page=1&petFriendly=${!!petFriendly}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}&listingType=${listingType}&categoryId=${categoryId}`,
+                `/properties?page=1&petFriendly=${!!petFriendly}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}&listingType=${listingType}&categoryId=${categoryId}`,
                 null, 
                 {
                     shallow: true,

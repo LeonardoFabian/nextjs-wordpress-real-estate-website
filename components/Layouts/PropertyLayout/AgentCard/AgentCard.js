@@ -7,6 +7,8 @@ import Link from "next/link"
 
 export const AgentCard = ({user}) => {
 
+    console.log("AGENT CARD USER: ", user);
+
     const hasJobTitle = Boolean(user.node.userMetadata.jobTitle);
     const hasEmail = Boolean(user.node.userMetadata.contactInformation.userEmail);
     const hasPhone = Boolean(user.node.userMetadata.contactInformation.userPhone);
@@ -25,18 +27,18 @@ export const AgentCard = ({user}) => {
                         ? 
                         <Image 
                             alt="Agent Image"
-                            src={user.node.userMetadata.profilePicture}
-                            width="16"
-                            height="16"
+                            src={user.node?.userMetadata?.profilePicture?.sourceUrl}
+                            width="250"
+                            height="250"
                             className="h-20 w-20 object-cover"
                         />
                         : 
                         <Image 
                             alt="Agent Image"
                             src="/default-profile-picture-600x900.svg"
-                            width="16"
-                            height="16"
-                            className="h-20 w-20 object-cover"
+                            width="250"
+                            height="250"
+                            className="h-20 w-20  object-cover"
                         />
                     }  
                 </Link>

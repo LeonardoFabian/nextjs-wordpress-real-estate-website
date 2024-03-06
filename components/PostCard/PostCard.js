@@ -12,7 +12,7 @@ export const PostCard = ({post}) => {
     const categories = mapCategories(post.categories.nodes);
 
     return (
-        <article className={`component-post-card post-${post.databaseId} card w-full mx-auto shadow-lg`}>
+        <article className={`component-post-card post-${post.databaseId} card w-full mx-auto shadow-lg flex flex-col`}>
             <header className="p-6">
                 <div className="flex items-center text-xs space-x-4">
                     {post.categories.map(category => (
@@ -20,11 +20,15 @@ export const PostCard = ({post}) => {
                             <span className="uppercase text-yellow-600">{category.name}</span>
                         </Link>
                     ))}  
-                    <PostDate dateTime={post.date} />              
                 </div>
-                <strong><Heading level="6" content={post.title} className="!my-2" /></strong>
+                <div className="mt-5">
+                    <PostDate dateTime={post.date} className="text-sm" />              
+                    <Link href={post.uri} className="hover:underline">
+                        <strong><Heading level="5" content={post.title} /></strong>
+                    </Link>
+                </div>
             </header>
-            <div className="h-56 overflow-hidden relative">
+            <div className="mt-auto h-56 overflow-hidden relative">
                 {
                     post.featuredImage
                     ? 
