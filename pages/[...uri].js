@@ -13,38 +13,28 @@ export const getStaticPaths = async () => {
         query: gql`
             query AllPagesQuery {
                 pages {
-                    edges {
-                        node {
-                            uri
-                        }
+                    nodes {
+                        uri
                     }
                 }
                 properties {
-                    edges {
-                        node {
-                            uri
-                        }
+                    nodes {
+                        uri
                     }
                 }
                 posts {
-                    edges {
-                        node {
-                            uri
-                        }
+                    nodes {
+                        uri
                     }
                 }
                 categories {
-                    edges {
-                        node {
-                            uri
-                        }
+                    nodes {
+                        uri
                     }
                 }
                 users {
-                    edges {
-                        node {
-                            uri
-                        }
+                    nodes {
+                        uri
                     }
                 }
             }
@@ -54,16 +44,16 @@ export const getStaticPaths = async () => {
     return {
         paths: 
             [
-                ...data.pages?.edges, 
-                ...data.properties?.edges, 
-                ...data.posts?.edges, 
-                ...data.categories?.edges, 
-                ...data.users?.edges
+                ...data.pages.nodes, 
+                ...data.properties.nodes, 
+                ...data.posts.nodes, 
+                ...data.categories.nodes, 
+                ...data.users.nodes
             ]
-            .filter((page) => page.node.uri !== "/")
+            .filter((page) => page.uri !== "/")
             .map((page) => ({
             params: { 
-                uri: page.node.uri.substring(1, page.node.uri.length - 1).split("/")
+                uri: page.uri?.substring(1, page.uri?.length - 1).split("/"),
             },
         })),
         fallback: "blocking",
