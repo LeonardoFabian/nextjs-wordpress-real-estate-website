@@ -312,107 +312,107 @@ export const GET_PAGES_BY_URI = gql`
                     }
                 }
             }
-            # ... on User {
-            #     databaseId
-            #     firstName
-            #     lastName
-            #     description
-            #     slug 
-            #     uri
-            #     userMetadata {
-            #         jobTitle
-            #         profilePicture {
-            #             sourceUrl
-            #         }
-            #         contactInformation {
-            #             userAddress
-            #             userEmail
-            #             userPhone
-            #             userWhatsapp
-            #             userWebsite
-            #             userLinkedin
-            #         }
-            #     }
-            #     properties {
-            #     edges {
-            #         node {
-            #         title(format: RENDERED)
-            #         slug
-            #         uri
-            #         featuredImage {
-            #             node {
-            #             sourceUrl(size: LARGE)
-            #             }
-            #         }
-            #         date
-            #         propertyFeatures {
-            #             code
-            #             listingType
-            #             price
-            #             currency
-            #             bedrooms
-            #             bathrooms
-            #             hasParking
-            #             parkingQty
-            #             petFriendly
-            #             status
-            #         }
-            #         locations {
-            #             edges {
-            #                 node {
-            #                     name
-            #                 }
-            #             }
-            #         }
-            #         cities {
-            #             edges {
-            #                 node {
-            #                     name
-            #                 }
-            #             }
-            #         }
-            #             categories {
-            #                 edges {
-            #                     node {
-            #                         databaseId
-            #                         name
-            #                         slug
-            #                         uri
-            #                     }
-            #                 }
-            #             }
-            #         }
-            #     }
-            # }
-            #}
-            # ... on Category {
-            #     databaseId
-            #     name
-            #     slug 
-            #     uri
-            #     posts {
-            #         nodes {
-            #             uri
-            #             title
-            #             contentType {
-            #                 node {
-            #                     name
-            #                 }
-            #             }
-            #         }
-            #     }
-            #     properties {
-            #         nodes {
-            #             uri
-            #             title
-            #             contentType {
-            #                 node {
-            #                     name
-            #                 }
-            #             }
-            #         }
-            #     }
-            # }
+            ... on User {
+                databaseId
+                firstName
+                lastName
+                description
+                slug 
+                uri
+                userMetadata {
+                    jobTitle
+                    profilePicture {
+                        sourceUrl
+                    }
+                    contactInformation {
+                        userAddress
+                        userEmail
+                        userPhone
+                        userWhatsapp
+                        userWebsite
+                        userLinkedin
+                    }
+                }
+                properties {
+                edges {
+                    node {
+                    title(format: RENDERED)
+                    slug
+                    uri
+                    featuredImage {
+                        node {
+                        sourceUrl(size: LARGE)
+                        }
+                    }
+                    date
+                    propertyFeatures {
+                        code
+                        listingType
+                        price
+                        currency
+                        bedrooms
+                        bathrooms
+                        hasParking
+                        parkingQty
+                        petFriendly
+                        status
+                    }
+                    locations {
+                        edges {
+                            node {
+                                name
+                            }
+                        }
+                    }
+                    cities {
+                        edges {
+                            node {
+                                name
+                            }
+                        }
+                    }
+                        categories {
+                            edges {
+                                node {
+                                    databaseId
+                                    name
+                                    slug
+                                    uri
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            }
+            ... on Category {
+                databaseId
+                name
+                slug 
+                uri
+                posts {
+                    nodes {
+                        uri
+                        title
+                        contentType {
+                            node {
+                                name
+                            }
+                        }
+                    }
+                }
+                properties {
+                    nodes {
+                        uri
+                        title
+                        contentType {
+                            node {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
         }
         themeGeneralSettings {   
             generalSettings {
