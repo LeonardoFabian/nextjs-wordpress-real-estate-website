@@ -55,7 +55,7 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                 categories.map((category, i) => (
                                         <div key={i}>
                                             <BadgeLink uri={category?.node?.uri} className="absolute -bottom-3 bg-yellow-500 bg-opacity-90 text-sm uppercase">
-                                                {category?.node?.name ? category.node.name : "Sin Categoría" }
+                                                {category?.node?.name ? category?.node?.name : "Sin Categoría" }
                                             </BadgeLink>
                                         </div>
                                     )
@@ -88,7 +88,7 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                 {location || location ? (
                                     <div className="flex items-start justify-start space-x-2 mt-3 text-xs">
                                         <FontAwesomeIcon icon={faMapMarkerAlt} className="text-gray-700" size="lg"/>
-                                        <span className="text-gray-900">{location ? location.name : null}, {city ? city.name : null}</span>
+                                        <span className="text-gray-900">{location ? location?.name : null}, {city ? city.name : null}</span>
                                     </div>
                                 ) : null}                        
                             </div>
@@ -163,7 +163,7 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                                 hasCategories 
                                 ?
                                 categories.map((category, i) => (
-                                        <BadgeLink key={i} uri={category?.node.uri} className="absolute -bottom-3 cursor-default bg-yellow-500 bg-opacity-90 text-sm uppercase">{category?.node.name}</BadgeLink>
+                                        <BadgeLink key={i} uri={category?.node?.uri} className="absolute -bottom-3 cursor-default bg-yellow-500 bg-opacity-90 text-sm uppercase">{category?.node?.name}</BadgeLink>
                                     )
                                 )    
                                 :
@@ -189,7 +189,7 @@ export const PropertyCard = ({state, country, title, code, condition, date, dest
                             {location || location ? (
                                 <div className="flex items-start justify-start space-x-2 mt-3 text-xs">
                                     <FontAwesomeIcon icon={faMapMarkerAlt} className="text-gray-700" size="lg"/>
-                                    <span className="text-gray-900">{location ? location.name : null}, {city ? city.name : null}</span>
+                                    <span className="text-gray-900">{location ? location?.name : null}, {city ? city?.name : null}</span>
                                 </div>
                             ) : null}                        
                         </div>
