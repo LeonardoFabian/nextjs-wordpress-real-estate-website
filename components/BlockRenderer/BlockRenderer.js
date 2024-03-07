@@ -36,7 +36,7 @@ export const BlockRenderer = ({blocks}) => {
             case 'core/embed': {
                 // console.log("CORE/EMBED: ", block);
                 return (
-                    <Embed key={block.id} url={block.attributes.url} />
+                    <Embed key={block.id} url={block.attributes?.url} />
                 )
             }
             case 'core/list': {
@@ -50,7 +50,7 @@ export const BlockRenderer = ({blocks}) => {
             case 'core/list-item': {
                 // console.log("LIST ITEM: ", block);
                 return (
-                    <ListItem key={block.id} content={block.attributes.content} />
+                    <ListItem key={block.id} content={block.attributes?.content} />
                 )
             }
             case 'core/group': {
@@ -58,11 +58,11 @@ export const BlockRenderer = ({blocks}) => {
                 return (
                     <Group 
                         key={block.id}
-                        align={block.attributes.align}
-                        classes={block.attributes.className}
-                        layoutType={block.attributes.layout.type}
-                        justifyContent={block.attributes.layout.justifyContent}
-                        flexWrap={block.attributes.layout.flexWrap}
+                        align={block.attributes?.align}
+                        classes={block.attributes?.className}
+                        layoutType={block.attributes?.layout?.type}
+                        justifyContent={block.attributes?.layout?.justifyContent}
+                        flexWrap={block.attributes?.layout?.flexWrap}
                     >
                         <BlockRenderer blocks={block.innerBlocks} />
                     </Group>
@@ -73,11 +73,11 @@ export const BlockRenderer = ({blocks}) => {
                 return (
                     <SiteLogo 
                         key={block.id}
-                        url={block.attributes.url}
-                        width={block.attributes.width}
-                        height={block.attributes.height}
-                        isLink={block.attributes.isLink}
-                        alt={block.attributes.alt}
+                        url={block.attributes?.url}
+                        width={block.attributes?.width}
+                        height={block.attributes?.height}
+                        isLink={block.attributes?.isLink}
+                        alt={block.attributes?.alt}
                     />
                 )
             }
@@ -85,8 +85,8 @@ export const BlockRenderer = ({blocks}) => {
                 // console.log("GALLERY: ", block);
                 return (
                     <Gallery key={block.id} 
-                        columns={block.attributes.columns || 3} 
-                        imageCrop={block.attributes.imageCrop} 
+                        columns={block.attributes?.columns || 3} 
+                        imageCrop={block.attributes?.imageCrop} 
                         items={block.innerBlocks} 
                     />
                 )
@@ -105,10 +105,10 @@ export const BlockRenderer = ({blocks}) => {
                 return (
                     <Image 
                         key={block.id} 
-                        src={block.attributes.url}
-                        height={block.attributes.height}
-                        width={block.attributes.width}
-                        alt={block.attributes.alt || ""}
+                        src={block.attributes?.url}
+                        height={block.attributes?.height}
+                        width={block.attributes?.width}
+                        alt={block.attributes?.alt || ""}
                     />
                 )
             }
@@ -117,14 +117,14 @@ export const BlockRenderer = ({blocks}) => {
                 return (
                     <Columns 
                         key={block.id} 
-                        isStackedOnMobile={block.attributes.isStackedOnMobile} 
+                        isStackedOnMobile={block.attributes?.isStackedOnMobile} 
                         textColor={
-                            theme[block.attributes.textColor] || 
-                            block.attributes.style?.color?.text
+                            theme[block.attributes?.textColor] || 
+                            block.attributes?.style?.color?.text
                         } 
                         backgroundColor={
-                            theme[block.attributes.backgroundColor] || 
-                            block.attributes.style?.color?.background
+                            theme[block.attributes?.backgroundColor] || 
+                            block.attributes?.style?.color?.background
                         }
                     >
                         <BlockRenderer blocks={block.innerBlocks} />
@@ -154,46 +154,51 @@ export const BlockRenderer = ({blocks}) => {
                 // console.log("PARAGRAPH: ", block);
                 return (
                     <Paragraph key={block.id} 
-                        content={block.attributes.content} 
-                        textAlign={block.attributes.textAlign} 
+                        content={block.attributes?.content} 
+                        textAlign={block.attributes?.textAlign} 
                         textColor={
-                            theme[block.attributes.textColor] || 
-                            block.attributes.style?.color?.text
+                            theme[block.attributes?.textColor] || 
+                            block.attributes?.style?.color?.text
                         } 
                         backgroundColor={
-                            theme[block.attributes.backgroundColor] || 
-                            block.attributes.style?.color?.background
+                            theme[block.attributes?.backgroundColor] || 
+                            block.attributes?.style?.color?.background
                         }
-                        fontSize={block.attributes.fontSize}
-                        margin={block.attributes.style?.spacing?.margin}
+                        fontSize={block.attributes?.fontSize}
+                        margin={block.attributes?.style?.spacing?.margin}
                     />
                 )
             }
             case 'core/cover': {
                 // console.log("COVER: ", block);
                 return (
-                    <Cover key={block.id} background={block.attributes.url}>
+                    <Cover key={block.id} background={block.attributes?.url}>
                         <BlockRenderer blocks={block.innerBlocks} />
                     </Cover>
                 )
             }
             case 'core/heading':
             case 'core/post-title': {
-                return <Heading key={block.id} textAlign={block.attributes.textAlign} content={block.attributes.content} level={block.attributes.level} />
+                return <Heading 
+                    key={block.id} 
+                    textAlign={block.attributes?.textAlign} 
+                    content={block.attributes?.content} 
+                    level={block.attributes?.level} 
+                    />
             }
             case 'acf/cta-button': {
                 // console.log("CTA BUTTON", block);
                 return (
                     <CallToActionButton 
                         key={block.id} 
-                        align={block.attributes.data.align} 
-                        destination={block.attributes.data.destination || "/"} 
-                        label={block.attributes.data.label} 
-                        bgColor={theme[block.attributes.backgroundColor] || ""}
-                        textColor={theme[block.attributes.textColor] || ""}
-                        margin={block.attributes.style?.spacing?.margin}
+                        align={block.attributes?.data?.align} 
+                        destination={block.attributes?.data?.destination || "/"} 
+                        label={block.attributes?.data?.label} 
+                        bgColor={theme[block.attributes?.backgroundColor] || ""}
+                        textColor={theme[block.attributes?.textColor] || ""}
+                        margin={block.attributes?.style?.spacing?.margin}
                     >
-                        {block.attributes.data.label}
+                        {block.attributes?.data?.label}
                     </CallToActionButton>
                 )
             }
@@ -206,7 +211,7 @@ export const BlockRenderer = ({blocks}) => {
                 // console.log("FORMSPREE FORM: ", block);
                 return (
                     <>
-                    <FormspreeForm key={block.id} formId={block.attributes.data.form_id} />
+                    <FormspreeForm key={block.id} formId={block.attributes?.data?.form_id} />
                         <div className="container max-w-lg">
                             <ContactForm />
                         </div>
@@ -217,11 +222,11 @@ export const BlockRenderer = ({blocks}) => {
                 // console.log("PROPERTY FEATURES: ", block);
                 return (
                     <PropertyFeatures key={block.id} 
-                        price={block.attributes.price}
-                        bedrooms={block.attributes.bedrooms}
-                        bathrooms={block.attributes.bathrooms}
-                        hasParking={block.attributes.has_parking}
-                        petFriendly={block.attributes.pet_friendly}
+                        price={block.attributes?.price}
+                        bedrooms={block.attributes?.bedrooms}
+                        bathrooms={block.attributes?.bathrooms}
+                        hasParking={block.attributes?.has_parking}
+                        petFriendly={block.attributes?.pet_friendly}
                     />
                 )
             }
@@ -280,8 +285,8 @@ export const BlockRenderer = ({blocks}) => {
                 return (
                     <FeatureSection 
                         key={block.id}
-                        title={block.attributes.title || null}
-                        content={block.attributes.content || null}
+                        title={block.attributes?.title || null}
+                        content={block.attributes?.content || null}
                     >
                         <BlockRenderer blocks={block.innerBlocks} />
                     </FeatureSection>
@@ -292,13 +297,13 @@ export const BlockRenderer = ({blocks}) => {
                 return (
                     <Feature 
                         key={block.id}
-                        title={block.attributes.title || null}
-                        content={block.attributes.content || null}
-                        imageUrl={block.attributes.imageUrl}
-                        imageId={block.attributes.imageId}
-                        imageAlt={block.attributes.imageAlt || null}
-                        foregroundColor={block.attributes.foregroundColor.color || null}
-                        backgroundColor={block.attributes.backgroundColor.backgroundColor}
+                        title={block.attributes?.title || null}
+                        content={block.attributes?.content || null}
+                        imageUrl={block.attributes?.imageUrl}
+                        imageId={block.attributes?.imageId}
+                        imageAlt={block.attributes?.imageAlt || null}
+                        foregroundColor={block.attributes?.foregroundColor?.color || null}
+                        backgroundColor={block.attributes?.backgroundColor?.backgroundColor}
                     >
                         <BlockRenderer blocks={block.innerBlocks} />
                     </Feature>
