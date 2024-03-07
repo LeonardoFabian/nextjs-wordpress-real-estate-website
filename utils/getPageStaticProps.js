@@ -25,7 +25,7 @@ import {GET_USER_BY_URI} from "queries/getUserByUri";
 
 export const getPageStaticProps = async ({params}) => {
 
-  console.log("------------------------------------------------------------------------- GET PAGE STATIC PROPS PARAMS: ", params);
+  console.log("----------------------------------------------------- GET PAGE STATIC PROPS PARAMS: ", params);
 
   // let uri = ``;
 
