@@ -1,10 +1,9 @@
-import { gql, useQuery } from "@apollo/client";
 import client from "client";
 import { cleanAndTransformBlocks } from "utils/cleanAndTransformBlocks";
 import { mapMainMenuItems } from "utils/mapMainMenuItems";
 import { mapFooterMenuItems } from "./mapFooterMenuItems";
 import { mapFooterQuickLinks } from "./mapFooterQuickLinks";
-import { mapSocialLinks } from "./mapSocialLinks";
+// import { mapSocialLinks } from "./mapSocialLinks";
 import { mapLegalPages } from "./mapLegalPages";
 import { mapPageMenuItems } from "./mapPageMenuItems";
 import { mapCompanySettings } from "./mapCompanySettings";
@@ -13,13 +12,13 @@ import { mapEmails } from "./mapEmails";
 import { mapPhones } from "./mapPhones";
 import { mapAddresses } from "./mapAddresses";
 import { mapOpeningHours } from "./mapOpeningHours";
-import { mapWPForms } from './mapForms';
+// import { mapWPForms } from './mapForms';
 import { mapCategories } from "./mapCategories";
 import { mapPosts } from "./mapPosts";
 import { mapFeatures } from "./mapFeatures";
 import { mapPropertyLocation } from "./mapPropertyLocation";
-import { mapState } from "./mapState";
-import { mapCountries } from "./mapCountries";
+// import { mapState } from "./mapState";
+// import { mapCountries } from "./mapCountries";
 import { GET_PAGES_BY_URI } from "queries";
 import {GET_USER_BY_URI} from "queries/getUserByUri";
 // import {GET_POST_BY_URI} from "queries/getPostByUri";
@@ -60,7 +59,7 @@ export const getPageStaticProps = async ({params}) => {
   const {data: userData} = await client.query({
     query: GET_USER_BY_URI,
     variables: {
-      uri: params && params.uri[0] === "author" ? `/${params.uri.join("/")}/` : "",
+      uri: params?.uri && params?.uri[0] === "author" ? `/${params.uri.join("/")}/` : "",
     },
   }); 
 
